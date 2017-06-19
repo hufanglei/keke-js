@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>对象和json和字符串转换</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+			.div{border-bottom:1px solid #ccc;padding:2px}
+			.box div{width:100px;height:100px;background:#ccc;color:#111;line-height:100px;text-align:center;margin:10px auto;font-size:36px;cursor:pointer;border:0}
+			table{width:80%;margin-top:20px;border-collapse:collapse;}
+			table td{border:1px solid #ccc;}
+		</style>
+
+	</head>
+<body>
+<div>1:json-string</div>
+<pre>
+var order  = {
+	orderNumber:"tz123456",
+	price:12.5,
+	num:100,
+	total:1250
+};
+</pre>
+<div>
+json-string ，将对象转成字符串
+<pre>
+var string = JSON.stringify(order);
+console.log(string);//结果:{"orderNumber":"tz123456","price":12.5,"num":100,"total":1250}
+</pre>
+</div>
+<br/>
+<div>2:string-json</div>
+<pre>
+//从后台返回就是json字符串
+//var jsonString = "{\"username\":\"keke\",\"age\":20}";//
+var jsonString = '{"username":"keke","age":20}';//共这2种写法
+</pre>
+<div>
+string-json，将字符串转成对象
+<pre>
+var jsonString = '{"username":"keke","age":20}';//共这2种写法:注意外面是单引号
+var json2 = JSON.parse(jsonString);//结果:
+console.log(json2.username+"==="+json2.age);//结果:keke===205,"num":100,"total":1250}
+</pre>
+</div>
+<br/>
+<div>3.案例实战：对象放入数组并排序</div>
+<pre>
+//页面代码:
+&lt;table&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td&gt;姓名&lt;/td&gt;
+			&lt;td&gt;年龄&lt;/td&gt;
+			&lt;td&gt;地址&lt;/td&gt;
+			&lt;td&gt;描述&lt;/td&gt;
+			&lt;td&gt;操作&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody id="tbody"&gt;&lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+<pre>
+//js代码:
+var xiaowu = {
+		username:"小五",
+		age:16,
+		mark:true,
+		address:"长沙",
+		listen:function(){
+			alert(this.username+"==="+this.age+"==="+this.address+"在听课");
+		}
+};
+	
+var pengpeng = {
+	username:"鹏鹏",
+	age:11,
+	address:"杭州",
+	listen:function(){
+		alert(this.username+"==="+this.age+"==="+this.address+"在听课");
+	}
+};
+
+var dabao = {
+	username:"大宝",
+	age:12,
+	address:"北京",
+	listen:function(){
+		alert(this.username+"==="+this.age+"==="+this.address+"在听课");
+	}
+};
+
+var arr = [];
+arr.push(xiaowu);
+arr.push(pengpeng);
+arr.push(dabao);
+arr.sort(function(a ,b){
+	var avalue =  a.age;
+	var bvalue = b.age;
+	return avalue - bvalue;
+});
+//放入数组，就可排序，反转，统一循环
+var tbody = document.getElementById("tbody");
+for(var i=0;i<arr.length;i++){
+	var data = arr[i];
+	tbody.innerHTML += "<tr>"+
+	"	<td>"+ data.username +"</td>" +
+	"	<td>"+ data.age +"</td>"+
+	"	<td>"+ data.address +"</td>" +
+	"	<td>"+ data.address +"</td>" +
+	"	<td>操作</td>" +
+	"</tr>";
+}
+</pre>
+<div>效果如下:</div>
+<table>
+	<thead>
+		<tr>
+			<td>姓名</td>
+			<td>年龄</td>
+			<td>地址</td>
+			<td>描述</td>
+			<td>操作</td>
+		</tr>
+	</thead>
+	<tbody id="tbody"></tbody>
+</table>
+<script>
+	
+	var order  = {
+		orderNumber:"tz123456",
+		price:12.5,
+		num:100,
+		total:1250
+	};
+	//将对象转成字符串
+	var string = JSON.stringify(order);
+	console.log(string);//结果:{"orderNumber":"tz123456","price":12.5,"num":100,"total":1250}
+	
+	//从后台返回就是json字符串
+	//var jsonString = "{\"username\":\"keke\",\"age\":20}";//
+	var jsonString = '{"username":"keke","age":20}';//共这2种写法:注意外面是单引号
+	var json2 = JSON.parse(jsonString);//结果:
+	console.log(json2.username+"==="+json2.age);//结果:keke===20
+
+
+	var xiaowu = {
+			username:"小五",
+			age:16,
+			mark:true,
+			address:"长沙",
+			listen:function(){
+				alert(this.username+"==="+this.age+"==="+this.address+"在听课");
+			}
+	};
+		
+	var pengpeng = {
+		username:"鹏鹏",
+		age:11,
+		address:"杭州",
+		listen:function(){
+			alert(this.username+"==="+this.age+"==="+this.address+"在听课");
+		}
+	};
+
+	var dabao = {
+		username:"大宝",
+		age:12,
+		address:"北京",
+		listen:function(){
+			alert(this.username+"==="+this.age+"==="+this.address+"在听课");
+		}
+	};
+	
+	var arr = [];
+	arr.push(xiaowu);
+	arr.push(pengpeng);
+	arr.push(dabao);
+	arr.sort(function(a ,b){
+		var avalue =  a.age;
+		var bvalue = b.age;
+		return avalue - bvalue;
+	});
+	//放入数组，就可排序，反转，统一循环
+	var tbody = document.getElementById("tbody");
+	for(var i=0;i<arr.length;i++){
+		var data = arr[i];
+		tbody.innerHTML += "<tr>"+
+		"	<td>"+ data.username +"</td>" +
+		"	<td>"+ data.age +"</td>"+
+		"	<td>"+ data.address +"</td>" +
+		"	<td>"+ data.address +"</td>" +
+		"	<td>操作</td>" +
+		"</tr>";
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>运动:弹性加速</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		a{text-decoration:none;color:#fff;}
+		ul,li{list-style:none}
+		body{font-size:12px;font-family:"微软雅黑";}
+		#box{height:100px;width:100px;background: red;position: absolute;left:0px;}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	window.onload =  function(){
+		var boxDom = dom("box");
+		boxDom.onclick = function(){
+				cmove();
+		}
+		//反加速
+		var speed = 0;//速度
+		var timer = null;
+		function cmove(){
+			clearInterval(timer);//保证只有一个定时器在执行
+			timer=setInterval(function(){
+				//到达某个位置的时候，方向转向
+				//var t = boxDom.offsetLeft + speed;//
+				/*if(boxDom.offsetLeft < 500){
+					speed += (500 - boxDom.offsetLeft);					
+				}else{
+					speed -= (boxDom.offsetLeft-500);	
+					//console.log("反向"+speed+"==="+t);
+				}*/
+				speed += (1000 - boxDom.offsetLeft)/4;	
+				speed *=0.725;
+				if(Math.abs(speed) <=1 && Math.abs(1000-boxDom.offsetLeft)<=1){
+					speed = 0;
+					boxDom.style.left = "1000px";
+					clearInterval(timer);
+				}
+				boxDom.style.left = boxDom.offsetLeft + speed + "px";
+			},30);
+		}
+		
+	}
+</script>
+</body>
+</html>

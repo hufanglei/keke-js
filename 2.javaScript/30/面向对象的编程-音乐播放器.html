@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{padding:0;margin:0}
+	body{font-size:14px;font-family:"微软雅黑";padding:100px}
+	a{text-decoration:none;color:#333}
+	li{list-style:none}
+	#box{background:red;width:100px;height:100px;}
+	.cprograss{width:640px;height:32px;border:1px solid #111;background:#ccc;position:relative;line-height:32px}
+	.cpnum{position:absolute;top:0;left:0;padding-left:5px;color:#fff;z-index:3}
+	.cbar{position:absolute;left:0;top:0;width:48px;height:32px;background:#111;z-index:3;text-align:center;}
+	.cover{position:absolute;left:0;top:0;width:100%;height:100%;background:transparent;z-index:2}
+	.cpercent{height:32px;background:green;width:0%;}
+
+  </style>
+ </head>
+ <body>
+	<!--进度条-->
+	
+
+	<div id="div1">
+		<a href="javascript:void(0);" id="play1">播放</a>
+		<a href="javascript:void(0);" style="display:none" id="stop1">暂停</a>
+		<a href="javascript:void(0);" id="vol1">静音</a>
+		<span id="tot1">00:00</span>
+		<span id="cur1">00:00</span>
+		<span id="bur1">00:00</span>
+		<div class="cprograss">
+			<div class="cpercent"></div>
+			<div id="bar" class="cbar"><span id="pnum" class="cpnum">0%</span></div>
+			<div id="over" class="cover"></div>
+		</div>
+
+		<br/>
+		<div  class="cprograss" style="width:240px;">
+			<div class="cpercent"></div>
+			<div id="vbar" class="cbar"><span id="pnum" class="cpnum">0%</span></div>
+			<div id="vover" class="cover"></div>
+		</div>
+	</div>	
+
+
+
+	<div id="div2">
+		<a href="javascript:void(0);" id="play2" >播放</a>
+		<a href="javascript:void(0);" style="display:none" id="stop2">暂停</a>
+		<a href="javascript:void(0);" id="vol2" >静音</a>
+		<span id="tot2">00:00</span>
+		<span id="cur2">00:00</span>
+		<span id="bur2">00:00</span>
+
+		<div  class="cprograss">
+			<div class="cpercent"></div>
+			<div id="bar2" class="cbar"><span  class="cpnum">0%</span></div>
+			<div id="over2" class="cover"></div>
+		</div>
+
+
+		<br/>
+		<div class="cprograss" style="width:240px;">
+			<div  class="cpercent"></div>
+			<div id="vbar2" class="cbar"><span class="cpnum">0%</span></div>
+			<div id="vover2" class="cover"></div>
+		</div>
+	</div>	
+
+
+	<script src="dom.js"></script>
+	<script src="tz_music.js"></script>
+	<script>
+		window.onload = function(){
+			var music =  new TzMusic("div1","mp3/01.mp3","我太喜欢你了!","keke");
+			music.init({bar:dom("bar"),volume:dom("vbar")},function(mark){
+				if(mark=="time"){//时长的调用
+					dom("tot1").innerHTML = this.ftime;
+				}else if(mark=="play"){
+					//播放中的
+					dom("cur1").innerHTML = this.fptime;
+					dom("bur1").innerHTML = this.btime;
+				}
+			});
+			
+			dom("play1").onclick = function(){
+				music.play();
+				this.style.display = "none";
+				dom("stop1").style.display = "inline-block";
+			};
+
+			dom("stop1").onclick = function(){
+				music.stop();
+				this.style.display = "none";
+				dom("play1").style.display = "inline-block";
+
+			};
+
+			dom("vol1").onclick = function(){
+				var obj = this;
+				music.stopVolome(function(mark){
+					obj.innerHTML = mark?"非静音":"静音";
+				});
+			};
+
+
+
+
+
+
+			
+			var music2 =  new TzMusic("div2","mp3/02.mp3","我太喜欢你了!","keke");
+			music2.init({bar:dom("bar2"),volume:dom("vbar2")},function(mark){
+				if(mark=="time"){//时长的调用
+					dom("tot2").innerHTML = this.ftime;
+				}else if(mark=="play"){
+					//播放中的
+					dom("cur2").innerHTML = this.fptime;
+					dom("bur2").innerHTML = this.btime;
+				}
+			});
+			
+			dom("play2").onclick = function(){
+				music2.play();
+				this.style.display = "none";
+				dom("stop2").style.display = "inline-block";
+			};
+
+			dom("stop2").onclick = function(){
+				music2.stop();
+				this.style.display = "none";
+				dom("play2").style.display = "inline-block";
+
+			};
+
+			dom("vol2").onclick = function(){
+				var obj = this;
+				music2.stopVolome(function(mark){
+					obj.innerHTML = mark?"非静音":"静音";
+				});
+			};
+		
+		};
+
+	</script>
+ </body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>数据类型判断+原型链使用</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background:#373737;}
+
+		</style>
+
+	</head>
+<body>
+
+
+
+<script>
+	//var  json = {username:"keke"};
+	//两种获取值的方式
+	//json.username
+	//json["username"]
+	
+	//删除对象
+	//json = null;
+	//删除属性
+	//delete json.username或者josn["username"]
+	//判别一个对象属性是否在某个对象
+	//in是用于查找某个熟悉是否存在于对象中，它会把这个对象里面所有的内置方法全部返回出来
+	 // alert("username" in  json);
+	 // alert("toString" in json);//所有对象里面内置的方法
+	 // alert("valueOf" in json);//所有对象里面内置的方法
+	 // alert("constructor" in json);//区分对象具体的类型、
+
+	// var date = new Date();
+	// log(date.constructor);
+	// var arr = [];
+	// var obj = [];
+	// var regex = new RegExp();
+
+	 //获得对象的值
+	 // for(var key in json){
+	 // 	log(key+"==="+json[key]);
+	 // }
+     
+     //判断是不是一个数组①
+     // function isArray(obj){
+     // 	if(obj && typeof obj ==="object"){
+     // 		var con = obj.constructor.toString();
+     // 		return con.indexOf("Array")!=-1?true:false;
+     // 	}
+     // 	return false;
+     // }
+     
+    //②sort slice length
+    // function isArray(obj){
+    // 	return typeof obj.sort === "function";
+    // 	//sort方法只有数组才有，所以可用这个判断数组
+    // };
+
+    //③lenght splice join
+    // function isArray(obj){
+    // 	return obj!=null&& typeof obj === "object" && "pop" in obj && "join" in obj && "length" in obj;
+    // }
+    //④方法
+   /* function isArray(obj){
+    	return obj instanceof Array;
+    }*/
+     
+     //判断number类型
+     //log(isArray(arr));
+     // function isNumber(obj){
+     // 	var num = new Number(obj);
+     // 	return typeof obj === "number" && !("isNaN" in num);
+     // };
+     //log(isNumber(1));
+	//判断null
+	// function isNull(obj){
+	// 	return obj === null;
+	// }
+   //判断undefined
+	// function isUndefinded(obj){
+	// 	return obj === undefined;
+	// }
+	// var a;
+	// log(isUndefinded(a));
+	
+	//判断日期 (没测试成功)
+	// var date = new Date();	
+	// alert(isDate(date));
+
+
+	//ES5中：
+	// var arr = [];
+	// log(Array.isArray(arr));
+
+	// var arr = [1,2,3,4,5,7,8,9];
+	//log(arr.lastIndexOf(2));//结果为下标
+	// arr.forEach(function(i){
+	// 	alert(this[i]);
+	// });
+    // Array.prototype.isArray = function() {
+    // 	return this instanceof Array;
+    // };
+    // log(arr.isArray());
+   
+    //判断一个字符串元素是否以2为开头
+    //原型链可以动态扩展方法
+    String.prototype.startWidth = function(key){
+    	return this.charAt(0)==key;
+    }
+    String.prototype.endWidth = function(key){
+    	return this.charAt(this.length-1)==key;
+    }
+     var arr =  ["111111" , "528258755" ,"5624","2584"];
+     var str = "";
+     for(var i in arr){
+     	str = arr[i];
+     	//s = str.substring(0,1);
+     	//s = str.charAt(0);
+     	// if(s.startWidth('2')){
+     	// 	log(str);
+     	// }
+     	s = str.charAt(arr.length-1);
+     	if(s.endWidth('4')){
+			log(str);
+     	}
+     }
+     // for(var i in arr){
+
+     // }
+
+	//对象 call apply 拷贝和深度覆盖
+	//dom
+	//弹出层
+	//封装 弹出层
+	
+
+
+
+
+
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}
+		
+		}
+</script>
+</body>
+</html>

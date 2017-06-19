@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:14px;font-family:"微软雅黑";background:url("images/05-bg.jpg") no-repeat;background-size:cover;color:#000;}
+			a{text-decoration:none;color:#000;}
+			/*header start*/
+			.header{background:linear-gradient(rgba(15,25,50,.3) 0,rgba(15,25,50,.3) 100%);height:32px;}
+			/*header end*/
+			
+			/*搜索框层 start*/
+			.wraper{height:294px;width:640px;position:absolute;top:0;left:50%;margin-left:-320px;}
+			/*logo图片*/
+			.wraper .lg{height:180px;width:640px;position:relative;}
+			.wraper .lg  #lg_img{position:absolute;bottom:10px;left:50%;margin-left:-135px;}
+			/*输入框*/
+			.wraper .ipt{margin-top:10px;background:yellow;}
+			.wraper .ipt .text{width:530px;height:40px;border:0;outline:none;padding-left:10px;}
+			.wraper .ipt a{border-radius:3px;width:100px;height:40px;display:block;text-align:center;line-height:40px;float:right;}
+			/*搜索框层 end*/
+
+		
+					
+		</style>
+
+	</head>
+<body>
+	
+	<!--header start-->
+	<div class="header"></div>
+	<!--header end-->
+
+	<!--搜索框层 start-->
+	<div class="wraper">
+		<!--logo图片-->
+		<div class="lg">
+			<img id="lg_img" src="images/05-logo.png" alt="logo" width="270px" height="129px">
+		</div>
+		<!--输入框-->
+		<div class="ipt">
+		 <input class="text" type="text" />
+		 <a href="javascript:void(0)"><span>百度一下</span></a>
+		</div>
+
+	</div>
+	<!--搜索框层 end-->
+
+	<!--content start-->
+	<div class="content"></div>
+
+</body>
+</html>

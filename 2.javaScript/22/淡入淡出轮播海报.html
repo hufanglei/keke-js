@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>淡入淡出海报</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			img{border:none;vertical-align:top;}			
+			body{font-size:14px;font-family:"微软雅黑";background:#fff;}
+			pre {
+				
+				font-size:14px;
+				width:80%;
+				margin: 100px 100px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			/*图片盒子*/
+			#box{width:970px;height:350px;position:relative;margin:100px auto;overflow:hidden;}
+			/*图片ul*/
+			ul{width:970px;}
+			ul li{width:970px;opacity:0;position:absolute;top:0;left:0;}
+			ul li img{width:970px;height:350px;}
+			/*数字小图片*/
+			ol{z-index:2;width:120px;position:absolute;right:10px;bottom:10px;}
+			ol li{width:20px;height:20px;float:left;margin:0 2px;display:inline;background:#fff;color:#000;line-height:20px;text-align:center;border-radius:50%;}
+			ol .active{background:red;color:#fff;cursor:pointer;}
+		</style>
+
+	</head>
+<body>
+
+	<div id="box">
+		<ul id="imgbox">
+			<li style="opacity:1"><img src="../../images/1.png"  alt="" /></li>
+			<li><img src="../../images/2.png"  alt="" /></li>
+			<li><img src="../../images/3.png"  alt="" /></li>
+			<li><img src="../../images/4.png"  alt="" /></li>
+		</ul>
+		<ol id="numol">
+		  <li class="active">1</li>
+		  <li>2</li>
+		  <li>3</li>
+		  <li>4</li>
+		</ol>
+	</div>
+	<pre>
+	&lt;script type="text/javascript" src="move.js"&gt;&lt;/script&gt;
+	&lt;script&gt;
+		window.onload = function(){
+			var imgDoms = dom("imgbox").children;
+			//拿到所有的小图片的li
+			var olLiDoms = dom("numol").children;		
+			for(var i=0;i&lt;olLiDoms.length;i++){			
+				olLiDoms[i].index = i;					
+				olLiDoms[i].onmouseover =  function(){					
+					for(var i=0;i&lt;olLiDoms.length;i++){
+						olLiDoms[i].className = "";
+						move(imgDoms[i],{opacity:0},function(){
+							this.style.display = "none";
+						});
+					}
+					this.className = "active";
+					imgDoms[this.index].style.display = "block";	
+					move(imgDoms[this.index],{opacity:100});
+				}
+			}
+		}
+	</pre>
+	
+<script type="text/javascript" src="move.js"></script>
+<script>
+	window.onload = function(){
+		var imgDoms = dom("imgbox").children;
+		//拿到所有的小图片的li
+		var olLiDoms = dom("numol").children;		
+		for(var i=0;i<olLiDoms.length;i++){		
+			olLiDoms[i].index = i;				
+			olLiDoms[i].onmouseover =  function(){				
+				for(var i=0;i<olLiDoms.length;i++){
+					olLiDoms[i].className = "";
+					move(imgDoms[i],{opacity:0},function(){
+						this.style.display = "none";
+					});
+				}
+				this.className = "active";
+				imgDoms[this.index].style.display = "block";	
+				move(imgDoms[this.index],{opacity:100});
+			}
+		}
+	}
+		
+</script>
+</body>
+</html>

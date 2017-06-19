@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+		
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background:red;width:100px;height:100px;}
+		</style>
+
+	</head>
+<body>
+<div id="box"><span>dfddddddddd</span></div>
+<input type="button" onclick="checkme()" value="点我" />
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	function copyObject(o){
+		function F(){};
+		F.prototype = o;
+		return new F();
+	}
+	function createObject(o){
+		var obj = new copyObject(o);
+		obj.sayName = function(){
+		
+		};
+		return obj;
+	}
+
+	//Object.create();
+	var obj = {username:"keke",books:[]};//宿主
+	var obj2 = createObject(obj);//寄生虫1
+	var obj3 = createObject(obj);//寄生虫2
+	obj2.books.push("html","js");
+	alert(obj2.books+ "==="+ obj3.books);
+	
+
+
+</script>
+</body>
+</html>

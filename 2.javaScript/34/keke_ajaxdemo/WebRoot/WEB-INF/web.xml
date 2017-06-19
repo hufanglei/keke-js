@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>keke_ajaxdemo</display-name>
+ 
+ 
+ <servlet>
+ 	<servlet-name>xiaaaaobin</servlet-name>
+ 	<servlet-class>com.tz.login.XiaoBinServlet</servlet-class>
+ </servlet>
+ <servlet-mapping>
+ 	<servlet-name>xiaaaaobin</servlet-name>
+ 	<!-- 决定你的URL的请求地址 -->
+ 	<url-pattern>/xiaobin</url-pattern>
+ </servlet-mapping>
+ 
+ 
+ 
+ 
+  <servlet>
+ 	<servlet-name>sensen</servlet-name>
+ 	<servlet-class>com.tz.login.SenSenServlet</servlet-class>
+ </servlet>
+ <servlet-mapping>
+ 	<servlet-name>sensen</servlet-name>
+ 	<!-- 决定你的URL的请求地址 -->
+ 	<url-pattern>/sensen</url-pattern>
+ </servlet-mapping>
+ 
+ 
+ 
+ 
+ <servlet>
+ 	<servlet-name>loginServlet</servlet-name>
+ 	<servlet-class>com.tz.login.LoginServlet</servlet-class>
+ </servlet>
+  <servlet>
+    <servlet-name>UserServlet</servlet-name> 
+    <servlet-class>com.tz.login.UserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>addServlet</servlet-name>  
+    <servlet-class>com.tz.login.addServlet</servlet-class>
+  </servlet>
+
+
+ <servlet-mapping>
+ 	<servlet-name>loginServlet</servlet-name>
+ 	<!-- 决定你的URL的请求地址 -->
+ 	<url-pattern>/login</url-pattern>
+ </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/usersave</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>addServlet</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+ 
+ 
+ 
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>字符串</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:16px;font-family:"微软雅黑";background:#fff;padding:50px;}
+
+		</style>
+
+	</head>
+<body>
+   请查看源码:
+	<script>
+		//1.字符串的链接符号
+		//写法1：
+		var a="i love 'you',hehe";
+		//写法2：
+		var a='i love "you",hehe';
+		//写法3:
+		var a="i love \"you\",hehe";
+		var str = "操蛋收到凡事都发 操蛋"
+		log(a);
+		//2.大小写转换
+		//转大写
+		var b = a.toUpperCase();
+		log(b);
+		//转小写
+		var c = b.toLowerCase();
+		alert(c);
+		//3.替换 c.replace(把什么,替换成什么) 
+		//c.replace(regex对象,替换成什么) 
+
+		var d=c.replace("you","he");
+		log(d);
+		var gregex= new RegExp("操蛋" , "g");
+		var ddd=str.replace(gregex,"***");
+		log(ddd);
+
+		var cc="112233";
+		//正则表达式
+		var nregex= new RegExp("2" , "g");//i:忽略大小写  g全局匹配
+		var dd = cc.replace(nregex,"4");
+		log(dd);
+
+		var f="dfsdjsd DSEDDDDELDHT FSSEDD";
+		var r= new RegExp("d","ig");
+		var ff=f.replace(r,"可");
+		log(ff);
+
+		function log(content){
+			console.log("【您运行的结果是】："+content);
+		}
+		//4.substring(index,count)
+		var string = "0123456789";
+		var str = string.substring(0,2);
+		log(str);
+	</script>
+
+
+</body>
+</html>

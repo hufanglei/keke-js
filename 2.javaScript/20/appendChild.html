@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:12px;font-family:"微软雅黑";}
+
+		</style>
+
+	</head>
+<body>
+
+	<div id="box"></div>
+<script>
+	//jquey: append appendTo prepend 
+	//js:appendChild insertBefore replaceChild removecHILD
+	function dom(id){
+		return document.getElementById(id);
+	}
+	window.onload =  function(){
+		//appendchild(dom对象)
+		var spanDom = document.createElement("span");
+		spanDom.innerHTML = "我是一个动态创建的span奥";
+		dom("box").appendChild(spanDom);
+
+		//insertBefore(追加dom子元素，position)也是追加的，position可以不写
+		//如果不写和appendChild没有什么区别
+		//dom("box").insertBefore(spanDom,dom("box")).firstElementChild);
+		dom("box").insertBefore(spanDom,dom("box").children[2])
+		//删除
+		//removeChild(dom对象)，没有直接删除的概念
+		dom("box")
+	}	
+
+</script>
+
+</body>
+</html>

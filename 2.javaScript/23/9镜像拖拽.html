@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>镜像拖拽</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;
+			-webkit-user-select:none;
+			-ms-user-select:none;
+			-o-user-select:none;
+			-moz-user-select:none;
+			
+			}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:20px;font-family:"微软雅黑";padding:25px;background:#fff;}
+			.box{width:200px;height:200px;background:red;
+			position:absolute;top:0;left:0;cursor:default;font-size:12px;color:#fff;
+			text-align:center;}
+			.box h1{background:#111;font-size:14px;height:45px;line-height:45px}
+			#warp{width:960px;height:560px;background:green;margin:50px auto;}
+		</style>
+
+	</head>
+<body>
+	
+	<div id="box" class="box">
+		<h1>我是标题</h1>
+	</div>
+	<div id="box1" class="box">
+		<h1>我是标题</h1>
+	</div>
+	<div id="box2" class="box">
+		<h1>我是标题</h1>
+	</div>
+	<div id="box3" class="box">
+		<h1>我是标题</h1>
+	</div>
+	
+	
+	
+		
+  
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	
+	window.onload = function(){	
+		var drag = new Drag();
+		drag.init({id:"box"});
+
+		var drag1 = new Drag();
+		drag1.init({id:"box1",handler:1,ghost:false});
+
+		var drag2 = new Drag();
+		drag2.init({id:"box2",handler:1});
+
+		var drag3 = new Drag();
+		drag3.init({id:"box3",handler:1,callback:function(){
+			this.style.background = "#111";
+		}});		
+	};
+	
+	//面向对象 
+	function Drag(){
+		
+	}
+	var dragZindex = 0;
+	//拖拽的构造函数
+	Drag.prototype.init = function(options){
+		var dragObj = this;
+		//参数的混入 jqury $.extend
+		var opts = mix({},{
+				arrow:"",
+				handler:"",
+				parent:"",
+				position:"relative",
+				ghost:true
+		},options);
+		//元素拖拽三要素
+		//1.加定位:position:absolute/fixed;改变的元素:left和top
+		//2:绑定事件:onmousedown(onmousemove onmouseup) ---document对象
+		//3.清空鼠标事件
+		var boxDom = dom(opts.id);		
+		//父元素		
+		var parentDom = dom(opts.id);
+		if(opts.handler){
+			boxDom = boxDom.children[opts.handler*1-1];
+		}		
+		//获取父盒子对象
+		var parentBoxDom = dom(opts.parent);
+		if(parentBoxDom)parentBoxDom.style.position = opts.position;
+		var  mark = false;
+		boxDom.onmousedown =  function(e){			
+			//层级关系
+			parentDom.style.zIndex = ++dragZindex;
+			//拿到元素的位置
+			var sleft = parentDom.offsetLeft;
+			var stop = parentDom.offsetTop;
+			//获取最大的距离
+			var maxWidth = Math.max(window.innerHeight,document.body.clientWidth);
+			var maxHeight = Math.max(window.innerHeight,document.body.clientHeight);
+			var maxLeft = (parentBoxDom?parentBoxDom.offsetWidth:maxWidth) - parentDom.offsetWidth;
+			var maxTop = (parentBoxDom?parentBoxDom.offsetHeight:maxHeight) -parentDom.offsetHeight;
+			//拿到鼠标的位置
+			var pos = getXY(e);
+			mark = true;
+			//镜像处理
+			var ghostDom = null;			
+			if(opts.ghost) ghostDom = ghostDiv(parentDom);
+			document.onmousemove =  function(e){				
+				//拿到鼠标的位置
+				if(mark){
+					var pos2 = getXY(e);				
+					var  nleft = pos2.x - pos.x + sleft;
+					var  ntop = pos2.y - pos.y + stop;	
+					//边界判断
+					if(nleft<=0)nleft = 0;
+					if(ntop<=0)ntop = 0;
+					if(nleft>=maxLeft)nleft = maxLeft;
+					if(ntop>=maxTop)ntop = maxTop;
+
+					//改变位置
+					if(opts.arrow=="left"){
+						(ghostDom || parentDom).style.left = nleft +	"px";
+					}else if(opts.arrow=="top"){
+						(ghostDom || parentDom).style.top = ntop + "px";
+					}else{
+						(ghostDom || parentDom).style.left = nleft +	"px";
+						(ghostDom || parentDom).style.top = ntop +"px";
+					}
+				}			
+			};
+			//当鼠标送卡的时候，释放拖动
+			document.onmouseup = function(){
+				this.onmousemove = null;
+				this.onmouseup = null;
+				mark =  false;
+				if(opts.ghost){
+					parentDom.style.left = ghostDom.offsetLeft + "px";
+					parentDom.style.top = ghostDom.offsetTop + "px";
+					document.body.removeChild(ghostDom);
+				}
+				if(opts.callback)opts.callback.call(parentDom);
+			};
+		};
+		
+		function ghostDiv(parentDom){
+			/*var cloneDom = document.createElement("div");
+			with(cloneDom.style){
+				cloneDom.id = "cloneDiv";
+				width = parentDom.offsetWidth + "px";
+				left = parentDom.offsetleft +"px";
+				top = parentDom.offsetTop + "px";
+				height = parentDom.offsetHeight+"px";
+				border = "2px dotted #111";
+				position = "absolute";
+				background = "red";
+				opacity = 0.5;
+				zIndex = 99999;
+			}
+			cloneDom.innerHTML = parentDom.innerHTML;
+			if(dom("cloneDiv"))document.body.removeChild(dom("cloneDiv"));*/
+			var cloneDom = parentDom.cloneNode(true);
+			cloneDom.style.opacity = "0.5";
+			document.body.appendChild(cloneDom);
+			return cloneDom;
+		}
+	};
+
+	
+
+
+</script>
+</body>
+</html>

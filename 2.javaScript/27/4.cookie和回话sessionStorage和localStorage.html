@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>cookie添加，修改，删除</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+
+		</style>
+
+	</head>
+<body>
+	<input  type="text" id="username" value="我是keke"/>
+	<div id="box"></div>
+	<input type="button" value="添加" onclick="setValue()" />
+	<input type="button" value="获取" onclick="getValue()" />
+	<input type="button" value="删除" onclick="removeValue()" />
+	<input type="button" value="清除" onclick="clearStorage()" />
+
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	window.onload = function(){
+		var boxDom = dom("box");
+		//localStorage.setItem("username","keke");
+		
+	};
+	//注意:key一定要有自己的风格 KK_
+	function setValue(){
+		var name = dom("username").value;
+		sessionStorage.setItem("susername" , name);
+		localStorage.setItem("lusername" , name);
+	}
+	function getValue(){
+		alert(sessionStorage.getItem("susername"));
+		alert(localStorage.getItem("lusername"));
+	} 
+	function removeValue(){
+		sessionStorage.removeItem("susername");
+		localStorage.removeItem("lusername");
+	}
+	function clearStorage(){		
+		sessionStorage.clear();
+		localStorage.clear();
+	}
+	//cookie:本地一般是限制的，必须是基于沾点才能设置
+	//cookie:会不断的发送服务器请求，存储小于4kb
+	//不支持多种数据形态，存储比较单一，只能存储字符串
+
+	//html5:Storage---sessonStorage localStorage
+	//websql window.history.pushState("")
+
+	//8MB
+
+	//设置cookie添加，修改，删除
+	//setItem
+	//getItem
+	//removeItem
+	//clear()
+	//keys
+	//sessionStorge 是浏览器会话缓存，浏览器只要不关闭，数据就一直存储，反之全部清空
+	//localStorage 一种本地存储，除非你清除浏览器的缓存
+	//websql window.history.pushState("")
+
+	
+	var tzCookie = {
+		setCookie : function(name, value,time,option){
+			var str=name+'='+escape(value); 
+			var date = new Date();
+			date.setTime(date.getTime()+this.getCookieTime(time)); 
+			str += "; expires=" + date.toGMTString();
+			if(option){ 
+				if(option.path) str+='; path='+option.path; 
+				if(option.domain) str+='; domain='+option.domain; 
+				if(option.secure) str+='; true'; 
+			} 
+			document.cookie=str; 
+		},
+		getCookie : function(name){
+			var arr = document.cookie.split('; '); 
+			if(arr.length==0) return ''; 
+			for(var i=0; i <arr.length; i++){ 
+				tmp = arr[i].split('='); 
+				if(tmp[0]==name) return unescape(tmp[1]); 
+			} 
+			return ''; 
+		},
+		delCookie : function(name){
+			tzCookie.setCookie(name,'',-1); 
+			var date=new Date();
+			date.setTime(date.getTime()-10000);
+			document.cookie=name+"=; expires="+date.toGMTString()+"; path=/";
+		},
+		
+		getCookieTime : function(time){
+		   if(time<=0)return time;
+		   var str1=time.substring(1,time.length)*1;
+		   var str2=time.substring(0,1);
+		   if (str2=="s"){
+				return str1*1000;
+		   }
+		   else if (str2=="m"){
+			   return str1*60*1000;
+		   }
+		   else if (str2=="h"){
+			   return str1*60*60*1000;
+		   }
+		   else if (str2=="d"){
+			   return str1*24*60*60*1000;
+		   }
+		}
+	};
+
+	function setCookie(){
+		var value = dom("username").value;	
+		var date = new Date();
+		date.setDate(date.getDate()+10);//设置cookie的过期时间 expries
+		document.cookie ="username="+value+";expires="+date.toGMTString()+";path=/"; 	
+		
+	}
+
+	function getCookie(){
+		alert(document.cookie);
+	}
+
+
+</script>
+</body>
+</html>

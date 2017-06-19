@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{padding:0;margin:0}
+	body{font-size:14px;font-family:"微软雅黑";}
+	a{text-decoration:none;color:#333}
+	li{list-style:none}
+	#box{background:red;width:100px;height:100px;}
+  </style>
+ </head>
+ <body>
+
+	
+	<form id="loginForm" name="loginForm">
+		<p>隐藏元素：<input type="hidden" name="opid" value="123"/></p>
+		<p>收件人：<input type="text" name="username"/></p>
+		<p>密码：<input type="password" name="password" /></p>
+		<p>地址：<input type="text" name="address"/></p>
+		<p>性别：
+			<label><input type="radio" name="male" value="1"/>男</label>
+			<label><input type="radio" name="male" value="0"/>女</label>
+		<p>描述：<textarea  name="desc"></textarea></p>
+		<p>省份：<select name="province"><option value="0001">长沙</option></select></p>
+		<p>爱好：
+			<label><input type="checkbox" name="hobbys" value="1"/>爬山</label>
+			<label><input type="checkbox" name="hobbys" value="2"/>游泳</label>
+			<label><input type="checkbox" name="hobbys" value="3"/>游泳</label>
+		</p>
+
+
+
+		<input type="button" value="提交" onclick="tzSave()"/>
+	</form>
+
+	
+
+	<script src="jquery-1.11.2.min.js"></script>
+	<script src="dom.js"></script>
+	<script>
+			
+
+			function tzSave(){
+				var loginForm = document.forms["loginForm"];
+				var vjson = getFromValue(loginForm);
+				if(vjson.username.value==""){
+					alert("请输入用户名称....");
+					vjson.username.ele.focus();
+					vjson.username.ele.style.border="1px solid red";
+					return;
+				}
+
+				if(vjson.password.value==""){
+					alert("请输入密码");
+					vjson.password.ele.focus();
+					vjson.password.ele.style.border="1px solid red";
+					return;
+				}
+				
+
+				//参数的处理
+				var params = tzParams2(loginForm);
+				
+
+				
+			}
+
+			
+			//获取参数值
+			function getFromValue(formDom){
+				var formElements = formDom.elements;
+				var json = {};
+				for(var i=0,len=formElements.length;i<len;i++){
+					var type = formElements[i].type.toLowerCase();
+					if(type!="button" && type!="submit" && type!="reset"){
+						if(type=="checkbox" && formElements[i].checked){
+							var value = json[formElements[i].name]||formElements[i].value;
+							if(formElements[i].name in json){
+								value +=","+formElements[i].value;	
+							}
+							json[formElements[i].name] = {
+								value:value,
+								ele:formElements[i]
+							};
+						}else if(type=="radio" && formElements[i].checked){
+							json[formElements[i].name] = {
+								value:formElements[i].value,
+								ele:formElements[i]
+							};
+						}
+
+						if(type!="radio" && type!="checkbox"){
+							json[formElements[i].name] = {
+								value:formElements[i].value,
+								ele:formElements[i]
+							};
+						}
+					}
+				}
+				return json;
+			};
+
+
+
+			//jquery中的serializeArray的原理
+			function tzParams(formDom){
+				var formElements = formDom.elements;
+				var params = [];
+				for(var i=0,len=formElements.length;i<len;i++){
+					var type = formElements[i].type.toLowerCase();
+					if(type!="button" && type!="submit" && type!="reset"){
+						if((type=="radio" || type=="checkbox") && formElements[i].checked){
+							params.push({"name":formElements[i].name,"value":encodeURIComponent(formElements[i].value)})
+						}else{
+							if(type!="radio" && type!="checkbox"){
+								params.push({"name":formElements[i].name,"value":encodeURIComponent(formElements[i].value)})
+							}
+						}
+					}
+				}
+				return params;
+			}
+			
+			//jquery中的serialize的原理
+			function tzParams2(formDom){
+				var formElements = formDom.elements;
+				var params = "";
+				for(var i=0,len=formElements.length;i<len;i++){
+					var type = formElements[i].type.toLowerCase();
+					if(type!="button" && type!="submit" && type!="reset"){
+						if((type=="radio" || type=="checkbox") && formElements[i].checked){
+							params+=((i>0)?"&":"")+formElements[i].name+"="+encodeURIComponent(formElements[i].value);
+						}else{
+							if(type!="radio" && type!="checkbox"){
+								params+=((i>0)?"&":"")+formElements[i].name+"="+encodeURIComponent(formElements[i].value);
+							}
+						}
+					}
+				}
+				return params;
+			}
+
+
+
+	</script>
+ </body>
+</html>

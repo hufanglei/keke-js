@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+		
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background:red;width:100px;height:100px;}
+		</style>
+
+	</head>
+<body>
+<div id="box"><span>dfddddddddd</span></div>
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	//链式对象的定义
+	var tzForm ={
+		username:function(){
+			alert(1);
+			return this;
+		},
+		password:function(){
+			alert(2);
+			return this;
+		}
+	};
+	//tzForm.username().password();
+	var tzForm = function(){};
+	tzForm.prototype = {
+		constructor:tzForm,
+		username:function(name){
+			alert(name);
+			return this;
+		},
+		password:function(pwd){
+			alert(pwd);
+			return this;
+		}
+	};
+	var form = new tzForm();
+	form.username("keke").password("123456");
+
+	var form2 = new tzForm();
+	form.username("小春春").password("523456");
+
+</script>
+</body>
+</html>

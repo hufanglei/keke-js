@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>dom事件</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{width:200px;height:200px;background:red;}
+
+		</style>
+
+	</head>
+<body>
+<div id="box">
+	<input type="button" id="btn" onclick="clickme(),clickme2()" value="点我"/>
+</div>
+	
+
+
+<script>
+
+	//dom事件  ----初始事件  元素的拖拽 坐标定位
+	//鼠标事件  onmousedown onmouseover onmousemove onmouseout onmouseup
+	//键盘事件  onkeydown onkeyup onkeypress
+	//点击事件 onclick ondbclick
+	//表单事件  onfus onblur 哦你select onchange
+
+	//窗口事件  onresize onscroll onload oncontextmenu
+	//滚轮事件  document.onwheel = window.onwheel
+	//html5拖拽
+	//触屏事件 touch
+
+	//事件源
+
+	//什么是事件:鼠标事件，键盘事件等这些都是用户执行某个动作通知cpu执行的回调函数
+	//执行回调函数的过程中，会将cpu执行什么事件的一些参数信息封装事件源event对象中
+
+	//dom对象---添加样式/事件 
+
+	//事件的作用是:用来执行函数---就是通知cpu去处理每一个内存空间中function
+
+	function sum(e){
+		var a = 10;
+		var b = 10;
+		alert(e.type);
+	}
+	//事件绑定有2种方式:
+	//直接绑定:被动过程，我需要的时候才执行,属性事件 ，他会被dom动态元素绑定覆盖
+	//动态绑定:已经将时间和元素本身已经捆绑,一定要等dom元素存在或用creatElement动态创建后绑定
+	//动态绑定就是事件的叠加:
+	//dettachEvent   ie678 
+	//事件监听:addEventListener(事件类型，fn,冒泡行为) //默认不写就是false
+	//移出事件爱你：removeEventListener ie9+
+	function dom(id){
+		return document.getElementById(id);
+	}
+	function clickme(){
+	//	alert("点我");
+	};
+	//他会被dom动态元素绑定覆盖
+	window.onload =  function(){
+		dom("box").onclick = function(e){
+			//e在ie678不支持
+			var ev = e || window.event;
+			//alert(e.type);
+			//元素本身
+			var obj = ev.currentTarget;//元素触发的当前对象
+			var padom = ev.target;//拿到当前鼠标停留的元素对象
+			var srcTarget =  ev.srcElement;
+			alert(obj +"===" + padom + "===="+ srcTarget);
+		}
+		dom("btn").addEventListenter("click",function(e){
+			
+		});
+	}
+	function clickme2(){
+		//alert("点我ffff");
+	};
+</script>
+</body>
+</html>

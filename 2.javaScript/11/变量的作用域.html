@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>变量的作用域</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+			.div{border-bottom:1px solid #ccc;padding:2px}
+
+			#box2  div,#box div{width:100px;height:100px;background:#ccc;color:#111;line-height:100px;text-align:center;margin:10px auto;font-size:36px;cursor:pointer;border:0}
+
+		</style>
+
+	</head>
+<body>
+<h1>变量的作用域</h1>
+<ul>
+	<li><h4>在函数中定义的变量都是局部变量，除非你没有通过var去定义</h4></li>
+	<li><h4>能到访问的都是全局变量</h4></li>
+	<li><h4>只有局部变量提升至全局变量，才能被访问到</h4></li>
+</ul><br/>
+<div>局部变量的认识:案例:</div>
+<pre>
+function test(){
+	var b = 200;
+	//此处的b只能供test函数的私有函数使用
+	function init(){
+	}
+	
+	//数据类型---申请空间大小 -Number
+}
+alert(test().b);//此处会报错，因为能点的必须是对象，b是局部变量，无法访问到
+</pre>
+<div>如何访问</div>
+<pre>
+//转成对象:
+//写法1:
+function test(){
+	var b = 200;
+	//此处的b只能供test函数的私有函数使用
+	function init(){
+	}
+	return {
+		b:b
+	};
+	//数据类型---申请空间大小 -Number
+}
+test().b;
+alert(test().b);//结果:200
+</pre>
+<pre>
+//转成对象:
+//写法2:
+function test(){
+	var b = 200;
+	//此处的b只能供test函数的私有函数使用
+	function init(){
+	}
+	//定义一个对象
+	var json ={
+		num:b
+	}
+	return json;
+}
+var json = test();
+alert(json.num);//运行结果：200
+</pre>
+<pre>
+//写法3：多个参数也可用数组返回()
+function test(){
+	var b = 200;
+	var a = 100;
+	//此处的b只能供test函数的私有函数使用
+	function init(){
+	}
+	//定义一个对象
+	var arr = [a , b];
+
+	return arr;
+}
+var arr = test();
+alert(arr[1]);//运行结果:200
+</pre>
+<br/>
+<div>
+全局变量的认识:<br/>
+案例
+</div>
+<pre>
+//前端代码:
+&lt;h1 id="timer1"&gt;&lt;/h1&gt;
+//js代码:
+var date =  new Date();
+var timerDom1 =  document.getElementById("timer1");
+setInterval(function(){
+	var h = date.getHours();
+	var m = date.getMinutes();
+	var s = date.getSeconds();
+	timerDom1.innerHTML = h + ":" + m + ":" +s;
+},1000);
+//运行结果如下:
+//此时 timerDom的值不会变，因为setInterval是使用的全局变量的date，
+//只在初始化页面的时候,加载的一个值，其值不会发生改变
+</pre>
+<h1 id="timer1"></h1>
+<div>实现方法:全局变量变局部变量</div>
+<pre>
+&lt;h1 id="timer"&gt;&lt;/h1&gt;
+//js代码:
+var timerDom =  document.getElementById("timer");
+setInterval(function(){
+	var date =  new Date();//放在里面，变成局部变量，轮循生成
+	var h = date.getHours();
+	var m = date.getMinutes();
+	var s = date.getSeconds();
+	timerDom.innerHTML = h + ":" + m + ":" +s;
+},1000);	
+//运行效果如下:
+</pre>
+<h1 id="timer"> </h1>
+<script>
+	//在函数中定义的变量都是局部变量，除非你没有通过var去定义
+	var date = new Date();
+//局部变量的访问://提示:只有局部变量提升至全局变量，才能被访问到
+	var a = 100;
+//引出:
+/*	function test(){
+		var b = 200;
+		//此处的b只能供test函数的私有函数使用
+		function init(){
+		}
+		
+		//数据类型---申请空间大小 -Number
+	}
+	alert(test().b);	//此处会报错，因为能点的必须是对象，b是局部变量，无法访问到*/
+	//如何访问
+	//写法1:
+	/*function test(){
+		var b = 200;
+		//此处的b只能供test函数的私有函数使用
+		function init(){
+		}
+		return {
+			b:b
+		};
+		//数据类型---申请空间大小 -Number
+	}
+	test().b;
+	alert(test().b);*/
+	//写法2:用对象返回
+	/*function test(){
+		var b = 200;
+		//此处的b只能供test函数的私有函数使用
+		function init(){
+		}
+		//定义一个对象
+		var json ={
+			num:b
+		}
+		return json;
+	}
+	var json = test();
+	alert(json.num);//运行结果：200*/
+	//写法3：多个参数也可用数组返回()
+	function test(){
+		var b = 200;
+		var a = 100;
+		//此处的b只能供test函数的私有函数使用
+		function init(){
+		}
+		//定义一个对象
+		var arr = [a , b];
+
+		return arr;
+	}
+	var arr = test();
+	console.log(arr[1]);//运行结果:200
+
+
+//全局变量的认识:案例
+var date =  new Date();
+var timerDom1 =  document.getElementById("timer1");
+setInterval(function(){
+	var h = date.getHours();
+	var m = date.getMinutes();
+	var s = date.getSeconds();
+	timerDom1.innerHTML = h + ":" + m + ":" +s;
+},1000);
+//此时 timerDom的值不会变，因为setInterval是使用的全局变量的date，
+//只在初始化页面的时候,加载的一个值，其值不会发生改变*/
+
+//解决方法:
+
+var timerDom =  document.getElementById("timer");
+setInterval(function(){
+	var date =  new Date();//放在里面，变成局部变量，轮循生成
+	var h = date.getHours();
+	var m = date.getMinutes();
+	var s = date.getSeconds();
+	timerDom.innerHTML = h + ":" + m + ":" +s;
+},1000);	
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/music.css" rel="stylesheet">
+    <title>音乐</title>
+</head>
+<body>
+    
+    <div class="music_box">
+    	<div class="fl">
+            <div class="play_box">
+                <div class="user_img fl">
+                	<img src="../images/user_img.jpg" width="90" height="90">
+                </div>
+                <div class="fl" style="width:330px;">
+                	<p class="color_white mt10">大梦想家<a href="javascript:void(0)" class="single_radio">单曲电台</a></p>
+                    <p class="fs12">TFboys</p>
+                    <p class="fs12">03:45</p>
+                    <p>
+                    	<a href="javascript:void(0)" class="music_icon collection"><!--收藏--></a>
+                        <a href="javascript:void(0)" class="music_icon forwarding"><!--转发--></a>
+                        <a href="javascript:void(0)" class="music_icon download"><!--下载--></a>
+                    </p>
+                </div>
+                <div class="fl play_btn_box">
+                	<a href="javascript:void(0)" class="music_icon musicList color_white">9</a>
+                    <a href="javascript:void(0)">词</a>
+                    <div class="play_btn">
+                    	<a href="javascript:void(0)" class="music_icon insong"><!--上一曲--></a>
+                        <a href="javascript:void(0)" class="music_icon play_tb"><!--播放--></a>
+                        <a href="javascript:void(0)" class="music_icon pause_tb" style="display:none"><!--暂停--></a>
+                        <a href="javascript:void(0)" class="music_icon nextsong"><!--下一曲--></a>
+                        <a href="javascript:void(0)" class="music_icon cycle"><!--循环--></a>
+                        <a href="javascript:void(0)" class="music_icon volume"><!--音量--></a>
+                        <a href="javascript:void(0)" class="music_icon v_progress"><!--音量进度--></a>
+                    </div>
+                </div>
+            </div>
+            <div class="play_rolling"></div>
+        </div>
+        <div class="fl shrink_box">               	
+            <a href="javascript:void(0)" class="music_icon pop_down"><!--点击收回--></a>
+            <a href="javascript:void(0)" class="music_icon pop_up"><!--点击弹出--></a>
+        </div>
+    </div>
+    <!--歌曲列表弹出层-->
+    <div class="play_list">
+    	<div class="play_list_title">
+        	<a href="javascript:void(0)" class="fl color_white title_name">播放列表</a>
+            <a href="javascript:void(0)" class="fr">清空列表</a>
+        </div>
+        <div class="play_list_cont">
+        	<ul>
+            	<li><a href="javascript:void(0)" class="fl sing_name">一念之间 (电影《道士下山》主题曲)</a><a href="javascript:void(0)">张杰</a><a href="javascript:void(0)" class="fr">04:30</a></li>
+                <li><a href="javascript:void(0)" class="fl sing_name">一念之间 (电影《道士下山》主题曲)</a><a href="javascript:void(0)">张杰</a><a href="javascript:void(0)" class="fr">04:30</a></li>
+                <li><a href="javascript:void(0)" class="fl sing_name">一念之间 (电影《道士下山》主题曲)</a><a href="javascript:void(0)">张杰</a><a href="javascript:void(0)" class="fr">04:30</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--歌词弹出层-->
+    <div class="lyrics_box">
+    	<ul>
+        	<li>一念之间</li>
+            <li>词曲：张杰</li>
+            <li>歌词内容列表</li>
+            <li>歌词内容列表</li>
+            <li>歌词内容列表</li>
+            <li>歌词内容列表</li>
+            <li>歌词内容列表</li>
+        </ul>
+    </div>
+    
+</body>
+</html>

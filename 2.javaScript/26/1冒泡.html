@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			html{padding:100px;background:#fff;}
+			a{text-decoration:none;color:#111;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background:#111;}
+			#ul{background:red;height:400px;width:400px;overflow:hidden;}
+			#li{margin:20px;background:green;height:360px;text-align:center;line-height:360px;}
+			#a{background:pink;padding:20px;}
+		</style>
+
+	</head>
+<body>
+
+	<ul id="ul">
+		<li id="li">
+			<a href="javascript:void(0)" id="a">点我</a>
+		</li>
+		
+	</ul>
+<script type="text/javascript" src="dom.js"></script>
+
+<script>
+	/*document.addEventListener("click",function(){
+		alert("document------> click！");
+	},true);
+	document.body.addEventListener("click",function(){
+		alert("body------> click你");
+	},true);
+	dom("ul").addEventListener("click",function(){
+		alert("ul------> click爱");
+	},true);
+	dom("li").addEventListener("click",function(){
+		alert("li------> click很");
+	},true);
+	dom("a").addEventListener("click",function(){
+		alert("a------> click我");
+	},true);*/
+
+	document.addEventListener("click",function(){
+		alert("document------> click！");
+	},false);
+	document.body.addEventListener("click",function(){
+		alert("body------> click你");
+	},false);
+	dom("ul").addEventListener("click",function(){
+		alert("ul------> click爱");
+	},false);
+	dom("li").addEventListener("click",function(){
+		alert("li------> click很");
+		
+	},false);
+	dom("a").addEventListener("click",function(e){
+		alert("a------> click我");
+		e.stopPropagation();
+	},false);
+
+
+	//阻止冒泡行为 e.stopPropagation()
+	//阻止浏览器的默认行为: e.preventDefalut
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+/*可视区域的宽度 1212*/
+.header{height:30px;background:#111}
+.navbox{height:100px;}
+.w1212{width:1212px;margin:0 auto;}
+.nbox{border-bottom:2px solid #B1191A;}
+.nbox a{color:#666}
+/*上下结构*/
+.nbox .container{background:#111;}
+.nbox .navbox{height:44px;line-height:44px;}
+.nbox .navbox .ntitle{width:200px;background:#B1191A;font-size:16px;padding-left:10px;}
+.nbox .navbox .ntitle a{color:#fff;}
+/*中间区域*/
+.nbox .bar li{float:left;padding:0 20px;}
+.nbox .bar li a{display:block;font-size:15px;font-weight:400}
+.nbox .bar li a:hover{color:#C81623}
+/*右边广告区域*/
+.nbox .gd img{display:block;}
+/*bannerbox区*/
+.cbox{height:510px;}
+.cbox .container .cl{height:466px;width:210px;background:#c81623;}
+.cbox .container .cl li{height:31px;padding-left:10px;line-height:31px;}
+.cbox .container .cl li a{color:#fff}
+.cbox .container .cl li:after{content:"›";float:right;font-size:22px;padding-right:10px;color:#fff}
+.cbox .container .cl li:hover{background:#fff;border-left:1px solid #c81623}
+.cbox .container .cl li:hover a{color:#B61D1D;}
+.cbox .container .cr{width:730px;height:456px;padding:10px 10px 0 10px;}
+.cbox .info{width:252px;height:466px;}
+.cbox .info .itab{margin-top:10px;border:1px solid #eaeaea;}
+.cbox .info .itab h3{height:40px;line-height:40px;font-size:16px;font-weight:normal;color:#666;padding-left:10px;border-bottom:1px solid #eaeaea;}
+.cbox .info .itab a{font-size:12px;padding-right:10px;color:#666;}
+.cbox .info .itab li{height:27px;line-height:27px;}
+.cbox .info .itab li:hover a{color:#C81623}
+.cbox .info .mc{height:140px;padding:8px 0 0 15px;}
+.cbox .info .mc2{height:216px;}
+.cbox .info .itab .sh{border-top:1px dashed #eaeaea;}
+
+/*banner图集*/
+.bannerwrap{position:relative;}
+.bannerwrap .banner_img{overflow:hidden;position:relative;}
+.bannerwrap .banner_img ul{width:1000%;position:relative;}
+.bannerwrap .banner_img li{float:left;}
+/*next prev*/
+.bannerwrap .pn{display:inline-block;width:30px;height:50px;background:rgba(255,255,255,0.5);position:absolute;top:205px;font-size:20px;text-align:center;line-height:50px;opacity:0;transition:all 0.3s ease;}
+.bannerwrap:hover .pn{opacity:1;transition:all 0.3s ease;}
+.bannerwrap .prev{left:10px;}
+.bannerwrap .next{right:10px}
+/*小圆角数字*/
+.bannerwrap .rdbox{height:30px;position:absolute;bottom:0;width:100%;}
+.bannerwrap .rdbox .rd{width:140px;height:30px;margin:5px auto;}
+.bannerwrap .rdbox .rd li{float:left;width:18px;height:18px;background:#555;text-align:center;margin-right:4px;border-radius:50%;line-height:18px;}
+.bannerwrap .rdbox .rd li:hover{background:#B61B1F}
+.bannerwrap .rdbox .rd li.selected{background:#B61B1F}
+.bannerwrap .rdbox .rd li a{color:#fff;display:block;font-size:12px;}
+/*
+	banner图集公式:
+	div position:relative;
+	 div overflow:hidden 730
+	   ul width:10*width px 或者width:1000%
+		 li 浮动
+		 li 浮动
+		 li 浮动
+       <div 
+	      ul
+		     li 1
+			 li 2
+			 li 3
+			 li 4
+			 li 5
+			 li 6
+	 a class="next" 左边 position:absolute
+	 a class="prev" 右边 position:absolute
+*/

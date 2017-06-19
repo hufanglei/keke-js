@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>盒子边框</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:36px;font-family:"微软雅黑";color:#fff;background:#000;}
+			ul li{list-style:none;}
+			.box{width:300px;height:200px;margin:50px auto;background:#cc9933;}
+			.box li{width:100px;height:100px;float:left;position:relative;line-height:100px;text-align:center;}			
+			.right:before{content:"";width:1px;height:80px;position:absolute;top:10px;right:0;background:#333300;}
+			.bottom:after{content:"";height:1px;width:80px;position:absolute;bottom:0px;left:10px;background:#333300;}
+		</style>
+
+	</head>
+<body>
+   
+   <div class="box">
+		<ul>
+			<li class="right bottom">1</li>
+			<li class="right bottom">2</li>
+			<li class="bottom">3</li>
+			<li class="right">4</li>
+			<li class="right">5</li>
+			<li class="">6</li>
+		</ul> 
+   </div>
+
+
+
+</body>
+</html>

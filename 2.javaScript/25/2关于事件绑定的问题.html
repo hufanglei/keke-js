@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>dom事件</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";padding:100px;}
+			ul li{height:40px;width:100%;background:red;line-height:50px;padding:5px;margin-top:2px;color:#fff;}
+
+		</style>
+
+	</head>
+<body>
+   <div id="box">
+		<ul id="ulbox">
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>44444</li>
+		</ul>
+		<a href="javascript:void(0)" onclick="appendLi()">追加元素</a>
+   </div>
+   
+	
+
+
+<script>
+
+	function dom(id){
+		return document.getElementById(id);
+	}
+	//封装for循环
+	function Keach(doms,callback){
+		var liDoms = doms.children;
+		var len = liDoms.length;
+		for(var i=0;i<len;i++){
+			if(callback)callback.call(liDoms[i],liDoms[i],i);
+		}
+	}
+
+	window.onload = function(){
+		Keach(dom("ulbox"),function(obj,index){
+			obj.onclick = clickme;
+		});
+	};
+	function appendLi(){
+		//动态创建li 给予文本值，给予事件 追加到父类下面
+		var liDom = document.createElement("li");		
+		liDom.innerHTML = Math.random();
+		liDom.onclick = clickme;
+		dom("ulbox").appendChild(liDom);
+	}
+	function clickme(){	
+		alert(this.innerHTML);					
+	}
+
+</script>
+</body>
+</html>

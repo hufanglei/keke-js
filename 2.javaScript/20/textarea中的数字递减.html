@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>案例:textarea字体的减少</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<link rel="icon" href="//www.jd.com/favicon.ico" mce_href="//www.jd.com/favicon.ico" type="image/x-icon">
+		<!--inherit继承-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff;padding:100px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 10px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			.key{padding:10px;}
+			.red{color:red}
+			#contentbox{width:640px;height:160px;background:#111;margin:10px auto;position:relative;}
+			#contentbox textarea{width:620px;height:140px;overflow:auto;outline:none;border:1px solid #ccc;padding:10px;
+				font-family:"微软雅黑"
+			}
+			#contentbox span.tip{position:absolute;bottom:10px;right:10px;}
+			#contentbox span#num{color:green;font-weight:700;padding:0 5px;}
+	
+		</style>
+
+	</head>
+<body>
+	
+	<div id="contentbox">
+		<textarea id="content" placeholder="请输入评论" ></textarea>
+		<span class="tip"> 还可以输入<span id="num" num="500">500</span>个字</span>
+		<a href="javascript:void(0)" onclick="saveComment()">提交评论</a>
+	</div>
+	<div id="comment"></div>
+
+	<ul id="bqlist">
+		<li text="[微笑]" type="0"><img title="[微笑]" src="http://s9.ui.cn/uiem48/uiem001.svg" style="cursor:pointer; position:relative;"></li>
+		<li text="[憨笑]" type="1"><img title="[憨笑]" src="http://s9.ui.cn/uiem48/uiem002.svg" style="cursor:pointer; position:relative;"></li>
+		<li text="[愉快]" type="2"><img title="[愉快]" src="http://s9.ui.cn/uiem48/uiem003.svg" style="cursor:pointer; position:relative;"></li>
+	</ul>
+	
+	<div class="key">
+		<h1>知识点</h1>
+		<h3>insertAdjacentHTML</h3>		
+		<pre>
+			
+		</pre>
+	
+	</div>
+	<script>		
+		function dom(id){
+			return document.getElementById(id);
+		}
+		window.onload = function(){
+			//第一步绑定点击事件
+			//onkeydown会少一个字体，此处必须用onkeyup
+			dom("content").onkeydown=dom("content").onkeyup = function(){
+				//2.获取键入的值
+				var value = this.value;
+				var len = value.length;//字符串长度
+				//3:拿到数字对象
+				var numDom = dom("num");
+				//4:开始递减
+				var num = numDom.getAttribute("num") ;				
+				if(len<=num){
+					numDom.innerHTML = num - len;
+				}else{					
+					return false;
+				}
+			}
+		};
+
+		function  saveComment(){
+			var value = dom("content");
+			dom("commentbox").innerHTML +="<div>"+value+"</div>";
+		}
+		
+	</script>
+</body>
+</html>

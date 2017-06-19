@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>jquery的find()用法</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			
+			
+			body{font-size:24px;font-family:"微软雅黑";background:#373737;color:#fff;padding:20px  0 0 300px;}
+
+		</style>
+
+	</head>
+<body>
+	<!--案例1：用法1：$("p").find("span").css('color','red');  返回回所有后代 -->
+	<div>
+	<p><span>Hello</span>, how are you?</p>
+	<p>Me? I'm <span>good</span>.</p>
+	</div>
+
+	<!--案例2：find() 与 .children() 方法类似，不同的是后者仅沿着 DOM 树向下遍历单一层级。-->
+	<div style="border:1px solid #eaeaea;margin-top:20px;width:1200px;" class="box1">
+		<ul class="level-1">
+		  <li class="item-i">I</li>
+		  <li class="item-ii" style="border:1px solid green">II
+			<ul class="level-2">
+			  <li class="item-a">A</li>
+			  <li class="item-b">B
+				<ul class="level-3">
+				  <li class="item-1">1</li>
+				  <li class="item-2">2</li>
+				  <li class="item-3">3</li>
+				</ul>
+			  </li>
+			  <li class="item-c">C</li>
+			</ul>
+		  </li>
+		  <li class="item-iii">III</li>
+		</ul>
+	</div>
+
+	
+	<!--//案例3：var item1 = $('li.item-1')[0];	//$('li.item-ii').find( item1 ).css('background-color', 'red');-->
+	<div  style="border:1px solid #eaeaea;margin-top:20px;width:1200px;" class="box">
+		<ul class="level-1">
+			  <li class="item-i">I</li>
+			  <li class="item-ii" style="border:1px solid green">II
+				<ul class="level-2">
+				  <li class="item-a">A</li>
+				  <li class="item-b">B
+					<ul class="level-3">
+					  <li class="item-1">1</li>
+					  <li class="item-2">2</li>
+					  <li class="item-3">3</li>
+					</ul>
+				  </li>
+				  <li class="item-c">C</li>
+				</ul>
+			  </li>
+			  <li class="item-iii">III</li>
+			</ul>
+	</div>
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script>
+	//find() 方法获得当前元素集合中每个元素的后代，通过选择器、jQuery 对象或元素来筛选。
+	//语法:.find(selector)  
+	//selector	字符串值，包含供匹配当前元素集合的选择器表达式。
+	//用法1：$("p").find("span").css('color','red');  返回回所有后代 
+	$(document).ready(function(){
+		$("p").find("span").css("color" ,"red");
+	});
+	//案例2：find() 与 .children() 方法类似，不同的是后者仅沿着 DOM 树向下遍历单一层级。
+	$(".box1 li.item-ii").find("li").css("background-color" ,"#996666");
+
+	//案例3：var item1 = $('li.item-1')[0];
+	//$('li.item-ii').find( item1 ).css('background-color', 'red');
+	var item1 = $('.box li.item-1')[0];
+	$('.box li.item-ii').find( item1 ).css('background-color', 'red');
+</script>
+</body>
+</html>

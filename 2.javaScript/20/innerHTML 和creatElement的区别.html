@@ -1,0 +1,279 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff;padding:100px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 10px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			.key{padding:10px;}
+			.red{color:red}
+
+		</style>
+
+	</head>
+<body>
+	<div id="box"></div>
+	<div class="key">
+		<h1>知识点:</h1>
+		<dl>
+			<dt>1:innerHTML 和creatElement的区别</dt>
+			<dd>	
+			
+<pre>
+//区别1:
+//innerHTML 方式
+//$("box").innerHTML = "<span>我是一个span奥</span>";
+//$("box").innerText = $("box").textContent = "ok";//双重赋值结果:dom内的元素:ok
+
+//动态createElement方式
+var spanDom = document.createElement("span");
+spanDom.innerHTML = "我是一个span奥";
+$("box").appendChild(spanDom);<span class="red">//此处只能用appendChild添加动态的元素，innerHTML(innerText)只能加文本字符串</span>
+</pre>
+<pre>
+//区别2:绑定事件，会报错，下面的第2和第3步顺序必须改变位置吗，才能正确
+var spanHTML = "<span>我是一个span奥</span>";//①
+$("box").children[0].onclick = function(){//②
+   clickme.call(this,"keke");
+};
+$("box").innerHTML = spanHTML;//③这种代码是元素的初始化，也是插件完成的
+
+//动态绑定就没有顺序的关系了，代码如下:
+window.onload = function(){
+	var spanDom = document.createElement("span");
+	spanDom.innerHTML ="我是一个动态span奥";
+	spanDom.onclick = function(){
+		clickme.call(this,"keke");
+	}
+
+	$("box").appendChild(spanDom);
+
+	function clickme(username){
+		alert(this.innerHTML +"==="+ username);
+	}
+}
+</pre>
+<pre>
+//案例3:在元素上面定义的事件，一定是全局事件,下面的clickme事件必须放在script下，不能放在私有变量中
+window.onload = function(){
+	var spanHTML = "&lt;span onclick='clickme(this)'&gt;我是一个span奥&lt;/span&gt;";
+	$("box").innerHTML = spanHTML;
+	function clickme(obj){
+		alert(this.innerHTML);
+	}
+}	
+
+</pre>
+			</dd>
+		<dl>
+		<dl>
+			<dt>2:赋文本。双重赋值用法</dt>
+			<dd>
+			<pre>spanDom.innerText = spanDom.textConetent = "ok";</pre>		
+			
+			</dd>
+		<dl>
+		<dl>
+			<dt>3:解决赋予事件不能为undefined的问题和对象延伸出去的问题</dt>
+			<dd>
+<pre>
+window.onload = function(){
+	var spanHTML = "&lt;span onclick='clickme(this)'&gt;我是一个span奥&lt;/span&gt;";
+	$("box").innerHTML = spanHTML;
+	$("box").children[0].onclick = function(){
+	<span class="red">//此处不能写clickme("keke") 因为加了括号就是undefined,解决方法是套个function，但是注意指针问题，用call传过去对象</span>
+		clickme.call(this,"keke");
+	};
+	
+}
+function clickme(username){
+	alert(this.innerHTML +"==="+ username);
+}</pre>		
+			
+			</dd>
+		<dl>
+		<dl>
+			<dt>4:赋文本的3种方式</dt>
+			<dd>
+<pre>
+1:spanDom.innerText = spanDom.textConetent = "ok";
+2:var textNode = document.createTextNode("我是动态创建给span啊");
+  spanDOm.appendChild(textNode);//不推荐
+3:$("box").innerHTML = "我是一个span奥";//推荐
+</pre>		
+			
+			</dd>
+		<dl>
+		<dl>
+			<dt>5:keke总结</dt>
+			<dd>
+<pre>
+1:createElement和createTextNode是创建元素和文本的
+2:在开发中，通过createElement和innerHTML的创建的元素，createElement是一种动态的方式
+可以在创建的时候，绑定事件，追加文本，添加样式，通过appendChild或者insertBefore追加目标元素中
+而，通过innerHTML添加的标签元素，一定要在追加之后才能绑定事件，添加样式等。
+3:给元素添加事件的事件的时候，一定要注意，在元素上方定义的事件一定是全局事件。
+&lt;a href="javascript:void(0);" onclick="test()"&gt;点我&lt;/a&gt;	
+这里的test一定是全局的，就是说直接定义在&lt;script&gt;中的function类型
+function test(){
+
+};
+4:动态绑定事件的时候，可能会传递参数，可能造成this的指向丢失的问题。那么使用call或者apply重新找回
+//如果没有参数的情况下。当前的这个this指向的就是spanDom.
+spanDom.onclick  = test;
+function test(){
+	alert(this.innerHTML);
+};
+
+//如果有参数的情况下：
+spanDom.onclick  = function(){
+	test.call(this,"kekek");
+};
+function test(username){
+	alert(this.innerHTML+"==="+username);
+};
+</pre>		
+			
+			</dd>
+		<dl>
+	</div>
+	<script>
+		/**
+			Node属性:
+			childnodes
+			parentNodes
+			lastChild
+			firstChild
+			nextSiblings
+			previousSiblings
+			nodeName
+			nodeValue
+			nodeType
+
+			Node节点下的方法
+			appendChild()
+			insertBefore
+			contains
+			replaceChild
+			removeChild
+			hasChildNodes
+			cloneNode
+
+
+			元素下方的属性和方法
+			属性如下:
+			children
+			parentElement
+			firstElementChild
+			lastElementChild
+			nextElementChild
+			previousElementChild
+			innerHTML
+			innerText
+			textContent
+			outerHTML
+			outerText
+
+			方法:（ie678不支持）
+				insertAdjacentHTML();
+				insertAdjacentText();
+				insertAdjacentElement()
+
+			//创建元素:
+			createElement 创建元素
+			createTextNode 创建文本
+		*/
+		function $(id){
+			return document.getElementById(id);
+		}
+
+		//window.onload = function(){
+			//innerHTML 和creatElement的区别
+			//$("box").innerHTML = "<span>我是一个span奥</span>";
+			//$("box").innerText = $("box").textContent="ok";
+			//var spanHTML ="<span>我是一个span奥</span>";
+			
+			//var textNode = document.createTextNode("我是动态创建给span啊");
+			//spanDOm.appendChild(textNode);
+			//spanDom.innerText = spanDom.textConetent = "ok";
+			//$("box").innerHTML = spanHTML;//这是代码是元素的初始化，也是插件完成的第一步
+			//$("box").children[0].onclick = function(){
+			//	clickme.call(this,"keke");
+			//};
+
+			//动态创建---绑定事件的时候就有区别
+		//	var spanDom = document.createElement("span");
+		//	spanDom。innerHTML ="我是一个span奥";
+			//$("box").appendChild(spanDom);
+
+			//在元素上方定义事件，一定是全局事件
+			//function clickme(username){
+			//alert(this.innerHTM +"=="+username);
+			//}
+			//innerHTML 方式
+			//$("box").innerHTML = "<span>我是一个span奥</span>";
+			//$("box").innerText = $("box").textContent = "ok";//双重赋值结果:dom内的元素:ok
+			//动态createElement方式
+			//var spanDom = document.createElement("span");
+			//spanDom.innerHTML = "我是一个span奥";
+			//$("box").appendChild(spanDom);
+			//此处只能用appendChild添加动态的元素，innerHTML(innerText)只能加文本字符串
+		//var spanHTML = "<span>我是一个span奥</span>";//①
+			//$("box").innerHTML = spanHTML;//③这种代码是元素的初始化，也是插件完成的第一步
+				//$("box").children[0].onclick = function(){//②
+			  // alert(1);
+			//};
+		//};
+		//总结;
+			/*window.onload = function(){
+				var spanHTML = "<span onclick='clickme(this)'>我是一个span奥</span>";
+				$("box").innerHTML = spanHTML;
+				$("box").children[0].onclick = function(){
+					clickme.call(this,"keke");
+				};
+				
+			}
+			function clickme(username){
+				alert(this.innerHTML +"==="+ username);
+			}
+			*/
+			window.onload = function(){
+				var spanDom = document.createElement("span");
+				spanDom.innerHTML ="我是一个动态span奥";
+				spanDom.onclick = function(){
+					clickme.call(this,"keke");
+				}
+
+				$("box").appendChild(spanDom);
+
+				function clickme(username){
+					alert(this.innerHTML +"==="+ username);
+				}
+			}
+			
+			
+		
+	
+	</script>
+
+
+
+</body>
+</html>

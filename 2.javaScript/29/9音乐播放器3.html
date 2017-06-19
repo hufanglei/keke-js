@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>音乐播放器</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+		
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#000;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background:red;width:100px;height:100px;}
+		</style>
+
+	</head>
+<body>
+	<div id="div1">
+		<a href="javascript:void(0)" id="play1">播放</a>
+		<a href="javascript:void(0)" id="stop1" style="display: none">暂停</a>
+		<a href="javascript:void(0)" id="vol1">静音</a>
+		<span id="tot1">00:00</span>
+		<span id="cur1">00:00</span>
+		<span id="bur1">00:00</span>
+		<span id="percent1"></span>
+	</div>
+	<br/>
+	<div id="div2">
+		<a href="javascript:void(0)" id="play2">播放</a>
+		<a href="javascript:void(0)" id="stop2" style="display: none">暂停</a>
+		<a href="javascript:void(0)" id="vol2">静音</a>
+		<span id="tot2">00:00</span>
+		<span id="cur2">00:00</span>
+		<span id="bur2">00:00</span>
+		<span id="percent2"></span>
+	</div>
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	//闭包----即时函数
+	//回调函数===闭包
+
+
+	//成员变量(方法和属性)
+	/*  
+		成员变量：
+		id:播放器存放于某个容器中
+		src:播放的地址
+		title:歌名
+		autor:演唱者
+
+		 currentTime:当前播放的时间
+		 duration:总时长
+		 paused：暂停
+		 defaultPlaybackRate:
+		 playbackRate:快进和后退
+		 played:播放状态，当调用play()它是true,如果是pasue()那么就是false
+		 ended:播放结束的状态,当调用onended()就是true了
+		 autoplay:自动播放，默认是false,设置成 autoplay="autoplay"
+		 loop:控制是否循环播放 loop="loop";
+		 controls:控制播放器是否显示，默认是"controls"
+		 volume:设置声音 0-0.5-1
+		 muted:设置静音
+		 defaultMuted:默认音量 0.5
+	*/
+	
+	var TzMusic = (function(){
+		//特权属性
+		function _tzMusic(id,src,title,author){
+			//this new 当然  _tzMusic ，如果没有 this---window
+			//对象.instanceof.类----判断当前对象是不是哪个类创建的对象
+			if(this instanceof _tzMusic){ //对象的检查
+				this.id = id;
+				this.src = src;
+				this.title = title;
+				this.author = author;
+			} else{
+				return new  _tzMusic(id,src,title,author);
+			}
+		};
+		//公有方法和属性
+		_tzMusic.prototype = {
+			constuctor:_tzMusic,
+			audioDom:null,
+			init:function(callback){
+				this.audioDom = document.createElement("audio");
+				this.audioDom.src = this.src;
+				this.audioDom.controls = "controls";
+				dom(this.id).appendChild(this.audioDom);
+				this.event(callback);
+			},
+			//播放
+			play:function(){
+				this.audioDom.play();
+			},
+			//暂停
+			stop:function(){
+				this.audioDom.pause();
+			},
+			//静音
+			stopVolome:function(callback){
+				this.audioDom.muted = !this.audioDom.muted;
+				if(callback)callback(!this.audioDom.muted);
+			},
+			 event:function(callback){
+				 //总时长: oncanplaythrough
+				 var json = {};
+				 this.audioDom.oncanplaythrough = function () {
+					 json.totaltime =  this.duration;
+					 json.ftime = _tzMusic.format(this.duration);
+					if(callback)callback.call(json,"time");
+				 };
+				 //播放时间:ontimeupdate
+				 this.audioDom.ontimeupdate  = function(){
+					 json.playtime = this.currentTime;
+					 json.backtime = this.duration - this.currentTime;
+					 json.fptime = _tzMusic.format(json.playtime);
+					 json.btime =  _tzMusic.format(json.backtime);
+					 json.percent =  ((json.playtime / this.duration)*100).toFixed();
+					 if(callback)callback.call(json,"play");
+				 };
+				 //播放进度
+				 //播放完毕执行的事件:on
+			 }
+
+		};
+		//静态方法和属性
+		_tzMusic.time = "";
+		//格式化日期
+		_tzMusic.format = function(time){
+			var m = Math.floor(time / 60);
+			var s = Math.floor(time % 60);
+			if(m<10)m="0"+m;
+			if(s<10)s="0"+s;
+			return m+":"+s;
+		};
+		_tzMusic.formatPercent = function(){
+
+		}
+		return _tzMusic;	//返回一个类 function	
+	})();
+	
+
+	
+	//静音
+	function stopVolome(mark){
+		mark ? this.innerHTML="静音" : this.innerHTML="非静音";
+	}
+
+	window.onload = function(){
+		var music = new TzMusic("div1","mp3/01.mp3","结婚啊吧","周杰伦");
+		music.init(function (mark) {
+			if(mark == "time"){ //时长的调用
+				dom("tot1").innerHTML =  this.ftime;
+			}else if(mark == "play"){
+				dom("cur1").innerHTML  = this.fptime;
+				dom("bur1").innerHTML  = this.btime;
+				dom("percent1").innerHTML = this.percent+"%";
+			}
+		});
+
+		dom("play1").onclick = function () {
+			music.play();
+			this.style.display = "none";
+			dom("stop1").style.display = "inline-block";
+		};
+		dom("stop1").onclick = function () {
+			 music.stop();
+			this.style.display = "none";
+			dom("play1").style.display = "inline-block";
+		};
+		dom("vol1").onclick = function(){
+			var obj = this;
+			music.stopVolome(function(mark){
+				 obj.innerHTML = mark?"静音":"非静音";
+			});
+		}
+
+		var music2 = new TzMusic("div2","mp3/02.mp3","结婚啊吧","周杰伦");
+		music2.init(function (mark) {
+			if(mark == "time"){ //时长的调用
+				dom("tot2").innerHTML =  this.ftime;
+			}else if(mark == "play"){
+				dom("cur2").innerHTML  = this.fptime;
+				dom("bur2").innerHTML  = this.btime;
+				dom("percent2").innerHTML = this.percent+"%";
+			}
+		});
+
+		dom("play2").onclick = function () {
+			music2.play();
+			this.style.display = "none";
+			dom("stop2").style.display = "inline-block";
+		};
+		dom("stop2").onclick = function () {
+			music2.stop();
+			this.style.display = "none";
+			dom("play2").style.display = "inline-block";
+		};
+		dom("vol2").onclick = function(){
+			var obj = this;
+			music2.stopVolome(function(mark){
+				obj.innerHTML = mark?"静音":"非静音";
+			});
+		}
+	}
+
+	//个人总结:
+	//1.静音和非静音的处理相当精妙
+	//2.instanceof 对象的检查 的使用很好
+</script>
+</body>
+</html>

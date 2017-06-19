@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>使用ifelse判断年龄</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";padding:50px;background:#fff;}
+
+		</style>
+
+	</head>
+<body>
+	<div>
+		<p>请输入你的年龄: <input id="content" type="text" value=""/>
+			<input type="button" onclick="Judge()" value="确定">
+		</p>
+		<h1 id="result"><h1>
+	</div>
+  
+
+
+<script>
+		/*获得文本输入
+		确定要显示的位置
+		判断: ①为空；②不是数字；③0-16青少年，17-25是青年 26-35壮年 36 - 45中年 >45老年*/
+		function Judge(){
+			var c_data = $("content").value;
+			var resultDom = $("result");
+			//1：不允许为空
+			if(!c_data){
+				resultDom.innerHTML ="请输入内容...";
+				//获取焦点
+				$("content").focus();
+				return;
+			}
+			//2:一定数字
+			if(isNaN(c_data)){
+				resultDom.innerHTML ="请输入数字...";
+				$("content").focus();
+				return;
+			}
+			//3:区域判断
+			if(c_data<=0||c_data>150){
+				resultDom.innerHTML="请输入一个[1-150]的数字...";
+				$("content").focus();
+				return;
+			}
+			if(c_data>0&&c_data<=16){
+				resultDom.innerHTML= "青少年";				
+			}else if(c_data>16&&c_data<=25){
+				resultDom.innerHTML= "青年";	
+			}else if(c_data>25&&c_data<=35){
+				resultDom.innerHTML= "壮年";	
+			}else if(c_data>35&&c_data<45){
+				resultDom.innerHTML= "中年";
+			}else{ 
+				resultDom.innerHTML= "老年";
+			}
+		}
+		function $(id){
+			return document.getElementById(id);
+		}
+</script>
+</body>
+</html>

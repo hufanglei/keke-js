@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{padding:0;margin:0}
+	body{font-size:14px;font-family:"微软雅黑";}
+	a{text-decoration:none;color:#333}
+	li{list-style:none}
+	#box{background:red;width:100px;height:100px;position:absolute;}
+  </style>
+ </head>
+ <body>
+
+	<div id="box"></div>
+	<script src="dom.js"></script>
+	<script>
+		window.onload = function(){
+			var boxDom = dom("box");
+			boxDom.onclick = function(){
+				move();
+			};
+			
+			var timer = null;
+			var speed = -30;
+			var speedx = 10;//匀速
+			function move(){
+				clearInterval(timer);
+				timer = setInterval(function(){
+					speed +=3;
+					var y = boxDom.offsetTop + speed;
+					var x = boxDom.offsetLeft + speedx;
+					var mah = window.innerHeight - boxDom.offsetHeight;
+					if(y>mah){
+						y = mah;
+						speed*=-1;
+						speed*=0.825;
+						speedx*=0.625;
+					}
+
+					if(speedx<=0.01){
+						clearInterval(timer);
+						boxDom.style.top = mah+"px";
+					}else{
+						boxDom.style.top = y+"px";
+						boxDom.style.left = x+"px";
+					}
+				},30);
+			}
+		};
+	</script>
+ </body>
+</html>

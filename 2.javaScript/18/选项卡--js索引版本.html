@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>选项卡</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 2px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+
+			.red{color:red;}
+			.green{color:green;}
+			a{text-decoration:none;color:#fff;}
+			#tab ul li{list-style:none;padding:10px;border:1px solid #ccc;}
+			body{font-size:14px;font-family:"微软雅黑";padding:100px;background:#FFF;}
+			#tab{width:670px;height:480px;border:1px solid #ccc;margin:0 auto;}
+			#tab ul{width:100%;height:42px;background:#ccc;}
+			#tab li{float:left;}
+			#tab li.on{background:#fff;}
+			#tab .content{height:438px;}
+			#tab .content div{display:none}
+		</style>
+
+	</head>
+<body>
+	<div id="tab">
+		<ul id="card">
+			<li >选项卡1</li>
+			<li >选项卡2</li>
+			<li >选项卡3</li>		
+			<li >选项卡4</li>		
+		</ul>
+		<div id="content" class="content">
+			<div  >内容1</div>
+			<div  >内容2</div>
+			<div  >内容3</div>
+			<div  >内容4</div>
+		</div>
+	</div>	
+	<h1>知识点</h1>
+	<ul>
+		<li>选项卡的制作:<span class="red">索引版本</span></li>
+		<li>自由属性的缓存妙用</li>
+		
+	</ul>
+	<pre>
+	//html
+	&lt;div id="tab"&gt;
+		&lt;ul id="card"&gt;
+			&lt;li &gt;选项卡1&lt;/li&gt;
+			&lt;li &gt;选项卡2&lt;/li&gt;
+			&lt;li &gt;选项卡3&lt;/li&gt;		
+			&lt;li &gt;选项卡4&lt;/li&gt;		
+		&lt;/ul&gt;
+		&lt;div id="content" class="content"&gt;
+			&lt;div  &gt;内容1&lt;/div&gt;
+			&lt;div  &gt;内容2&lt;/div&gt;
+			&lt;div  &gt;内容3&lt;/div&gt;
+			&lt;div  &gt;内容4&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;	
+
+	//js
+	function id(id){
+		return document.getElementById(id);	
+	}
+	var cardDom = id("card");
+	var liDoms = cardDom.children;
+	for(var i=0;i&lt;liDoms.length;i++){
+		<span class="green">//给对象缓存一个自有属性</span>
+		<span class="red"> liDoms[i].index = i;</span>//经典代码;将i转换为对象的自有属性
+		liDoms[i].onclick = function(){	
+			this.className = "on";
+			siblings(this,function(){
+				this.className="";
+			});			
+			//把对应的选项卡的内容显示出来
+			var tabDom = id("content").children[this.index];
+			tabDom.style.display = "block";
+			//拿到父亲对象
+			siblings(tabDom,function(){
+				this.style.display = "none";
+			});
+			
+		}
+	}
+	//同辈元素的处理
+	function siblings(dom,callback){
+		 var pdom = dom.parentElement;
+		//写法1:
+		/*var tabs = pdom.children;
+		for(var i=0;i&lt;tabs.length;i++){
+				if(tabs[i]!=dom){
+					callback.call(tabs[i]);
+				}
+		}*/
+		//写法2：
+		var tabArr = [].slice.call(pdom.children);
+		tabArr.filter(function(obj){
+			if(obj!=dom)callback.call(obj);
+		});
+	}
+	</pre>
+<script>
+	//1:给每个选项卡绑定点击事件
+	//2:获取点击元素的索引
+	//3:通过索引控制下面内容的隐藏和显示
+	
+	//js版本
+	//索引版本	
+	function id(id){
+		return document.getElementById(id);	
+	}
+	var cardDom = id("card");
+	var liDoms = cardDom.children;
+	for(var i=0;i<liDoms.length;i++){
+		//给对象缓存一个自有属性
+		liDoms[i].index = i;//经典代码;将i转换为对象的自有属性
+		liDoms[i].onclick = function(){	
+			this.className = "on";
+			siblings(this,function(){
+				this.className="";
+			});			
+			//把对应的选项卡的内容显示出来
+			var tabDom = id("content").children[this.index];
+			tabDom.style.display = "block";
+			//拿到父亲对象
+			siblings(tabDom,function(){
+				this.style.display = "none";
+			});
+			
+		}
+	}
+	//同辈元素的处理
+	function siblings(dom,callback){
+		 var pdom = dom.parentElement;
+		//写法1:
+		/*var tabs = pdom.children;
+		for(var i=0;i<tabs.length;i++){
+				if(tabs[i]!=dom){
+					callback.call(tabs[i]);
+				}
+		}*/
+		//写法2：
+		var tabArr = [].slice.call(pdom.children);
+		tabArr.filter(function(obj){
+			if(obj!=dom)callback.call(obj);
+		});
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		 <link rel="stylesheet" href="font/iconfont.css" />
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:14px;font-family:"微软雅黑";}
+			a{text-decoration:none;}
+			ul li{list-style:none;}
+			h1,h2,h3,h4,h5,h6{font-size:100%;}
+			.w1180{width:1180px;}
+			.bannerbox{height:350px;background:red;margin:50px auto;}
+
+			/*皮肤*/
+			.bg{background:#eff2f5;}
+
+			/*推荐*/
+			.tjbox{height:600px;margin:20px auto;}
+			.tjbox li.items{width:280px;margin:0 20px 20px 0;height:300px;float:left;color:#34495e;position:relative;}
+			.tjbox li.items:nth-child(4n){margin-right:0}
+			/*悬浮层*/
+			.tjbox li.items:before{
+				content:"";
+				opacity:0;z-index:1;position:absolute;top:-16px;right:-16px;left:-14px;
+				bottom:0;background:#ccc;
+				transition:opacity 0.6s ease;}
+			.tjbox li.items:hover:before{opacity:1;transition:opacity 0.6s ease;background:radial-gradient(#ccc,#cc99ff);}
+			.tjbox li.items .cover{position:relative;z-index:2;overflow:hidden;}
+			.tjbox li.items .cover .img{transition:transform 0.6s ease;}
+			.tjbox li.items:hover .img{transform:scaleX(1.2);transition:transform 0.6s ease;}
+			.tjbox li.items h3{padding:5px 0;color:#34495e;}
+			.tjbox li.items h3 a{color:#34495e;}
+			.tjbox li.items h3.title{
+				padding:5px 0;
+				word-break:break-all;/*下行的兼容写法*/
+				white-space:nowrap;/*强制不换行*/
+				overflow:hidden;
+				text-overflow:ellipsis;/*省略号*/
+			}
+			.tjbox li.items span.m{background:#dfe5e9;font-size:12px;padding:2px 8px;border-radius:5px;color:#f9f9f9;}
+			.tjbox li.items span.h{padding:0 10px;}
+			.tjbox li.items p.pic{padding-top:5px;}
+			.tjbox li.items .hpc{width:20px;height:20px;border-radius:50%;vertical-align:bottom;padding-right:5px;}
+
+		</style>
+
+	</head>
+<body class="bg">
+	<!--
+		1：css3中的th-child(4n)
+		2:伪类afer和befor的定位
+		3.省略号：
+		4：css3伪类的理解
+		5：css3过渡和动画
+		6：css3中的盒子阴影
+	-->
+
+	<div class="w1180 bannerbox">
+		<img src="http://img.ui.cn/data/upload/201512/1450082845_818.jpeg?v=1450683129">
+	</div>
+
+	<div class="w1180 tjbox">
+		<ul>
+			<li class="items">
+				<div class="cover">
+					<a><img class="img" src="http://img.ui.cn/data/file/2/7/6/423672.jpg" width="280" height="210"></a>
+					<h3 class="title"><a href="javascript:void(0)">谈谈(web)UI设计如何零配色,创建安全配色方案2016版</a></h3>
+					<p class="info">
+					<span class="m">原创</span>
+					<span class="h"><i class="iconfont ">&#xe6d4;</i>4046</span>
+					<span class="h"><i class="iconfont">&#xe680;</i> 26</span>
+					<span class="h"><i class="iconfont">&#xe62a;</i> 178</span>
+					</p>
+					<p class="pic">
+						<a href="#"><img src="http://7u2k3q.com2.z0.glb.qiniucdn.com/avatar/3/4/8/4/204843.jpeg?imageMogr2/auto-orient/crop/!735x735a34a38/thumbnail/60x60/1450684084" class="hpc"/></a><span>途无线</span>
+					</p>
+				</div>
+			</li>
+			<li class="items">
+				<div class="cover">
+					<a><img class="img" src="http://img.ui.cn/data/file/9/4/2/418249.png" width="280" height="210"></a>
+					<h3><a href="javascript:void(0)">2015，下半年的一些闪屏～</a></h3>
+					<p class="info">
+					<span class="m">原创</span>
+					<span class="h"><i class="iconfont ">&#xe6d4;</i>4046</span>
+					<span class="h"><i class="iconfont">&#xe680;</i> 26</span>
+					<span class="h"><i class="iconfont">&#xe62a;</i> 178</span>
+					</p>
+					<p class="pic">
+						<a href="#"><img src="http://7u2k3q.com2.z0.glb.qiniucdn.com/avatar/3/4/8/4/204843.jpeg?imageMogr2/auto-orient/crop/!735x735a34a38/thumbnail/60x60/1450684084" class="hpc"/></a><span>途无线</span>
+					</p>
+				</div>
+			</li>
+			<li class="items">
+				<div class="cover">
+					<a><img class="img" src="http://img.ui.cn/data/file/4/9/3/338394.jpg" width="280" height="210"></a>
+					<h3><a href="javascript:void(0)">2015，下半年的一些闪屏～</a></h3>
+					<p class="info">
+					<span class="m">原创</span>
+					<span class="h"><i class="iconfont ">&#xe6d4;</i>4046</span>
+					<span class="h"><i class="iconfont">&#xe680;</i> 26</span>
+					<span class="h"><i class="iconfont">&#xe62a;</i> 178</span>
+					</p>
+					<p class="pic">
+						<a href="#"><img src="http://7u2k3q.com2.z0.glb.qiniucdn.com/avatar/3/4/8/4/204843.jpeg?imageMogr2/auto-orient/crop/!735x735a34a38/thumbnail/60x60/1450684084" class="hpc"/></a><span>途无线</span>
+					</p>
+				</div>
+			</li>
+			<li class="items">
+				<div class="cover">
+					<a><img class="img" src="http://img.ui.cn/data/file/0/2/3/423320.gif" width="280" height="210"></a>
+					<h3><a href="javascript:void(0)">2015，下半年的一些闪屏～</a></h3>
+					<p class="info">
+					<span class="m">原创</span>
+					<span class="h"><i class="iconfont ">&#xe6d4;</i>4046</span>
+					<span class="h"><i class="iconfont">&#xe680;</i> 26</span>
+					<span class="h"><i class="iconfont">&#xe62a;</i> 178</span>
+					</p>
+					<p class="pic">
+						<a href="#"><img src="http://7u2k3q.com2.z0.glb.qiniucdn.com/avatar/3/4/8/4/204843.jpeg?imageMogr2/auto-orient/crop/!735x735a34a38/thumbnail/60x60/1450684084" class="hpc"/></a><span>途无线</span>
+					</p>
+				</div>
+			</li>
+			<li class="items">
+				<div class="cover">
+				<a><img class="img" src="http://img.ui.cn/data/file/5/1/9/422915.png" width="280" height="210"></a>
+					<h3><a href="javascript:void(0)">2015，下半年的一些闪屏～</a></h3>
+					<p class="info">
+					<span class="m">原创</span>
+					<span class="h"><i class="iconfont ">&#xe6d4;</i>4046</span>
+					<span class="h"><i class="iconfont">&#xe680;</i> 26</span>
+					<span class="h"><i class="iconfont">&#xe62a;</i> 178</span>
+					</p>
+					<p class="pic">
+						<a href="#"><img src="http://7u2k3q.com2.z0.glb.qiniucdn.com/avatar/3/4/8/4/204843.jpeg?imageMogr2/auto-orient/crop/!735x735a34a38/thumbnail/60x60/1450684084" class="hpc"/></a><span>途无线</span>
+					</p>
+				</div>
+			</li>
+			<li class="items">
+				<div class="cover">
+					<a><img class="img" src="http://img.ui.cn/data/file/6/8/6/422686.jpg" width="280" height="210"></a>
+					<h3><a href="javascript:void(0)">2015，下半年的一些闪屏～</a></h3>
+					<p class="info">
+					<span class="m">原创</span>
+					<span class="h"><i class="iconfont ">&#xe6d4;</i>4046</span>
+					<span class="h"><i class="iconfont">&#xe680;</i> 26</span>
+					<span class="h"><i class="iconfont">&#xe62a;</i> 178</span>
+					</p>
+					<p class="pic">
+						<a href="#"><img src="http://7u2k3q.com2.z0.glb.qiniucdn.com/avatar/3/4/8/4/204843.jpeg?imageMogr2/auto-orient/crop/!735x735a34a38/thumbnail/60x60/1450684084" class="hpc"/></a><span>途无线</span>
+					</p>
+				</div>
+			</li>
+			<li class="items">
+				<div class="cover">
+					<a><img class="img" src="http://img.ui.cn/data/file/4/2/4/422424.png" width="280" height="210"></a>
+					<h3><a href="javascript:void(0)">2015，下半年的一些闪屏～</a></h3>
+					<p class="info">
+					<span class="m">原创</span>
+					<span class="h"><i class="iconfont ">&#xe6d4;</i>4046</span>
+					<span class="h"><i class="iconfont">&#xe680;</i> 26</span>
+					<span class="h"><i class="iconfont">&#xe62a;</i> 178</span>
+					</p>
+					<p class="pic">
+						<a href="#"><img src="http://7u2k3q.com2.z0.glb.qiniucdn.com/avatar/3/4/8/4/204843.jpeg?imageMogr2/auto-orient/crop/!735x735a34a38/thumbnail/60x60/1450684084" class="hpc"/></a><span>途无线</span>
+					</p>
+				</div>
+			</li>
+			<li class="items">
+				<div class="cover">
+					<a><img class="img" src="http://img.ui.cn/data/file/5/6/3/422365.jpg" width="280" height="210"></a>
+					<h3><a href="javascript:void(0)">2015，下半年的一些闪屏～</a></h3>
+					<p class="info">
+					<span class="m">原创</span>
+					<span class="h"><i class="iconfont ">&#xe6d4;</i>4046</span>
+					<span class="h"><i class="iconfont">&#xe680;</i> 26</span>
+					<span class="h"><i class="iconfont">&#xe62a;</i> 178</span>
+					</p>
+					<p class="pic">
+						<a href="#"><img src="http://7u2k3q.com2.z0.glb.qiniucdn.com/avatar/3/4/8/4/204843.jpeg?imageMogr2/auto-orient/crop/!735x735a34a38/thumbnail/60x60/1450684084" class="hpc"/></a><span>途无线</span>
+					</p>
+				</div>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+
+
+</body>
+</html>

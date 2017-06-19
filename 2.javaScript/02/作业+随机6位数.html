@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			html,body{height:100%}
+			body{font-size:12px;font-family:"微软雅黑";background: #272822;}
+			#mathNum{height:50px;margin:100px auto;font-size:48px;background: transparent;text-align: 
+				center;line-height: 50px;color:#fff;}
+
+
+		</style>
+
+	</head>
+<body>
+
+	<div id="mathNum"></div>
+
+<script>
+       //知识点取余数：除数 < 被除数===被除数
+			//var snum = 60 - s
+			//console.log(s+"===="+parseInt(snum/2));
+
+			//了解if else和boolean数据类型的关系
+			//undefined和null的理解。百度
+			//switch case和if elseif else一个使用
+
+			/**
+				1:var a;typeof a;结果是:
+				2:var s = "ls";s++;结果是:
+				3:!!"false":结果是什么
+				4:!!undefined:结果是什么：
+				5:typeof -Infinity:结果是什么
+				6:10%"0"是什么NaN
+				7:typeof "2e+2";是什么：
+				8:a = 3e+3;a++是什么:
+
+				9:1>2 && 2<3 || (5+5)<20 && false && true
+				10:!false && !true
+				11:undefined+undefined
+				12:undefined == null 
+				13:undefined===null;
+                                14:a++和++a的区别
+				
+
+
+				第二大题目：
+				var v = v || 10;
+				如果将v分别设置为:100,0,null，结果分别是什么：
+				
+				14:随便说一句话做一个非题目，然后通过程序把实现。if elseif else
+				
+
+				第三题目：预习for循环和数组,打印九九乘法表.
+
+			*/
+			//1:
+			var a;
+			log(typeof(a));//undefined
+		    //2:
+		     var s ="1s";
+		     s++;
+		     log(s);//NaN
+		     //3:
+		     var b = !!"false";
+		     log(!!"false");//true 百度得知：隐似转换：非0 的数是true
+		     //4:		
+		     log(!!undefined);//false :道理不了解
+		     //5:
+		     log(typeof(-Infinity));//number
+		     //6:
+		     log(10%"0");//NaN
+		     //7：
+		     var c = 3e+3;		     
+		     log(c++);//3000
+		     //9
+		     log("10"+(1>2 && 2<3 || (5+5)<20 && false && true))//false
+		     //11
+		     log(undefined+undefined);//NaN
+		     //12:
+		     log(undefined == null );//true
+		     //13:
+		     log(undefined === null );//false
+		    // 第二大题目：
+				var v = v || 10;
+			//如果将v分别设置为:100,0,null，结果分别是什么：
+			var v=100;
+			log(v);  //100
+			var v=0;
+			log(v);  //10
+			var v=null;
+			var v = v || 10;
+			log(v);//10			
+			var v = v || 10;
+			var v=null;
+			log(v);//null	
+
+			//随机产生一个6位数
+			function MathRand() 
+			{ 
+				var Num=""; 
+				for(var i=0;i<6;i++) { 
+				Num+=Math.floor(Math.random()*10); 
+				} 
+		    	$("mathNum").innerHTML = Num;
+			} 
+
+			setInterval(MathRand,1000)
+			
+		
+			
+
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}
+		}
+		function $(id){
+			return document.getElementById(id);
+		}
+</script>
+</body>
+</html>

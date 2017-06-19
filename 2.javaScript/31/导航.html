@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{padding:0;margin:0}
+	body{font-size:14px;font-family:"微软雅黑";}
+	a{text-decoration:none;color:#333}
+	li{list-style:none}
+	#box{background:red;width:100px;height:100px;}
+	/*keke至理名言：布局看背景，间距看文字*/
+	.header{height:58px;background:#333}
+
+	/*内容区域*/
+	.wrap{overflow:hidden}
+	.w1000{width:1000px;margin:0px auto;}
+	
+	.hw{height:58px;}
+	.hw li.items{float:left;height:58px;line-height:58px;margin-left:2px;}
+	.hw li.items a{display:block;padding:0 30px;color:#fff;position:relative;z-index:2}
+
+	.hw li .sonul{background:#333;opacity:0;position:relative;z-index:1;top:-200px;transition:all 0.6s ease}
+	.hw li.items:hover .sonul{top:0;opacity:1; }
+
+	/*底部*/
+	.footer{height:240px;}
+  </style>
+ </head>
+ <body>
+	<!--头部-->	
+	<div class="header">
+		<div class="w1000 hw">
+			<ul>
+				<li class="items">
+					<a href="#">首页</a>
+				</li>
+				<li class="items">
+					<a href="#">作品</a>
+					<ul class="sonul">
+						<li><a href="#">课程</a></li>
+						<li><a href="#">课程</a></li>
+						<li><a href="#">课程</a></li>
+					</ul>
+				</li>
+				<li class="items"><a href="#">学习</a>
+					<ul class="sonul">
+						<li><a href="#">学习</a></li>
+						<li><a href="#">学习</a></li>
+					</ul>
+				</li>	
+				<li class="items">
+					<a href="#">作品</a>
+					<ul class="sonul">
+						<li><a href="#">课程</a></li>
+						<li><a href="#">课程</a></li>
+						<li><a href="#">课程</a></li>
+					</ul>
+				</li>
+				<li class="items"><a href="#">学习</a>
+					<ul class="sonul">
+						<li><a href="#">学习</a></li>
+						<li><a href="#">学习</a></li>
+					</ul>
+				</li>	
+				<li class="items">
+					<a href="#">作品</a>
+					<ul class="sonul">
+						<li><a href="#">课程</a></li>
+						<li><a href="#">课程</a></li>
+						<li><a href="#">课程</a></li>
+					</ul>
+				</li>
+				<li class="items"><a href="#">学习</a>
+					<ul class="sonul">
+						<li><a href="#">学习</a></li>
+						<li><a href="#">学习</a></li>
+						<li><a href="#">学习</a></li>
+						<li><a href="#">学习</a></li>
+					</ul>
+				</li>	
+			</ul>
+		
+		</div>
+	</div>
+	
+	
+ </body>
+</html>

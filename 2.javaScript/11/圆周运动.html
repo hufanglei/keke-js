@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>随机数案例:圆周运动</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+		
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				position:absolute;
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+				top:600px;
+				left:100px;
+			}
+			span{color:red}
+			#box2{position:relative;width:400px;height:400px;background:#111;margin:10px auto}
+			#box{width:10px;height:10px;position:absolute;background:red;}
+
+		</style>
+
+	</head>
+<body>
+<div id="box2">
+	<div id="box"><div>
+</div>
+
+
+
+
+	
+	
+<script type="text/javascript">
+	window.onload = function(){
+		var boxDom = document.getElementById("box");
+		var speed = 0.05;
+		var angle = 0;
+		var arr = [];
+		function draw(){
+			var x = 200+Math.sin(angle)*200;
+			var y = 200+Math.cos(angle)*200;
+			angle+=speed;
+			boxDom.style.left = y+"px";
+			boxDom.style.top = x+"px";
+			var ndiv = document.createElement("div");
+			ndiv.style.width ="2px";
+			ndiv.style.height = "2px";
+			ndiv.style.background="red";
+			ndiv.style.position = "absolute";
+			ndiv.style.left = boxDom.offsetLeft+"px";
+			ndiv.style.top = boxDom.offsetTop+"px";
+			arr.push(ndiv);
+			document.getElementById("box2").appendChild(ndiv);
+			if(arr.length>100){
+				document.getElementById("box2").removeChild(arr.shift());
+			}
+		}
+
+		setInterval(draw,1000/30);
+	}
+</script>
+</body>
+</html>

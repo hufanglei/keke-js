@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>组件封装：音乐播放器</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+			.div{border-bottom:1px solid #ccc;padding:2px}
+
+			#box div{width:100px;height:100px;background:#ccc;color:#111;line-height:100px;text-align:center;margin:10px auto;font-size:36px;cursor:pointer;border:0}
+			.progress{background:#fff;border:1px solid green;height:30px;width:640px;position:relative;}
+			.progress #percent{position:absolute;top:0;left:0;height:100%;background:green;}
+
+		</style>
+
+	</head>
+<body>
+
+<h2>案例:音乐播放器</h2><br/>
+	<!--<audio src="mp3/01.mp3" controls></audio>-->
+	<a href="javascript:void(0)" onclick="playstop(this)">播放</a>
+	<a href="javascript:void(0)" onclick="tzAudio.next()">下一首</a>
+	<a href="javascript:void(0)" onclick="tzAudio.prev()">上一首</a>
+	<span id="time">00:00</span>
+	<span id="stime">00:00</span>
+	<div class="progress">
+		<div id="percent"></div>
+	</div>
+	<input type="text" value="" id="times" />
+	<div id="percent"></div>
+
+<br/><h2>需求:</h2>
+<pre>
+*组件封装的步骤:音乐播放器
+	*1.创建一个音乐播放器
+	*2：播放音乐
+	*3：暂停
+	*4：显示时间
+	*5：音量的控制
+	*6：进度展示
+	*7：上一首，下一首
+	*8：添加音乐
+	*9：静音
+	*10：歌词
+	*/
+</pre>
+<h1>封装组件：this，callback call apply，对象，事件，回调函数的综合练习</h1>
+<h5>组件的认识:对象+事件+回调函数的集成体</h5>
+<p>json:解决参数的问题</p>
+<p>事件：将一些操作继续交由用户去处理</p>
+<p>call ,apply值是改变的对象的引用</p>
+<p>call和apply是函数的一种执行方式。只是这种执行可以改变这个函数中this的执向<br/>
+公式：函数.call(对象，参数);
+</p>
+<br/><h3>实现代码:</h3>
+<pre>
+//前端页面:
+&lt;a href="javascript:void(0)" onclick="playstop(this)"&gt;播放&lt;/a&gt;
+	&lt;a href="javascript:void(0)" onclick="tzAudio.next()"&gt;下一首&lt;/a&gt;
+	&lt;a href="javascript:void(0)" onclick="tzAudio.prev()"&gt;上一首&lt;/a&gt;
+	&lt;span id="time"&gt;00:00&lt;/span&gt;
+	&lt;span id="stime"&gt;00:00&lt;/span&gt;
+	&lt;div class="progress"&gt;
+		&lt;div id="percent"&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;input type="text" value="" id="times" /&gt;
+	&lt;div id="percent"&gt;&lt;/div&gt;
+</pre>
+<pre>
+//封装组件audio.js代码:
+(function(win){
+		var tzAudio = {
+			audioDom:null,//音乐对象
+			songs:[],//音乐容器
+			index:0,//播放音乐的起始位置
+			
+			init:function(){
+				this.audioDom = document.createElement("audio");//创建一个音乐播放器
+			},
+			//添加音乐
+			add:function(src){
+				this.songs.push(src);	
+				this.audioDom.src = this.songs[this.index];
+			},
+			
+			play:function(){
+				this.audioDom.play();
+			},
+			//播放音乐
+			playMusic:function(){
+				this.audioDom.src = this.songs[this.index];
+				this.audioDom.play();
+			},
+			//暂停音乐
+			stop:function(){
+				this.audioDom.pause();
+			},
+			time:function(callback){
+				var $this = this;
+				this.audioDom.oncanplaythrough = function(){
+					var totalTime = this.duration;
+					var timer = $this.formateTime(totalTime);
+					//如果想把这个audioDom进行处理，就用call方法用this传出去
+					//if(callback)callback.call(this,time);
+					//如果只想返回几个参数，不想返回整个audioDom，可以自己定义对象传出去
+					var json ={
+						duration:totalTime,
+						time:timer
+					}
+					if(callback)callback.call(json);
+				};
+			},
+			formateTime:function(time){
+				var m = parseInt(time / 60);
+				var s = parseInt(time % 60);
+				var time =  (m&lt;10?("0"+m):m)+":"+(s&lt;10?("0"+s):s);
+				return time;
+			},
+			shound:function(){
+			
+			},
+			prev:function(){
+				this.index--;
+				if(this.index&lt;0){
+					this.index =this.songs.length-1;
+				}
+				this.playMusic();
+			},
+			next:function(){
+				this.index++;
+				if(this.index>= this.songs.length){
+					this.index =0;
+				}
+				this.playMusic();
+			},
+			percent:function(callback){
+				var $this = this;
+				this.audioDom.ontimeupdate = function(){
+					//不管任何百分计算，都是增量/总进度 *100
+					//播放时间/总时长
+					var per = Math.floor(this.currentTime/this.duration*100);
+					//剩余时间:
+					var stime = this.duration - this.currentTime;
+					var timer = $this.formateTime(stime);
+					var json = {
+						per:per,
+						time:timer
+					};
+					if(callback)callback.call(json);
+				}
+			},
+		}
+	win.tzAudio = tzAudio;
+})(window);
+</pre>
+<pre>
+//js调用代码:
+&lt;script type="text/javascript" src="audio.js"&gt;&lt;/script&gt;
+tzAudio.init();
+tzAudio.add("mp3/02.mp3");
+tzAudio.add("mp3/01.mp3");
+tzAudio.time(function(){
+	document.getElementById("time").innerHTML = this.time;
+	document.getElementById("times").value = this.time;
+	//alert(this.duration);
+});
+
+tzAudio.percent(function(){
+	document.getElementById("percent").style.width = this.per+"%";
+	document.getElementById("stime").innerHTML = this.time;
+});
+
+function playstop(obj){
+	var text = obj.innerHTML;
+	if(text == "播放"){
+		tzAudio.play();
+		obj.innerHTML = "暂停";
+	}
+	if(text == "暂停"){
+		tzAudio.stop();
+		obj.innerHTML = "播放";
+	}
+}
+</pre>
+<script type="text/javascript" src="audio.js"></script>
+<script>
+	//对象，事件，回调函数 ---封装组件，学this，callback call apply
+	//组件的认识:对象+事件+回调函数的集成体
+	//Json:解决参数的问题
+	//事件：将一些操作继续交由用户去处理
+	//call ,apply值是改变的对象的引用
+	//call和apply是函数的一种执行方式。只是这种执行可以改变这个函数中this的执向
+	//公式：函数.call(对象，参数);
+
+	//作业：根据日期的天数，切换的背景；使用组件的方式
+	/*var tzBackground = {
+		imgs:[],
+		add:function(src){
+			this.imgs.push(src);
+		}
+		change:function(i,callback){
+			if(callback)callback(this.imgs[i]);
+		}
+	}
+	tzBackground.add("1.jpg");
+	tzBackground.add("2.jpg");
+	tzBackground.add("3.jpg");
+	tzBackground.add("4.jpg");
+	tzBackground.add("5.jpg");
+	
+	tzBackground.change(new Date.getDate(),function(img){
+		document.getElementById("#XX").src = img;
+	});*/
+	/*
+	*组件封装的步骤:音乐播放器
+	*1.创建一个音乐播放器
+	*2：播放音乐
+	*3：暂停
+	*4：显示时间
+	*5：音量的控制
+	*6：进度展示
+	*7：上一首，下一首
+	*8：添加音乐
+	*9：静音
+	*10：歌词
+	*/
+	
+	tzAudio.init();
+	tzAudio.add("mp3/02.mp3");
+	tzAudio.add("mp3/01.mp3");
+	tzAudio.time(function(){
+		document.getElementById("time").innerHTML = this.time;
+		document.getElementById("times").value = this.time;
+		//alert(this.duration);
+	});
+
+	tzAudio.percent(function(){
+		document.getElementById("percent").style.width = this.per+"%";
+		document.getElementById("stime").innerHTML = this.time;
+	});
+
+	function playstop(obj){
+		var text = obj.innerHTML;
+		if(text == "播放"){
+			tzAudio.play();
+			obj.innerHTML = "暂停";
+		}
+		if(text == "暂停"){
+			tzAudio.stop();
+			obj.innerHTML = "播放";
+		}
+	}
+</script>
+</body>
+</html>

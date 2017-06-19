@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>时间</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+			.div{border-bottom:1px solid #ccc;padding:2px}
+				
+			.box div{width:100px;height:100px;background:#ccc;color:#111;line-height:100px;text-align:center;margin:10px auto;font-size:36px;cursor:pointer;border:0}
+			span{color:red;}
+
+		</style>
+
+	</head>
+<body>
+<h1 id="time"></h1>
+<pre>
+window.onload = function(){
+	  var timeDom = document.getElementById("time");		
+		setInterval(function(){
+			var date =  new Date();
+			var fullYear = date.getFullYear();
+			var month =  date.getMonth() +1;
+			var day= date.getDate();
+			//时分秒
+			var hour = date.getHours();
+			var min = date.getMinutes();
+			var sec = date.getSeconds();
+			var time = date.getMilliseconds();
+			//星期数
+			var week = getWeek(date.getDay());//0是星期天
+			var formate = fullYear+"年"+month+"月"+day+"日"+hour+"时"+min+"分"+sec+"秒"+time+"毫秒数，"+week;
+			timeDom.innerHTML = formate;
+		},500);
+		function getWeek(week){
+			switch(week){
+				case 0:return "星期天";break;
+				case 1:return "星期一";break;
+				case 2:return "星期二";break;
+				case 3:return "星期三";break;
+				case 4:return "星期四";break;
+				case 5:return "星期五";break;
+				case 6:return "星期六";break;
+				default:return "";break;
+			}
+		}
+	}
+</pre>
+
+<script>
+	//Object --Date--万年历，时间的倒计时，时钟，时间切换皮肤	
+	/*window.onload = function(){
+		var date = new Date();
+		console.log(date);// Wed Dec 16 2015 15:09:46 GMT+0800 (中国标准时间);
+		console.log(date.constructor);//结果:Date() { [native code] }
+		var arr = [];
+		
+		//Object 
+		//	arry  object && constructor.indexOf("Array")!=-1
+		//	date  object && constructor.indexOf("Date")!=-1
+		//	regex  object && constructor.indexOf("Regex")!=-1
+		//	{} [Object object]
+		var year = date.getYear();
+		var fullYear = date.getFullYear();
+		var month =  date.getMonth() +1;
+		var day= date.getDate();
+		console.log(fullYear+"年"+month+"月"+day+"日");
+		//时分秒
+		var hour = date.getHours();
+		var min = date.getMinutes();
+		var sec = date.getSeconds();
+		console.log(fullYear+"年"+month+"月"+date+"日"+hour+"时"+min+"分"+sec+"秒");
+		//星期数
+		var week = date.getDay();//0是星期天
+		console.log(fullYear+"年"+month+"月"+date+"日"+hour+"时"+min+"分"+sec+"秒"+"星期"+week);
+		//获取毫秒数getMilliseconds()
+		var time = date.getMilliseconds();
+		console.log(fullYear+"年"+month+"月"+date+"日"+hour+"时"+min+"分"+sec+"秒"+time+"毫秒数，星期"+week);
+
+	}*/
+	window.onload = function(){
+	  var timeDom = document.getElementById("time");		
+		setInterval(function(){
+			var date =  new Date();
+			var fullYear = date.getFullYear();
+			var month =  date.getMonth() +1;
+			var day= date.getDate();
+			//时分秒
+			var hour = date.getHours();
+			var min = date.getMinutes();
+			var sec = date.getSeconds();
+			var time = date.getMilliseconds();
+			//星期数
+			var week = getWeek(date.getDay());//0是星期天
+			var formate = fullYear+"年"+month+"月"+day+"日"+hour+"时"+min+"分"+sec+"秒"+time+"毫秒数，"+week;
+			timeDom.innerHTML = formate;
+
+
+		},500);
+		function getWeek(week){
+			switch(week){
+				case 0:return "星期天";break;
+				case 1:return "星期一";break;
+				case 2:return "星期二";break;
+				case 3:return "星期三";break;
+				case 4:return "星期四";break;
+				case 5:return "星期五";break;
+				case 6:return "星期六";break;
+				default:return "";break;
+			}
+		}
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>对象转换成参数拼接的问题</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+
+		</style>
+
+	</head>
+<body>
+
+
+
+<script>
+
+		function tzAjax(opts){
+			var xhr = new XMLHttpRequest();
+			var type = opts.type.toLowerCase();
+			var params = parseJson(opts.params);
+			var url = opts.url;
+			//如果是get请求就拼接?
+			if(type=="get")url+="?"+params;
+			//请求执行执行的回调函数
+			if(opts.beforeSend)opts.beforeSend();
+			//打开ajax
+			xhr.open(opts.type,url);
+			//如果是post请求就设定参数传输的字符串格式
+			if(type=="post")xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			//回执函数的的监听
+			xhr.onreadystatechange = (function(obj){
+				if(obj.readyState==4 && obj.status==200){
+					if(opts.callback)opts.callback(obj.responseText);
+				}else{
+					if(opts.error)opts.error.call(obj,obj.status);
+				}
+			})(xhr);
+			
+			//设置请求超时的函数
+			if(opts.timeout){
+				opts.timer = setTimeout(function(){
+					xhr.abort();//挂起请求
+					clearTimeout(opts.timer);
+				},opts.timeout);
+			}
+			
+			//发送请求
+			if(type=="post")xhr.send(params);
+			if(type=="get")xhr.send();
+		};
+
+		function parseJson(json){
+			var p = "";
+			for(var key in json){
+				p+=key+"="+json[key]+"&";
+			}
+			p = p.substring(0,p.length-1);
+			return p;
+		}
+
+
+
+		/*
+		tzAjax({
+			type:"post",
+			url:"sdfsdfsd.jsp",
+			data:"username=23423&password=111",
+			error:function(code){
+				alert("服务器出现了错误状态是:=="+code);
+			},
+			timeout:3000,//timeout请求服务器时间的如果超过timeout设定时间，就会自动断开请求
+			beforeSend:function(){
+
+			},
+			success:function(data){
+
+			}
+
+		});*/
+
+</script>
+</body>
+</html>

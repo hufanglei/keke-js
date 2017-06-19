@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>css3伪类</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";padding:100px;background:#373737;}
+			ul{background:#ccc;padding:20px;font-size:16px;}
+			ul li.ba{position:relative;height:20px;width:1000px;}
+			/*伪类*/
+			/*伪类用法1：*/		
+			h1{color:#fff;padding:2px;}
+			ul li.ba p:after{
+				content:">①";
+				font-size:16px;
+				padding:5px;
+				color:red;
+			}
+			/*伪类用法2：*/
+			ul li.ba p:before{
+				content:"%②";
+				font-size:16px;
+				padding:5px;
+				color:green;
+			}
+			/*伪类用法3：*/
+			ul li.ba::before{
+				content:"";
+				position:absolute;
+				left:-2px;
+				right:-2px;
+				top:-2px;
+				bottom:0;
+				background:yellow;
+				z-index:1;
+				opacity:0;
+			}
+			ul li.ba:hover::before{opacity:1;}
+			ul li.ba p{z-index:2;white-space:nowrap;height:20px;position:relative;}
+
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 2px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+
+
+		</style>
+
+	</head>
+<body>
+	<h1>伪类</h1>
+	<ul>
+		<li class="ba"><p>的淡淡的淡淡的淡淡的淡淡的淡淡的淡淡的</p></li>
+		<li class="ba"><p>的淡淡的淡淡的淡淡的淡淡的淡淡的淡淡的</p></li>
+		<li class="ba"><p>的淡淡的淡淡的淡淡的淡淡的淡淡的淡淡的</p></li>
+		<li class="ba"><p>的淡淡的淡淡的淡淡的淡淡的淡淡的淡淡的</p></li>
+		<li class="ba" ><p>的淡淡的淡淡的淡淡的淡淡的淡淡的淡淡的</p></li>
+	</ul>
+	<pre>	此处:①和② 和 黄色背景均为伪类实现</pre>
+	
+<script>
+
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}
+		
+		}
+</script>
+</body>
+</html>

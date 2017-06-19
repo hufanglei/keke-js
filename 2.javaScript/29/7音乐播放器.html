@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>音乐播放器</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+		
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background:red;width:100px;height:100px;}
+		</style>
+
+	</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	//闭包----即时函数
+	//回调函数===闭包
+	
+	var TzMusic = (function(){
+		function _tzMusic(id,src){
+			//私有属性
+			var index = 0;
+			//私有方法
+			function addMusic(){
+			};
+			function playMain(){
+				//播放上一首下一首
+			};
+			//私有属性
+			this.id = id;
+			this.src = src;
+			//特权方法
+			this.play = function(){
+				alert("播放了");
+			};
+			this.next = function(){
+				playMain();
+			};
+			this.prev = function(){
+				playMain();
+			}
+		};
+		_tzMusic.prototype = {
+			constructor:TzMusic,
+			//公有属性
+			time:"00:00",
+			//公有方法
+			playTime:function(){
+				alert("1111");
+			}
+		};
+		_tzMusic.author = "keke";
+		_tzMusic.pushTime = function(){
+			alert("出版"+this.author);
+		};
+		return _tzMusic;		
+	})();
+	
+	var music = new TzMusic();
+	music.playTime();
+
+	/*
+	(function(win){
+		function _tzMusic(id,src){
+			//私有属性
+			var index = 0;
+			//私有方法
+			function addMusic(){
+			};
+			function playMain(){
+				//播放上一首下一首
+			};
+			//私有属性
+			this.id = id;
+			this.src = src;
+			//特权方法
+			this.play = function(){
+				alert("播放了");
+			};
+			this.next = function(){
+				playMain();
+			};
+			this.prev = function(){
+				playMain();
+			}
+		};
+		//公有方法和属性
+		_tzMusic.prototype = {
+			constructor:TzMusic,
+			//公有属性
+			time:"00:00",
+			//公有方法
+			playTime:function(){
+				
+			}
+		};
+		//静态方法和属性
+		_tzMusic.author = "keke";
+		_tzMusic.pushTime = function(){
+			alert("出版"+this.author);
+		};
+		win.TzMusic = _tzMusic;		
+	})(window);
+	*/
+
+	
+
+
+	/*var params  = "keke";
+	var obj = (function(win){
+		var params = {src:"1.mp3",author:"keke"};
+		function test(){
+			alert(params.src+"==="+params.author);
+		}
+		win.test = test;
+	})(window);
+	alert(params);
+	window.test();*/
+	
+
+
+/*	function TzMusic(id,src){
+		//私有属性
+		var index = 0;
+		//私有方法
+		function addMusic(){
+		};
+		function playMain(){
+			//播放上一首下一首
+		};
+		//私有属性
+		this.id = id;
+		this.src = src;
+		//特权方法
+		this.play = function(){
+			alert("播放了");
+		};
+		this.next = function(){
+			playMain();
+		};
+		this.prev = function(){
+			playMain();
+		}
+	};
+	TzMusic.prototype = {
+		constructor:TzMusic,
+		//公有属性
+		time:"00:00",
+		//公有方法
+		playTime:function(){
+			
+		}
+	};
+	//静态方法和静态属性
+	TzMusic.author = "keke";
+	TzMusic.pushTime = function(){
+		alert("出版"+new Date());
+	};
+
+	var music = new TzMusic("div1","sdfsdfsd.mp3");
+	//alert(music.id+"=="+music.src);
+	//alert(music.time);*/
+
+</script>
+</body>
+</html>

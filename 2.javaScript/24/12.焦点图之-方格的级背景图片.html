@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{padding:0;margin:0}
+	body{font-size:14px;font-family:"微软雅黑"}
+	a{text-decoration:none;color:#fff}
+	ul li{list-style:none}
+	#box{width:1000px;height:350px;background:#1111;margin:50px auto;position:relative;}
+	#box #imgbox{position:absolute;top:0;left:0;z-index:1}
+	#box #imgbox a{display:block;position:absolute;left:0;top:0;display:none}
+	#ullist{position:absolute;top:0;left:0;z-index:2}
+	#box li{background:red;float:left;border:1px solid rgba(255,255,255,0.2);
+		background-image:url("images/1.jpg");
+		background-repeat:no-repeat;
+		background-origin:border-box;
+		opacity:1
+	}
+  </style>
+
+ </head>
+ <body>
+	
+		
+	<div id="box">
+		<div id="imgbox">
+			<a href="#" style="z-index:3;display:block"><img src="images/1.jpg" width="1000" height="350"/></a>
+			<a href="#" style="z-index:2"><img src="images/5.jpg" width="1000" height="350"/></a>
+			<a href="#" style="z-index:1"><img src="images/4.jpg" width="1000" height="350"/></a>
+		</div>
+		<ul id="ullist"></ul>
+	</div>
+	<script src="dom.js"></script>
+	<script>
+		window.onload = function(){
+			//获取ul对象
+			var ulDom = dom("ullist");
+			//盒子对象
+			var boxDom = dom("box");
+			//格子的宽高比例
+			var bitw = 100;
+			var bith = 70;
+			//行和列
+			var rows = Math.floor(boxDom.offsetHeight/ bith);
+			var cells = Math.floor(boxDom.offsetWidth / bitw);
+			var arr  = [];
+			var arrIndex = [];
+			//循环添加行列	
+			for(var i=0;i<rows;i++){
+				for(var j=0;j<cells;j++){
+					var liDom = document.createElement("li");
+					liDom.style.width = (bitw-2)+"px";
+					liDom.style.height = (bith-2)+"px";
+					liDom.style.backgroundPosition = "-"+(j *(bitw-2))+"px -"+(i * (bith-2))+"px";
+					ulDom.appendChild(liDom);
+					arr.push(liDom);
+				}
+			}
+
+			/*
+			var index = 0;
+			var timer = null;
+			timer = setInterval(function(){
+				if(index>=arr.length-1){
+					clearInterval(timer);
+				}else{
+					move(arr[index],{opacity:100});
+					index++;
+				}
+			},30);*/
+			
+			//随机
+			var imgIndex = 0;	
+			var timer = null;
+			var newArr = [];
+			var mark = false;
+			timer = setInterval(function(){
+				if(mark){
+					clearInterval(timer);
+					arr = newArr;
+					newArr = [];
+					mark = false;
+				}else{
+					var cindex = randomRange(0,arr.length);
+					var lidom = arr.splice(cindex,1)[0];
+					move(lidom,{opacity:0});
+					newArr.push(lidom);
+					if(newArr.length==1){
+						dom("imgbox").children[imgIndex].style.display = "none";
+						imgIndex++;
+						dom("imgbox").children[imgIndex].style.display = "block";
+					}
+					if(arr.length==0){
+						mark = true;
+					}
+				}
+			},30);
+		};
+	</script>
+ </body>
+</html>

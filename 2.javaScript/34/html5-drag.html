@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html5 dragg</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#000;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";}
+			#box{width:140px;height:100px;background:#333;color:#fff;}
+			#box span{display:block;}
+			#shopcar{width:640px;height:360px;background:green;margin-top:10px;}
+		</style>
+
+	</head>
+<body>
+	
+	<a href="#" draggable="false">我是一个a连接奥</a>
+	<div id="box" draggable="true">
+		<span  class="name">javascript面向对象</span>
+		<span  class="price">120</span>
+		<span  class="pub">湖南长沙</span>
+	</div>
+	<div id="shopcar" draggable="true">购物车</div>
+		
+	
+		
+
+	
+<script>
+
+	/*
+		html5----课触动的拖放功能  draggable
+		在页面中有两个元素默认开启的:a 和 img ,draggable="true"
+		onmouserdown onmousemove onmouseup
+
+		Draggable和文件Api 通过ajax实现文件上传
+
+		参照物:拖放的元素和目标点
+		Api事件
+		1:ondragstart ：开始拖放元素触发的事件，对象:拖放的元素
+		2.ondrag	: 拖放过程中触发的事件 ， 对象: 拖放的元素
+
+		3.ondragenter : 有拖放的元素进入目标元素时触发的事件， 对象: 目标元素
+		4.ondragover : 有拖放的元素在目标内移动触发的时间，对象: 目标元素
+		5.ondragleave：有拖放的元素离开目标元素触发的事件，　对象：目标元素
+		6.ondrop　：有拖放的元素在本元素松开的时候触发的事件　，对象：目标元素
+
+		7.ondropend　：拖放元素结束触发的事件，　对象：拖放的元素
+	*/	
+	function dom(id){
+		return document.getElementById(id);
+	}
+	window.onload = function(){
+		var boxDom = dom("box");//拖放元素
+		var shopDom = dom("shopcar");//目标元素
+		//boxDom.addEventListener("dragstart" ,function(){},true);
+		boxDom.ondragstart = function(){
+			console.log("=====ondragstart");
+			this.style.background = "red";
+		};
+		boxDom.ondrag = function(){
+			console.log("=====ondrag");
+			this.style.background = "yellow";
+		}
+		shopDom.ondragenter = function(){
+			console.log("=====ondragenter");
+			this.style.background = "pink";
+		}
+		shopDom.ondragover = function(e){
+			//console.log("=====ondragover");
+			//this.style.background = "gray";
+			e.preventDefault();
+		}
+		boxDom.ondragleave = function(){
+			console.log("=====ondragleave");
+			this.style.background = "orange";
+		}
+		shopDom.ondrop = function(){
+			console.log("=====ondrop");
+			this.style.background = "orange";
+		}
+		boxDom.ondragend = function(){
+			console.log("=====ondragend");
+			this.style.background = "black";
+		}
+		//ondrop和是ondragover是互相冲突的事件，必须用e.preverdefault禁止一个，才能执行另一个
+	}
+</script>
+</body>
+</html>

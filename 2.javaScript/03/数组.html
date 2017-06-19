@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>数组</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background:#373737;}
+
+		</style>
+
+	</head>
+<body>
+
+
+
+<script>
+		/**
+		 * 数组：在js中基础类型中，array也是一种以数据结构，它就是一种存储数据的列表
+		 * 定义格式
+		 * var arr = [];//定义了一个null数组
+		 * var arr = new Array();//这个不准使用
+		 * var arr = [1,2,3];
+		 * var arr = ["123","keke","keke"];//可放字符串
+		 * var arr = [{username:"keke"}];//可放对象
+		 * var arr = [test,test2,test3];//可放函数		 
+		 * function test(){
+		 * }
+		 * function test2(){
+		 * }
+		 *
+		 * 数组的常用方法：
+		 * 属性：length 获取数组的长度
+		 * 
+		 */
+		
+		 //循环 --for
+		/* for(定义变量(一次性)，逻辑判断(true/false)，运算符){
+
+		 }*/
+		/* for(var i= 0;i<=100;i++){
+		 	console.log(i);
+		 }*/
+		/* for(var i= 9;i>0;i--){
+		 	log(i);
+		 }*/
+		// stringObject.split(separator,howmany);
+		/*var string = "小明||小红||小张";
+		var arr = string.split("\|\|");	
+		log(arr.toString());*/
+
+		/**
+		 * 操作数组
+		 * 查询
+		 * 添加 push
+		 * 删除 delete
+		 * 修改
+		 */
+		var arr = [];
+		//添加
+		arr.push("小白");
+		arr.push("小钟");
+		arr.push("小张");
+		//打印
+		//log(arr.toString());
+		//修改元素的分隔符
+		var cstr = arr.join("$").toString();//小白$小钟$小张
+		log(cstr);
+		var carr = cstr.split("$");
+		log(carr);
+
+		//修改
+		arr[0] = "keke";
+		//删除
+		log(arr.toString());
+		delete arr[2];//值删除了，坑还在，数组长度不会改变
+		log(arr.toString());
+
+		
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}		
+		}
+</script>
+</body>
+</html>

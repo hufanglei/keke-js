@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{padding:0;margin:0}
+	body{font-size:14px;font-family:"微软雅黑";}
+	a{text-decoration:none;color:#333}
+	li{list-style:none}
+	#box{background:red;width:100px;height:100px;}
+	/*keke至理名言：布局看背景，间距看文字*/
+	.header{height:58px;background:#333}
+
+	/*内容区域*/
+	.wrap{overflow:hidden}
+	.w1180{width:1000px;margin:10px auto;padding:0px 0px 0 10px}
+	
+	.wrap li{height:340px;width:240px;background:pink;margin-top:10px;float:left;margin-right:10px;}
+	/*.wrap li.nmt{margin-top:0}*/
+	.wrap li:first-child{margin-top:10px}
+
+	.wrap li .dibox{width:220px;margin:10px auto;}
+	.wrap li .imgbox{background:#111;height:240px;}
+	.wrap li .desbox{height:70px;background:#111;margin-top:10px;}
+
+	.box{height:100px;background:#111;margin-top:10px;}
+	.ulbox:after{content:"";clear:both;display:block;}
+
+	/*底部*/
+	.footer{height:240px;}
+  </style>
+ </head>
+ <body>
+	<!--头部-->	
+	<div class="header"></div>
+	<!--内容区域 24个图片，做24相框 float会改变元素的文档流，同时把位置腾出来，布局inline-block-->
+	<div class="wrap">
+		<div class="w1180">
+			<ul class="ulbox">
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+				<li>
+					<div class="dibox">
+						<div class="imgbox"></div>
+						<div class="desbox"></div>
+					</div>
+				</li>
+
+			</ul>
+			<div class="box"></div>
+		</div>
+	</div>
+	<!--底部-->
+	<div class="footer"></div>
+
+
+
+
+ </body>
+</html>

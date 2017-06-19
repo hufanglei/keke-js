@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>对象</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+			.div{border-bottom:1px solid #ccc;padding:2px}
+
+			.box div{width:100px;height:100px;background:#ccc;color:#111;line-height:100px;text-align:center;margin:10px auto;font-size:36px;cursor:pointer;border:0}
+
+
+		</style>
+
+	</head>
+<body>
+	<div >1.对象:object <br/>
+	arr是一个容器，装任何的东西，不能够很好的去体现一个事物完整的特性和信息。获取不方便维护，修改很麻烦。<br/>
+	对象是由键值对组成的一种数据形态。<br/>
+		格式:
+		<pre>
+		var obj = {
+			key:value,
+			key1:value1,
+			key2:value
+		};
+		</pre>
+		a:对象结尾的键值不要加逗号的.因为在ie6 7 8它会把它当做一种错误会阻断代码的执行。<br/>
+		b:第一个反应就检查对象的最后一个键值对有没有加逗号.<br/>
+		我的叫rumo同学。今年20岁，我在yy6359频道听keke老师讲课。我家住址：上海。<br/>
+		<pre>
+		var rumo = {
+			username:"keke",
+			age:30,
+			address:"长沙",
+			listen:function(){
+				alert(this.username+"===yy6359频道听课.今年"+this.age+"岁，地址"+this.address);
+			}
+		};
+		</pre>		
+   </div>
+   <br/>
+   <div>
+   2.定义对象两种方式：var obj = {};或者 var obj = new Object();
+   <pre>
+	var person = {
+		"username":"keke",
+		"password":"456465"
+	};
+	var person = {//推荐使用第二种(除非是对象属性，对象属性加引号)
+		username:"keke",
+		password:"545647654"
+	};
+	var person = {
+		'username':"sdfsdfsd",
+		'password':"23423423"
+	};
+   </pre>
+   <pre>
+	//带对象属性的对象声明
+	var person = {			
+		age:30,
+		username:"keke",
+		"user.email":"153398644@qq.com"
+	};
+	</pre>
+   </div>
+   <br/>
+   <div>
+   3.对象修改，删除，新增，查找，属性探测，获取，枚举（循环）
+<pre>
+//修改
+person["username"] = "spring";
+person.username = "JXY";
+person["user.email"] = "56464654@qq.com";
+</pre>
+<pre>
+//获取
+alert(person.username+"===="+person["username"]);
+alert(person["user.email"]);
+</pre>
+<pre>
+//删除属性和删除对象
+//person = null;//删除对象
+//删除属性
+//delete person.username;
+</pre>
+<pre>
+//检查元素是否存在对象 in,在就返回true否则返回false
+//in有个特征就是不管是对象自定义属性还是父类object比如:toString,constructor,valueOf中继承的属性都可以识别。
+//hasOwnProperty:检查属性是否存在对象中，但是不能检查父类中的属性.
+alert("username" in person);//true
+alert("age" in person);//true
+alert("email" in person);//true
+alert("toString" in person);//true
+alert("constructor" in person);//true
+alert("valueOf" in person);//true
+alert(person.hasOwnProperty("username"));//false
+alert(person.hasOwnProperty("age"));//true
+alert(person.hasOwnProperty("toString"));//false
+</pre>
+<pre>
+对象的循环 for in
+for(var key in person){
+	alert(key+"==="+person[key]);
+};
+</pre>
+   </div>
+
+
+<script>
+	
+		
+</script>
+</body>
+</html>

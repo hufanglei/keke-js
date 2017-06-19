@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:26px;font-family:"微软雅黑";padding:20px 200px;background: #373737;color:#fff;}
+
+		</style>
+
+	</head>
+<body>
+	距离下一个元旦还有
+	<h1 id="timer"></h1>
+
+
+	<script type="text/javascript">
+		(function(){
+			function time(){
+			//今天的日期
+			var now = new Date();
+			//下一个元旦的日期 年月日
+			var end = new Date(now.getFullYear()+1,0,1);
+			//两个时间的差(毫秒数)
+			var time = end.getTime() - now.getTime();
+			//转成秒
+			var sec = time/1000;
+			//转成分
+			var min = sec/60;
+			//转成小时
+			var hour = min/60;
+			//转成天
+			var days = hour/24;
+			
+			//剩余秒
+			var s = Math.floor(sec%60);
+			//剩余分
+			var m = Math.floor(min%60);
+			//剩余小时
+			var h = Math.floor(hour%24);
+			//剩余天数
+			var day = Math.floor(days);
+			
+			s=s<10?"0"+s:s;
+			document.getElementById("timer").innerText= day +"天"+h+"小时"+m+"分"+s+"秒";
+			}
+			setInterval(time,1000);	
+		})();
+	
+		
+		
+	</script>
+
+</body>
+</html>

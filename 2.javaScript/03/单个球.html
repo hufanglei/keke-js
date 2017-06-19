@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background: #373737;}
+			#box{height:100px;width:100px;position:absolute;top:0;left:0;background:#fc0;border-radius: 50px;}
+
+		</style>
+
+	</head>
+<body>
+	<div id="box"></div>
+
+
+<script>
+		//第一步：小球动起来，改变dom的top和left结合定时函数；	
+		//触底反弹，增加步长的变量，正负值，就可控制正负方向
+		   //获得浏览器的宽度和高度	
+		
+		(function(){
+			var cleft=0;
+			var ctop=0;
+			var boxDom = document.getElementById("box");
+			//定义步长
+			var speed = 10;
+			var xstep = speed;
+			var ystep = speed;//+ -决定方向
+
+			var maxwidth = window.innerWidth - boxDom.offsetWidth;
+			var maxheight = window.innerHeight - boxDom.offsetHeight;	
+			var minwidth = 0;
+			var minheight = 0; 
+			function draw(){			
+				cleft+=xstep;
+				ctop+=ystep;			
+				if(ctop >=maxheight){
+					ystep = -speed;
+					ctop =maxheight;
+				}
+				if(ctop<=minheight){
+					ystep = speed;
+					ctop = 0;
+				}
+				if(cleft >=maxwidth){
+					xstep = -speed;
+					cleft = maxwidth;
+				}
+				if(cleft <=minheight){
+					xstep = speed;
+					cleft = 0;
+				}
+				boxDom.style.left = cleft+"px";
+				boxDom.style.top = ctop+"px";
+			}
+			setInterval(draw,100);
+		})();
+		
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}
+		
+		}
+</script>
+</body>
+</html>

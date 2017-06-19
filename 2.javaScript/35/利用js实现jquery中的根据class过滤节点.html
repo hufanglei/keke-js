@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#111;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			
+		</style>
+
+	</head>
+<body>
+	<div id="box">
+		<span class="name">keke</span>		
+		<p><span class="name">stone</span></p>	
+		<a href="javascript:void(0);" class="name">小溪</a>
+	</div>
+
+<script src="dom.js"></script>
+<script>
+	window.onload = function(){
+		var boxDom = document.getElementById("box");
+		/*
+		domClass(boxDom,"name")[0].style.color= "red";
+		domClass(boxDom,"name")[1].style.color= "green";
+		domClass(boxDom,"name")[2].style.color= "blue";
+		*/
+		var cdoms = domClass("box","name");
+		cdoms.forEach(function(obj){
+			obj.style.color = "green";
+		});
+	}
+	
+	function domClass(domorid,className){
+		var boxDom = typeof domorid==="string" ? document.getElementById(domorid):domorid;
+		var elements = boxDom.getElementsByTagName("*");
+		var arr = [];
+		for (var i=0,len=elements.length;i<len ;i++ ){
+			if(elements[i].className.indexOf("name")!=-1){
+				arr.push(elements[i]);
+			}
+		}
+		return arr;
+	}
+</script>
+</body>
+</html>

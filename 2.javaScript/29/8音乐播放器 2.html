@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>音乐播放器</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+		
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#000;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background:red;width:100px;height:100px;}
+		</style>
+
+	</head>
+<body>
+<div id="div1">
+	<a href="javascript:void(0)" onclick="music.play()">播放</a>
+	<a href="javascript:void(0)" onclick="music.stop()">暂停</a>
+	<a href="javascript:void(0)" onclick="music.stopVolome(this,stopVolome)">静音</a>
+</div>
+<div id="div2">
+	<a href="javascript:void(0)" onclick="music2.play()">播放</a>
+	<a href="javascript:void(0)" onclick="music2.stop()">暂停</a>
+	<a href="javascript:void(0)" onclick="music2.stopVolome(this,stopVolome)">静音</a>
+</div>
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	//闭包----即时函数
+	//回调函数===闭包
+
+	//成员变量(方法和属性)
+	/*  
+		成员变量：
+		id:播放器存放于某个容器中
+		src:播放的地址
+		title:歌名
+		autor:演唱者		
+	*/
+	
+	var TzMusic = (function(){
+		//特权属性
+		function _tzMusic(id,src,title,author){
+			this.id = id;
+			this.src = src;
+			this.title = title;
+			this.author = author;
+			this.audioDom = null;
+			
+		};
+		//公有方法和属性
+		_tzMusic.prototype = {
+			constuctor:_tzMusic,
+			init:function(){
+				this.audioDom = document.createElement("audio");
+				this.audioDom.src = this.src;
+				this.audioDom.controls = "controls";
+				dom(this.id).appendChild(this.audioDom);
+				for(var key in this.audioDom ){
+					console.log(key+"===="+this.audioDom[key]);
+				}
+			},
+			//播放
+			play:function(){
+				this.audioDom.play();
+			},
+			//暂停
+			stop:function(){
+				this.audioDom.pause();
+			},
+			//静音
+			stopVolome:function(obj,callback){
+				this.audioDom.muted = !this.audioDom.muted;
+				if(callback)callback.call(obj,!this.audioDom.muted);
+			}
+			//时间
+			//总时长
+			//播放进度
+		};
+		//静态方法和属性
+		_tzMusic.time = "";
+		_tzMusic.pushTime = function(){
+			
+		};
+		return _tzMusic;	//返回一个类 function	
+	})();
+	
+	var music = new TzMusic("div1","mp3/01.mp3","结婚啊吧","周杰伦");
+	music.init();
+	var music2 = new TzMusic("div2","mp3/02.mp3","结婚啊吧","周杰伦");
+	music2.init();
+	
+	//静音
+	function stopVolome(mark){
+		mark ? this.innerHTML ="静音" : this.innerHTML ="非静音";
+	}
+
+	//个人总结:
+	//静音和非静音的处理相当精妙
+</script>
+</body>
+</html>

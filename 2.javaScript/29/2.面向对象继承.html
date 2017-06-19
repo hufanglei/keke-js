@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+		
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background:red;width:100px;height:100px;}
+		</style>
+
+	</head>
+<body>
+<div id="box"><span>dfddddddddd</span></div>
+<input type="button" onclick="checkme()" value="点我" />
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	//继承 ===两者的关系 类和类之间的继承
+	function Parent(){	
+		this.name = "keke";
+	};
+	Parent.prototype.sayHello = function(){
+		alert(this.name);
+	}
+	function Children(age){
+		this.age = age;
+	};
+	
+	//类式继承
+	Children.prototype = new Parent();
+	Children.prototype.showAge = function(){
+		return this.age;
+	};
+	var c = new Children(32);
+	//var name = c.sayHello();
+	//var age = c.showAge();
+	// alert(c.showAge());//被覆盖了，自己的扩展方法没了
+	//alert(age);
+
+	//alert(c.constructor);//是父亲的了
+
+	//改回来
+	Children.prototype.constructor = Children;
+	//alert(c.constructor);//是自己的了
+
+	//instanof 判断袼对象是否来自某一个类
+	alert(c  instanceof Parent);
+	alert(c  instanceof Children);
+	
+</script>
+</body>
+</html>

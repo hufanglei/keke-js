@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>动画的概念和公式</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff;padding:100px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 10px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			.key{padding:10px;}
+			.demo{position:relative;}
+			#box{height:100px;width:100px;background:red;position:absolute;top:0;left:0;}
+		</style>
+
+	</head>
+<body>
+	
+	<div  class="demo">
+	<div id="box"></div>
+	</div>
+	<pre>
+	//CSS
+	#box{height:100px;width:100px;background:red;position:absolute;top:0;left:0;}
+	//HTML
+	&lt;div id="box"&gt;&lt;/div&gt;
+	//JS
+	window.onload = function(){
+		var speed = 0;
+		var start = 0;
+		var end = 500;
+		var timer = null;
+		var boxDom = dom("box");
+		timer = setInterval(function(){
+			var cur = boxDom.offsetLeft;//获取元素已经走了的距离
+			if(cur == end){
+				clearIntervl(timer);
+				speed = 0;
+			}
+			speed +=10;
+			boxDom.style.left = start + speed + "px";
+			console.log(speed);
+		},1000/30);//1000是cpu执行回调函数的往返时间
+	}
+	
+	</pre>
+	<h1>总结:</h1>
+	<pre>
+	位移动画，折叠动画，淡入淡出动画 -- 数字
+	fadeOut
+	fadeIn
+	slideUp
+	slideDown
+	animate
+	fadeTo
+	
+	width height left top right bottom opacity 和数字相关的样式
+	动画的格式
+	setInterval(function(){
+		var cur = js获取元素相关的位置和宽度；获取元素的元素起始状态
+		if(cur == target){
+			//clearInterval(timer);
+		}else{
+			speed +=10;
+		}
+	},30);
+	</pre>
+<script>
+	window.onload = function(){
+		var speed = 0;
+		var start = 0;
+		var end = 650;
+		var timer = null;
+		var boxDom = dom("box");
+		timer = setInterval(function(){
+			var cur = boxDom.offsetLeft;//获取元素已经走了的距离
+			if(cur == end){
+				clearIntervl(timer);
+				speed = 0;
+			}
+			speed +=10;
+			boxDom.style.left = start + speed + "px";
+			console.log(speed);
+		},1000/30);//1000是cpu执行回调函数的往返时间
+	}
+	/*
+	位移动画，折叠动画，淡入淡出动画 -- 数字
+	fadeOut
+	fadeIn
+	slideUp
+	slideDown
+	animate
+	fadeTo
+
+	width height left top right bottom opacity 和数字相关的样式
+	动画的格式
+	setInterval(function(){
+		var cur = js获取元素相关的位置和宽度；获取元素的元素起始状态
+		if(cur == target){
+			//clearInterval(timer);
+		}else{
+			speed +=10;
+		}
+	},30);
+	*/
+
+	function dom(id){
+		return document.getElementById(id);
+	}
+
+
+		
+</script>
+</body>
+</html>

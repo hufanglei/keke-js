@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:12px;font-family:"微软雅黑";background:#fff;padding: 50px}
+
+		</style>
+
+	</head>
+<body>
+<textarea id="box"></textarea>
+  <script type="text/javascript">
+		var txt = "Hello";
+			//alert(txt.search(1));
+			//alert(txt.indexOf("e"));
+
+		/**
+		 *数据类型
+		 *number
+		 *	 小数
+		 *	 整数
+		 *	 infinity
+		 *	 e
+		 *string
+		 *	①单双引号
+		 *	 
+		 *	②特殊字符
+		 *	   \' \" \&  \\  \n  \r \t \b  \f		
+		 *	 indexof()
+		 *	 replace()
+		 *	 search()
+		 *	 toUpperCase()
+		 *object
+		 *	null
+		 *	数组
+		 *	日期Date
+		 *	正则Regex
+		 *	Dom
+		 *function
+		 *boolean
+		 *		
+		 */
+		var str="1\n\r5";
+		var str2="1\r\n5";
+		$("box").value = str2;
+
+		function $(id){
+			return document.getElementById(id);
+		}
+
+		function log(content){
+			if(console){
+				console.log("【您运行的结果是】:"+content);
+			}else{
+				alert("【您运行的结果是】:"+content);
+			}
+		}
+  </script>
+		
+
+
+</body>
+</html>

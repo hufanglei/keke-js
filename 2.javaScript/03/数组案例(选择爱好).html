@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>数组案例(选择爱好)</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:26px;font-family:"微软雅黑";padding:30px 100px;background:#373737;color:#fff;}
+
+		</style>
+
+	</head>
+<body>
+	<form id="hform">	  
+		<label><input type="checkbox" value="爬山" name="hobby">爬山</label>
+		<label><input type="checkbox" value="旅游" name="hobby">旅游</label>
+		<label><input type="checkbox" value="看书" name="hobby">看书</label>
+		<label><input type="checkbox" value="摄影" name="hobby">摄影</label>
+		<input type="button" onclick="clickme()" value="提交">
+	</form>
+	<h1 id="content"></h1>
+	
+<script>
+	/*
+	*练习涉及的知识点
+	1:checkbox的写法
+	2：获取表单的几种方式
+	3：遍历集合
+	4：数组增加元素
+	5:checkbox选中方法 .checked
+	5：数组的打印toString()方法
+	*/
+	//获取表单
+	
+	function clickme(){
+		//获取表单
+		var formDom = $("hform");
+		$("content").innerHTML="";
+		//var fomDom  = document.forms[0];
+		var hobbys = formDom.hobby;//集合	
+		var arr = [];	
+		for(var i=0; i<hobbys.length; i++){			
+			if(hobbys[i].checked){
+				arr.push(hobbys[i].value);
+			}
+		}
+		$("content").innerHTML = arr.toString();
+		log(arr.toString())
+	}
+	function log(content){
+		if(console){
+			return console.log("【您运行的结果是】:"+content);
+		}else{
+		  alert("【您运行的结果是】:"+content);
+		}
+	}
+	function $(id){
+		return document.getElementById(id);
+	}
+</script>
+</body>
+</html>

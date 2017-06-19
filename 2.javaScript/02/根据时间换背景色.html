@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>根据时间换肤</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+            html,body{height:100%}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#bg{position:absolute;width:100%;height:100%;top:0;left:0;background:#ccc;background-size:cover;
+			z-index:-1;}
+			#timer{background:transparent;position:relative;top:50%;}
+			#timer #t{font-size:48px;margin:-40px auto;width:500px;text-align:center;color:#fff;}
+
+		</style>
+
+	</head>
+<body>
+    <div id="bg"></div>
+	<div id="timer">
+		<div id="t"></div>
+	</div>
+
+
+<script>
+	/*小练习涉及的知识点:
+	   1.背景图制作(定位)
+	   2.定位:body.html设置100%，练习学会的
+	   3.dom赋值操作和样式操作
+	   4.时间函数
+	   5.三目运算符	
+	   6.setInterval内置函数
+	*/
+   //时间
+	var timer=setInterval(function(){
+		var date = new Date();
+		var h = date.getHours();
+		var m = date.getMinutes();
+		var s = date.getSeconds();
+
+		//三目运算符
+		h= h<10?"0"+h:h;
+		m= m<10?"0"+m:m;
+		s= s<10?"0"+s:s;
+		var time = h+":"+m +":"+s;
+		//测试打印日志
+		console.log(time);
+		//dom赋值操作
+		$("t").innerHTML = time;
+		//dom样式操作
+		$("bg").style.background = "#"+h+m+s;
+	},1000);
+	
+
+	//封装
+	function $(id){
+		return document.getElementById(id);
+	}
+		
+</script>
+</body>
+</html>

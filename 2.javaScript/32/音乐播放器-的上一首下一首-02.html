@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{padding:0;margin:0}
+	body{font-size:14px;font-family:"微软雅黑"}
+	a{text-decoration:none;color:#333}
+	ul li{list-style:none}
+	.wrap{width:640px;margin:0 auto;}
+	.items{height:45px;line-height:45px;background:#211;color:#fff;margin-top:2px;padding:5px;cursor:pointer;}
+	.items:hover,.items.on:hover{background:green;}
+	.items.on{background:red;}
+  </style>
+ </head>
+ <body>
+
+	
+
+	<div class="wrap">
+		<div id="audioBox"></div>
+	
+		<a href="javascript:void(0);" id="tzplay">播放</a>
+		<a href="javascript:void(0);" id="tzstop">暂停</a>
+		<a href="javascript:void(0);" id="tzprev">上一首</a>
+		<a href="javascript:void(0);" id="tznext">下一首</a>
+		<div>
+			<h1 id="name">是水电费水电费水电费水电费</h1>
+			<img src="" id="img"/>
+			<p id="author">keke</p>
+			<p id="desc">是的发送到是的发生东方闪电水电费</p>
+		</div>
+
+		<ul id="musiclist">
+			
+		</ul>
+	</div>
+
+
+
+	<script src="dom.js"></script>
+	<script>
+		var tzMusic= (function(){
+
+			var musicJson = {
+				//音乐列表
+				musics:[],
+				len :0,
+				//播放的索引
+				playIndex:0,
+				//播放器
+				audioDom:document.createElement("audio"),
+				//追加音乐到播放器中
+				add:function(musicArr){
+					musicJson.musics = musicArr;
+					//播放器音乐的个数
+					musicJson.len = musicJson.musics.length;
+					//默认播放是第一首音乐
+					musicJson.audioDom.src = musicJson.musics[musicJson.playIndex].src;
+					//测试代码
+					musicJson.audioDom.controls = "controls"; 
+					document.getElementById("audioBox").appendChild(musicJson.audioDom);
+				},
+
+				embed
+				//静音：
+				//时间
+				//时长
+				//进度
+				//歌词
+				//进度条
+				play:function(){
+					musicJson.audioDom.play();
+				},
+				//暂停
+				stop:function(){
+					musicJson.audioDom.pause();
+				},
+				//上一首
+				prev:function(callback){
+					musicJson.playIndex = (musicJson.playIndex == 0)?musicJson.len-1:--musicJson.playIndex;
+					musicJson.playMain();
+					if(callback)callback(musicJson.playIndex);
+				},
+
+				//下一首
+				next:function(callback){
+					musicJson.playIndex = (musicJson.playIndex == musicJson.len-1)?0:++musicJson.playIndex;
+					musicJson.playMain();
+					if(callback)callback(musicJson.playIndex);
+				},
+				//播放的总控制
+				playMain:function(){
+					musicJson.audioDom.src = musicJson.musics[musicJson.playIndex].src;
+					if(musicJson.audioDom.paused){
+						musicJson.play();
+					}
+				},
+				//提供给外界通过索引去播放的方法 
+				playindex:function(index){
+					musicJson.audioDom.src = musicJson.musics[index].src;
+					musicJson.playIndex = index;//别忘记了，把对象中的索引进行同时更新。
+					if(musicJson.audioDom.paused){
+						musicJson.play();
+					}
+				}
+			};
+			
+			//揭示模式模块模式
+			return {
+				play:musicJson.play,
+				stop:musicJson.stop,
+				add:musicJson.add,
+				next:musicJson.next,
+				prev:musicJson.prev,
+				playindex:musicJson.playindex
+			};
+		})();
+
+	
+		
+		
+
+		window.onload = function(){
+			//音乐文件信息:，音乐文件,歌手，封面图片，id
+			var music1 = {
+				id:"1",	
+				src:"http://luoo-mp3.kssws.ks-cdn.com/low/luoo/radio788/01.mp3",
+				name:"Fields Of Green",
+				author:"Fiddler's Green",
+				img:"http://7xkszy.com2.z0.glb.qiniucdn.com/pics/albums/9603/cover.jpg"
+			};
+
+			var music2 = {
+				id:"2",
+				src:"http://luoo-mp3.kssws.ks-cdn.com/low/luoo/radio788/02.mp3",
+				name:"Drunk in Belgium",
+				author:"The Black Tartan Clan",
+				img:"http://7xkszy.com2.z0.glb.qiniucdn.com/pics/albums/9604/cover.jpg"
+			};
+
+			var music3 = {
+				id:"3",
+				src:"http://luoo-mp3.kssws.ks-cdn.com/low/luoo/radio788/03.mp3",
+				name:"Dropkick Murphys",
+				author:"Signed and Sealed in Blood",
+				img:"http://7xkszy.com2.z0.glb.qiniucdn.com/pics/albums/9605/cover.jpg"
+			};
+
+			var music4 = {
+				id:"3",
+				src:"mp3/02.mp3",
+				name:"断点",
+				author:"小张",
+				img:"http://7xkszy.com2.z0.glb.qiniucdn.com/pics/albums/9605/cover.jpg"
+			};
+
+			
+			var arr = [];
+			arr.push(music1);
+			arr.push(music2);
+			arr.push(music3);
+			arr.push(music4);
+			
+			//追加音乐
+			for(var i=0,len = arr.length;i<len;i+=1){
+				var liDom = document.createElement("li");
+				liDom.innerHTML =arr[i].name;
+				liDom.className = i==0?"items on":"items";
+				liDom.index = i;
+				liDom.onclick = function(){
+					//调用自定义播放器中的播放方法
+					tzMusic.playindex(this.index);
+					//选择中播放元素
+					selectOn(this.index);
+					//初始化数据
+					initMusicData(this.index);
+				};
+				dom("musiclist").appendChild(liDom);
+			};
+
+			//追加音乐文件--到播放器
+			tzMusic.add(arr);
+			//展示第一首音乐
+			initMusicData(0);
+			
+			//选中当前元素
+			function selectOn(index){
+				var childrenDoms = dom("musiclist").children;
+				for(var i=0,len=childrenDoms.length;i<len;i++){
+					childrenDoms[i].className = "items"; 
+				}
+				childrenDoms[index].className = "items on"; 
+			}
+
+			//切换音乐数据的选取
+			function initMusicData(index){
+				dom("name").innerHTML = arr[index].name;
+				dom("img").src = arr[index].img;
+				dom("author").innerHTML = arr[index].author;
+				//歌词
+				//专辑
+				//描述
+			};
+
+
+			//页面播放暂停，和上一首和下一首
+			dom("tzstop").onclick = function(){
+				tzMusic.stop();
+			};
+
+			//暂停	
+			dom("tzplay").onclick = function(){
+				tzMusic.play();
+			};
+			
+			//下一首
+			dom("tzprev").onclick = function(){
+				tzMusic.prev(function(index){
+					//选择中播放元素
+					selectOn(index);
+					//初始化数据
+					initMusicData(index);
+				});
+			};
+
+			//下一首
+			dom("tznext").onclick = function(){
+				tzMusic.next(function(index){
+					//选择中播放元素
+					selectOn(index);
+					//初始化数据
+					initMusicData(index);
+				});
+			};
+
+
+
+		};
+
+	</script>
+  
+ </body>
+</html>

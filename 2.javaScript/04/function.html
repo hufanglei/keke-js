@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>function的理解</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:30px;font-family:"微软雅黑";background:#373737;padding:20px 100px;color:#fff;}
+
+		</style>
+
+	</head>
+<body>
+	function是一个数据类型，函数体里面的内容一定是在调用时再编译和执行<br>
+	闭包：解决变量作用域延续的问题，同时，解决全局变量冲突的问题<br>
+	在开发中不得已的情况是不允许使用全局变量的，名字特殊(使用见源码)
+
+<script>
+
+	 function test(){
+		var arr = [];		
+		function sum(i){
+		 	return i;
+		}
+		for(var i=0 ;i<3;i++){
+			arr[i] = sum(i);
+		}
+		return arr;
+	}
+	/*function test(){
+		var arr = [];
+		for(var i=0 ;i<3;i++){
+			arr[i] = (function(count){
+				return count;
+			})(i);			
+		}
+		return arr;
+	}*/
+	var arr = test();	
+	log(arr[0]+"==="+arr[1]+"==="+arr[2]);
+	
+
+	function log(content){
+		if(console){
+			return console.log("【您运行的结果是】:"+content);
+		}else{
+		  alert("【您运行的结果是】:"+content);
+		}
+	
+	}
+</script>
+</body>
+</html>

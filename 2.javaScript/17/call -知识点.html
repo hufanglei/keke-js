@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>dialog弹窗</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";color:#000;padding:100px;background:#fff;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 5px;
+				border: 0;
+				border: 1px dotted red;
+				background: #ffcc99;
+				color:#000;
+			}
+			#dialog{width:240px;height:160px;background:#000;
+				position:absolute;z-index:2;
+				left:50%;
+				margin-left:-120px;
+				top:calc(50% - 200px);
+				padding:10px;
+			}
+			#overflow{position:absolute;
+				top:0;
+				left:0;
+				z-index:1;
+				height:100%;
+				width:100%;
+				background:#333;
+				opacity:0.5;
+			}
+			a{padding:5px 10px;background:green;}
+			
+		</style>
+
+	</head>
+<body>
+	
+		<h1>call</h1>
+		<pre>		
+		var username = "全局keke";	
+		function test(age){
+			alert("执行了函数"+this.username);
+		}
+		//test();//结果:执行了函数全局keke
+		//test.call({});//结果:执行了函数undefined
+		var obj ={username:"小德"};
+		test.call(obj);//结果:执行了函数小德
+		扩展:
+		//[].slice.call(doms);//将doms变成数组
+
+		call apply用法:
+		第一层含义:可以执行函数
+		第二层含义:可以改变函数中的this的指向
+		第三层含义:call(一定是对象，参数)
+		公式:fn数据类型.call(对象{},参数1，参数2,参数3...)
+			 fn数据类型.apply(对象{}, [参数1，参数2，参数3...])
+			 jqury终有dialog弹窗，自定义按钮组
+
+		var arr = [1,2,3,4,5,6,7,8,9];
+		 var m = Math.max.apply({},arr);
+		alert(m);//结果:9
+		</pre>
+
+		<h1>封装dialog代码</h1>
+
+		<pre>
+		// css
+		#dialog{width:240px;height:160px;background:#000;
+				position:absolute;z-index:2;
+				left:50%;
+				margin-left:-120px;
+				top:calc(50% - 200px);
+				padding:10px;
+			}
+			#overflow{position:absolute;
+				top:0;
+				left:0;
+				z-index:1;
+				height:100%;
+				width:100%;
+				background:#333;
+				opacity:0.5;
+		}
+		//html
+		&lt;div id="dialog"&gt;&lt;/div&gt;
+		&lt;div id="overflow"&gt;&lt;/div&gt;
+
+		//js
+		var tzDialog ={		
+		closeDialog:function(){
+			var dialogDom = document.getElementById("dialog");
+			dialogDom.parentElement.removeChild(dialogDom);
+		},
+		css:function(){
+			var dialogDom = document.getElementById("dialog");
+			dialogDom.style.width = "400px";
+			dialogDom.style.height = "400px";
+		},
+		init:function(opts){
+			var dialogObj = this;
+			var dialogDom = document.getElementById("dialog");
+			var buttons = opts.buttons;
+			for(var i=0;i&lt;buttons.length;i++){
+				var adom = document.createElement("a");
+				adom.innerHTML = buttons[i].text;
+				adom.href="javascript:void(0);";
+				adom.callback = buttons[i].callback;//此处处理微妙:自定义属性缓存i
+				adom.onclick = function(){
+					this.callback.call(dialogObj);//此处指针发生偏移
+				} 
+				dialogDom.appendChild(adom);
+			}
+			}
+		};
+		tzDialog.init({
+			buttons:[
+				{text:"确定",callback:function(){
+					alert(1);
+				}},
+				{text:"取消",callback:function(){				
+					//this.closeDialog();
+					this.css();
+				}}
+			]
+		});
+
+		</pre>
+	
+	<!--<div id="dialog"></div>
+	<div id="overflow"></div>-->
+<script>
+
+	//var username = "全局keke";	
+	//function test(age){
+	//	alert("执行了函数"+this.username);
+	//}
+	//test();//结果:执行了函数全局keke
+	//test.call({});//结果:执行了函数undefined
+	//var obj ={username:"小德"};
+	//test.call(obj);//结果:执行了函数小德
+	//扩展:
+	//[].slice.call(doms);//将doms变成数组
+	
+
+	//dialog <a href="javascript:void(0)">确定</a>
+	//	<a href="javascript:void(0)">取消</a>
+
+
+	//call apply用法:
+	//第一层含义:可以执行函数
+	//第二层含义:可以改变函数中的this的指向
+	//第三层含义:call(一定是对象，参数)
+	//公式:fn数据类型.call(对象{},参数1，参数2,参数3...)
+	     //fn数据类型.apply(对象{}, [参数1，参数2，参数3...])
+		 //jqury终有dialog弹窗，自定义按钮组
+
+	//var arr = [1,2,3,4,5,6,7,8,9];
+	// var m = Math.max.apply({},arr);
+	//alert(m);
+
+
+	var tzDialog ={		
+		closeDialog:function(){
+			var dialogDom = document.getElementById("dialog");
+			dialogDom.parentElement.removeChild(dialogDom);
+		},
+		css:function(){
+			var dialogDom = document.getElementById("dialog");
+			dialogDom.style.width = "400px";
+			dialogDom.style.height = "400px";
+		},
+		init:function(opts){
+			var dialogObj = this;
+			var dialogDom = document.getElementById("dialog");
+			var buttons = opts.buttons;
+			for(var i=0;i<buttons.length;i++){
+				var adom = document.createElement("a");
+				adom.innerHTML = buttons[i].text;
+				adom.href="javascript:void(0);";
+				adom.callback = buttons[i].callback;//此处处理微妙:自定义属性缓存i
+				adom.onclick = function(){
+					this.callback.call(dialogObj);//此处指针发生偏移
+				} 
+				dialogDom.appendChild(adom);
+			}
+		}
+	};
+	tzDialog.init({
+		buttons:[
+			{text:"确定",callback:function(){
+				alert(1);
+			}},
+			{text:"取消",callback:function(){				
+				//this.closeDialog();
+				this.css();
+			}}
+		]
+	});
+
+</script>
+</body>
+</html>

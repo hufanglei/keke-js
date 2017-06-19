@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>dom</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			
+			body{font-size:12px;font-family:"微软雅黑";padding:100px;background:#FFF;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 2px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			.red{color:red;}
+			.green{color:green;}
+		</style>
+
+	</head>
+<body>
+	<h1>dom</h1>
+	<pre>
+	//模拟node获得element的元素.即实现children方法
+	//HTML
+	&lt;div id="box"&gt;
+		&lt;span&gt;1&lt;/span&gt;
+		&lt;span&gt;2&lt;/span&gt;
+		&lt;span&gt;3&lt;/span&gt;
+		&lt;span&gt;4&lt;/span&gt;
+	&lt;/div&gt;
+
+	function kekeChildren(){
+		var boxDom = document.getElementById("box");
+		//得到所有的节点
+		var nodes = boxDom.childNodes;
+		var arr = [];
+		for(var i=0;i&lt;nodes.length;i++){
+			if(nodes[i].nodeType == Node.ELEMENT_NODE){
+				arr.push(nodes[i]);
+			}
+		}
+		console.log(arr.length);
+	}
+	kekeChildren();//4
+	</pre>
+	<div id="box">
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+	</div>
+	<br/>
+	<h1>模拟实现eq first last children方法</h1>
+	<pre>
+	//html 同上
+	//js代码:
+	function keke(id){
+		var boxDom = document.getElementById(id);
+		//得到所有的节点
+		var nodes = boxDom.childNodes;
+		var arr = [];
+		for(var i=0;i&lt;nodes.length;i++){
+			if(nodes[i].nodeType == Node.ELEMENT_NODE){
+				arr.push(nodes[i]);
+			}
+		}
+		return{
+			children:arr,
+			eq:function(i){
+				return arr[i];
+			},
+			first:arr[0],
+			last:arr[arr.length-1]
+		}
+	}
+	var cs = keke("b2ox").children;//4
+	keke("b2ox").eq(2).style.background = "green";
+	keke("b2ox").first.style.background="red";
+	keke("b2ox").last.style.background="pink";	
+	</pre>
+	<div id="b2ox">
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+	</div>
+	</br>
+	
+<script>
+
+	/*
+	Object
+	Node
+		firstChild
+	Element
+		firstElementChild
+	*/
+	//自己存储元素节点
+	function keke(id){
+		var boxDom = document.getElementById(id);
+		//得到所有的节点
+		var nodes = boxDom.childNodes;
+		var arr = [];
+		for(var i=0;i<nodes.length;i++){
+			if(nodes[i].nodeType == Node.ELEMENT_NODE){
+				arr.push(nodes[i]);
+			}
+		}
+		return{
+			children:arr,
+			eq:function(i){
+				return arr[i];
+			},
+			first:arr[0],
+			last:arr[arr.length-1]
+		}
+	}
+	var cs = keke("b2ox").children;//4
+	keke("b2ox").eq(2).style.background = "green";
+	keke("b2ox").first.style.background="red";
+	keke("b2ox").last.style.background="pink";
+
+</script>
+</body>
+</html>

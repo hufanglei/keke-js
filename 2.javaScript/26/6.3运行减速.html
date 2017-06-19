@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>运动:反加速</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		a{text-decoration:none;color:#fff;}
+		ul,li{list-style:none}
+		body{font-size:12px;font-family:"微软雅黑";}
+		#box{height:100px;width:100px;background: red;position: absolute;left:500px;}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	window.onload =  function(){
+		var boxDom = dom("box");
+		boxDom.onclick = function(){
+				cmove();
+		}
+		//反加速
+		var speed = 0;
+		var timer = null;
+		function cmove(){
+			clearInterval(timer);//保证只有一个定时器在运行
+			timer=setInterval(function(){
+				speed -=3;//减速
+				boxDom.style.left = boxDom.offsetLeft + speed + "px";
+			},30);
+		}
+		
+	}
+</script>
+</body>
+</html>

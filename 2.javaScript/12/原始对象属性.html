@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>原始对象属性</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			a{color:#fff;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+
+		</style>
+
+	</head>
+<body>
+<h1>原始对象属性</h1>
+<pre>
+var xiaoguai = new Role("小乖");
+xiaoguai.username = "小乖乖";
+xiaoguai.sex = "女";
+xiaoguai.address ="";
+xiaoguai.level=10;
+xiaoguai.jump = function(){
+	alert(this.username);
+};
+
+xiaoguai.pao = function(){
+	
+};
+
+
+var panniu = new Role("胖妞");
+panniu.sex = "男";
+panniu.level=5;
+panniu.jump();
+panniu.pa = function(){
+	alert(this.username)
+};
+
+//alert("sex" in panniu);
+//alert("pa" in panniu);
+//alert("toString" in panniu);//true
+
+
+alert(panniu.hasOwnProperty("sex"));
+alert(panniu.hasOwnProperty("toString"));//false
+
+		
+//构造函数 constructor
+//alert(xiaoguai.constructor===Role);
+//alert(panniu.constructor===Role);
+
+//instanceof 判断一个对象是不是当前某个类的对象,当前这个对象是不是Role创建出来的
+//alert(xiaoguai instanceof Role);
+//alert(panniu instanceof Role);
+//alert(keke instanceof Role);
+
+
+//in: hasOwnPrototype instanceof
+//in是判断一个属性是否在在某个对象中,包括原始对象的属性
+//hasOwnPrototype:（只能判断对象的自有属性，不包括原始对象属性）是判断一个属性是否在在某个对象中,不包括原始对象的属性,
+//instanceof是判断某个对象是那个类创建出来的
+
+//原始对象属性 :Object 
+/*
+	constructor: Object()===判断对象的构造函数是什么
+	hasOwnProperty: hasOwnProperty() 判断自有属性
+	isPrototypeOf: isPrototypeOf() 来自那个原型链
+	propertyIsEnumerable: propertyIsEnumerable() 
+	toLocaleString: toLocaleString()
+	toString: toString()//把构造函数以字符串的方式打印
+	valueOf: valueOf()//产生对象的代理引用
+
+*/
+
+
+/*var json = {username:"keke"};
+var j2 = json.valueOf();
+j2.username = "zhangsan";
+j2.sex = "男";
+alert(json.sex+"==="+j2.sex);*/
+</pre>
+
+
+
+
+
+
+
+<script>
+	//prototype--内置方法。sring，number
+	//prototype 原型对象 
+	//原型:每一个对象的基类
+	//对象:(扩展属性和方法)
+
+	//它是围绕类去创建一个基类，每一个对象中都会在创建的时候
+	//都拥有一个prototype的引用
+	//你可以prototype（原型对象）
+
+	//小球对象
+	function Ball(){
+		this.x = 0;
+		this.y = 0;
+		this.radius = 10;
+		this.color = "red";
+	};
+	//Ball.prototype.继承Object.prototype
+	Ball.prototype.draw = function(){
+		//alert(this.x +"==="+ this.y);
+	}
+	//config改为false就不能迭代了
+	Ball.prototype = {
+		constuctor:Ball,
+		name = "keke"，
+		draw:function(){
+			alert();
+		}
+	};
+
+	var ball = new Ball();//对象创建的时候，他拥有一个prototype对象-->Ball.protptype
+	var ball2 = new Ball();
+	ball.x =100;
+	ball.draw();
+	ball2.x =10000;
+	ball2.draw();
+
+	alert(ball.constructor == Ball);
+
+	//对象，和数组 就已经在内存中存在了
+</script>
+</body>
+</html>

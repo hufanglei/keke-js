@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>回调函数</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background: #373737;color:#fff;padding:0 200px;}
+
+		</style>
+
+	</head>
+<body>
+	
+	<div id="box"></div>
+
+
+<script>
+		//1:函数的理解
+		/* function sum(){
+		  	log("1====");
+			}
+
+			function sum(a,b){
+				log("2==="+a+b);
+			}
+			function sum(a,b,c,d){
+				log("3====="+a+b);
+			}	
+
+			sum(50,500);
+			//var sums = new Function("a,b" , "return a+b");
+			var sums = new Function("a,b" , "alert(a+b);return a+b");
+			var t = sums(1,5);
+			alert(t);
+		*/
+		//2:向元素中添加数据：注意遍历时：获得dom一定得在循环外
+		var arr = [];
+		for(var i=1;i<=100;i++){
+			arr.push(i);
+		}
+	
+		var html = "";
+		for(var i=0,len=arr.length;i<len;i++){
+			html +="<b>" + arr[i] + "</b><br/>";
+		}
+		$("box").innerHTML = html;
+
+		//回调函数的使用
+		/*function change(){
+			var boxDom = $("box");
+			var bDoms = document.getElementsByTagName("b");
+			for(var i=0,len=bDoms.length;i<len;i++){
+				bDoms[i]["style"]["color"] = "red";
+			}
+		}*/
+		//演变1：
+		/*function change(callback){
+			var boxDom = $("box");
+			var bDoms = document.getElementsByTagName("b");
+			for(var i=0,len=bDoms.length;i<len;i++){
+				changeColor(bDoms[i] , i);//缺点：此地方写死了，没法灵活调用
+			}
+		}
+		change();
+
+		function changeColor(bDom,i){
+			if(i%2==0){
+				bDom["style"]["color"] = "red";
+			}
+		}
+		*/
+		//使用回调函数
+		function change(callback){
+				var boxDom = $("box");
+				var bDoms = document.getElementsByTagName("b");
+				for(var i=0,len=bDoms.length;i<len;i++){
+					if(callback)callback(bDoms[i] , i);
+				}
+		}
+		change(function changeColor(bDom,i){
+			if(i%2==0){
+				bDom["style"]["color"] = "red";
+			}
+		});
+		change(function changeSize(bDom,i){
+			if(i%2==1){
+				bDom["style"]["fontSize"] = "20px";
+			}
+		});
+
+		change(function repaclefont(bDom,i){
+			if(i%5==0){
+				bDom.innerText = "hufanglei";
+			}
+		});
+
+		
+
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}		
+		}
+
+		function $(id){
+			return document.getElementById(id);
+		}
+</script>
+</body>
+</html>

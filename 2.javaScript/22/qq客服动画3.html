@@ -1,0 +1,241 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>q客服动画2</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff;}
+			pre {
+				
+				font-size:14px;
+				width:80%;
+				margin: 100px 100px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			.key{margin:100px;}
+			.demo{position:relative;}
+			#box{height:400px;width:100px;background:green;position:absolute;top:100px;left:-100px;}
+			#box #box2{height:60px;width:20px;background:red;position:absolute;right:-20px;top:170px;text-align:center;color:#fff;cursor:default;}
+			#box3{width:100px;height:100px;background:#6600ff;margin:100px;}
+		</style>
+
+	</head>
+<body>
+	<div class="key">
+		<h1>知识点:</h1>
+		<h2>解决多个属性可以改变的问题:用回调函数</h2>
+	</div>
+	
+	<div  class="demo">
+	<div id="box">
+		<div id="box2"><span>Q客服</span></div>		
+	</div>
+	<div id="box3"></div>
+	</div>
+	<pre>
+	//CSS
+	#box{height:400px;width:100px;background:green;position:absolute;top:100px;left:-100px;}
+	#box #box2{height:60px;width:20px;background:red;position:absolute;right:-20px;top:170px;text-align:center;color:#fff;cursor:default;}
+	#box3{width:100px;height:100px;background:#6600ff;margin:100px;}
+	//HTML
+	&lt;div id="box"&gt;
+		&lt;div id="box2"&gt;&lt;span&gt;Q客服&lt;/span&gt;&lt;/div&gt;		
+	&lt;/div&gt;
+	&lt;div id="box3"&gt;&lt;/div&gt;
+
+	//js
+	window.onload = function(){
+		var boxDom = dom("box");
+		var box3Dom = dom("box3");
+		boxDom.onmouseover = function(){
+			move(this,"left",10,0);
+		}
+		boxDom.onmouseout = function(){
+			move(this,"left",-10,-100);
+		}
+		box3Dom.onmouseover = function(){
+			move(this,"height",10,200,function(){
+				move(this,"width",10,300);
+			});
+			
+		}
+		box3Dom.onmouseout = function(){
+			move(this,"height",-10,100,function(){
+				move(this,"width",-10,100);
+			});
+		}
+		
+		/*function start(){
+			var speed = 10;
+			var target =  0;
+			clearInterval(timer);		
+			timer = setInterval(function(){
+				var cur = parseInt(getStyle(boxDom,"left"));//	初始位置
+				if(cur == target){
+					clearInterval(timer);					
+				}else{
+					boxDom.style.left = cur + speed + "px"	;					
+				}
+			},30);
+		};
+		function end(){
+			var speed2 = -10;
+			var target =  -100;
+			clearInterval(timer);	
+			timer = setInterval(function(){
+				var cur = parseInt(getStyle(boxDom,"left"));//	初始位置
+				if(cur == target){
+					clearInterval(timer);					
+				}else{
+					boxDom.style.left = cur + speed2 + "px"	;					
+				}
+			},30);
+		};*/
+
+		function move(dom,attr,speed,target,callback){
+			clearInterval(dom.timer);	
+			dom.timer = setInterval(function(){
+				var cur = parseInt(getStyle(dom,attr));//	初始位置
+				if(cur == target){
+					clearInterval(dom.timer);	
+					if(callback)callback.call(dom);
+				}else{
+					dom.style[attr] = cur + speed + "px"	;					
+				}
+			},30);
+		}		
+	}
+	function dom(id){
+		return document.getElementById(id);
+	}
+	function getStyle(dom,attr){
+			return window.getComputedStyle ? window.getComputedStyle(dom,false)[attr]:dom.currentStyle[attr];
+	};
+
+	</pre>
+	
+<script>
+	window.onload = function(){
+		var boxDom = dom("box");
+		var box3Dom = dom("box3");
+		boxDom.onmouseover = function(){
+			move(this,"left",10,0);
+		}
+		boxDom.onmouseout = function(){
+			move(this,"left",-10,-100);
+		}
+		box3Dom.onmouseover = function(){
+			move(this,"height",10,200,function(){
+				move(this,"width",10,300);
+			});
+			
+		}
+		box3Dom.onmouseout = function(){
+			move(this,"height",-10,100,function(){
+				move(this,"width",-10,100);
+			});
+		}
+		
+		/*function start(){
+			var speed = 10;
+			var target =  0;
+			clearInterval(timer);		
+			timer = setInterval(function(){
+				var cur = parseInt(getStyle(boxDom,"left"));//	初始位置
+				if(cur == target){
+					clearInterval(timer);					
+				}else{
+					boxDom.style.left = cur + speed + "px"	;					
+				}
+			},30);
+		};
+		function end(){
+			var speed2 = -10;
+			var target =  -100;
+			clearInterval(timer);	
+			timer = setInterval(function(){
+				var cur = parseInt(getStyle(boxDom,"left"));//	初始位置
+				if(cur == target){
+					clearInterval(timer);					
+				}else{
+					boxDom.style.left = cur + speed2 + "px"	;					
+				}
+			},30);
+		};*/
+
+		function move(dom,attr,speed,target,callback){
+			clearInterval(dom.timer);	
+			dom.timer = setInterval(function(){
+				var cur = parseInt(getStyle(dom,attr));//	初始位置
+				if(cur == target){
+					clearInterval(dom.timer);	
+					if(callback)callback.call(dom);
+				}else{
+					dom.style[attr] = cur + speed + "px"	;					
+				}
+			},30);
+		}		
+	}
+	/*window.onload = function(){
+		var speed = 0;
+		var start = 0;
+		var end = 650;
+		var timer = null;
+		var boxDom = dom("box");
+		timer = setInterval(function(){
+			var cur = boxDom.offsetLeft;//获取元素已经走了的距离
+			if(cur == end){
+				clearIntervl(timer);
+				speed = 0;
+			}
+			speed +=10;
+			boxDom.style.left = cur + speed + "px";
+			console.log(speed);
+		},1000/30);//1000是cpu执行回调函数的往返时间
+	}*/
+	/*
+	位移动画，折叠动画，淡入淡出动画 -- 数字
+	fadeOut
+	fadeIn
+	slideUp
+	slideDown
+	animate
+	fadeTo
+
+	width height left top right bottom opacity 和数字相关的样式
+	动画的格式
+	setInterval(function(){
+		var cur = js获取元素相关的位置和宽度；获取元素的元素起始状态
+		if(cur == target){
+			//clearInterval(timer);
+		}else{
+			speed +=10;
+		}
+	},30);
+	*/
+
+	function dom(id){
+		return document.getElementById(id);
+	}
+	function getStyle(dom,attr){
+			return window.getComputedStyle ? window.getComputedStyle(dom,false)[attr]:dom.currentStyle[attr];
+	};
+
+
+		
+</script>
+</body>
+</html>

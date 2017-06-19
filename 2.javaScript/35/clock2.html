@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#333;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background:red;width:400px;height:400px;margin:100px auto;text-align:center;overflow:hidden;}
+			#box .clockbox{width:200px;height:200px;margin-top:100px;margin-left:100px;background:green;position:relative;}
+			#box .clockbox span{position:absolute;top:50px;left:50px;}
+		</style>
+
+	</head>
+<body>
+	<div id="box">
+		<div  class="clockbox">
+			<span><img class="hour" src="images/clock_hour.png" /></span>
+			<span><img class="min" src="images/clock_min.png" /></span>
+			<span><img class="sec" src="images/clock_sec.png" /></span>
+			<img src="images/clock.png"  alt="" />
+		</div>
+	</div>
+
+
+<script src="dom.js"></script>
+<script>	
+	window.onload = function(){
+		var hourDom = domClass("box","hour")[0];
+		var minDom = domClass("box","min")[0];
+		var secDom = domClass("box","sec")[0];
+
+		setInterval(function(){
+			initClock();
+		},1000);
+
+		function initClock(){
+			var date = new Date();
+			var sec = date.getSeconds();
+			var min = date.getMinutes() + sec/60;
+			var hour = date.getHours() + min/60;
+			secDom.style.transform = "rotate("+sec*6+"deg)";
+			minDom.style.transform = "rotate("+min*6+"deg)";
+			hourDom.style.transform = "rotate("+hour*30+"deg)";
+		};
+
+		//组件的开发  天气预报组件 时钟 万年历 等等等,业务方法具有共性
+		var keFactory = 
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
+		时钟	: 		
+		知识点:javascript对象获取，动画transform-rotate旋转，定时器，日期对象
+		原理:让时分秒针 进行旋转
+
+		一个圆360° ，时钟是60个刻度
+		一刻（秒）：6°
+		一分 = 6°
+		一小时 = 30°
+
+		1.关于动画中的旋转:transform:rotate
+		2.关于如果获取页面中的class元素
+
+		transfrom :
+		scale  缩放
+			scaleX
+			scaleY
+		
+		rotate 旋转
+			rotateY
+			rotateX
+			rotate3D 景深里面
+			rotateZ  平面旋转
+		
+		translate 平移
+			translateX
+			translateY
+			translateZ
+		
+		skew 倾斜
+			skewX
+			skewY
+			skewZ
+		
+		matirx 矩阵
+			matirx3d
+
+		景深 perspective
+
+		@keyframes关键帧 
+
+	*/
+		function dom(id){
+			return document.getElementById(id);
+		}
+		function getByClass(pid,className){
+		
+		}
+</script>
+</body>
+</html>

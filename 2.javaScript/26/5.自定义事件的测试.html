@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			html{padding:100px;background:#fff;}
+			a{text-decoration:none;color:#111;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background:red;width:100px;height:100px;}
+		</style>
+
+	</head>
+<body>
+	<div id="box"></div>
+	<a href="http://www.baidu.com" id="gobaidu">点我去百度</a>	
+	
+	
+
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	//阻止冒泡行为 e.stopPropagation()
+	//阻止浏览器的默认行为: e.preventDefalut()
+	window.onload = function(){
+		var boxDom = dom("box");
+		onEvent(document,"click",clickme);
+		onEvent(boxDom,"click",clickme);
+		onEvent(dom("gobaidu"),"click",clickme);
+		function clickme(e){
+			var ev = e || window.event;
+			alert("点我了...");
+			var ct = ev.currentTarget;//当前对象 this
+			var target = ev.target;	//当前对象，是当前鼠标停留的对象
+			var srctarget = ev.srcElement;//是当前鼠标停留的对象
+			stopEvent(ev);
+			offDefault(ev);
+		}
+	}
+	//事件的封装
+	function onEvent(dom,type,callback){
+		if(document.addEventListener){
+			dom.addEventListener(type,callback,false);
+		}else if(document.attachEvent){
+			dom.attachEvent("on"+type,callback);
+		}else{
+			dom["on"+type] = callback;
+		}
+	}
+	//删除事件
+	function offEvent(dom,type,callback){
+		if(document.removeEventListener){
+			dom.removeEventListener(type,callback);
+		}else if(document.detachEvent){
+			dom.detachEvent("on"+type,callback);
+		}else{
+			//dom["on"+type] = null;
+			delete dom["on"+type];
+		}
+	}
+
+	//阻止浏览器的默认行为封装
+	function offDefault(e){
+		if(event.preventDefault){
+			 e.preventDefault();
+		}else{
+			e.returnValue = false;//return false;是:即是阻止浏览器的行为又是阻止冒泡
+			
+		}
+	}
+
+	//阻止冒泡
+	function stopEvent(e){
+		if(e.stopPropagation){
+			e.stopPropagation();
+		}else{
+			e.cancelBubble = true;
+		}
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>innerText,textContent,outterHTML</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";color:#000;padding:100px;background:#fff;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted red;
+				background: #ffcc99;
+				color:#000;
+			}
+			
+			
+		</style>
+
+	</head>
+<body>
+	<div id="box">
+		<span>   
+		
+		
+		keke元素
+		 我爱你 哈哈哈哈哈
+		 差啦儿以后
+		</span>
+	</div>
+
+	<pre>
+		innerHTML :带有标签格式
+		innerText ：获取文本， 在火狐中不支持innerText，但是它支持textContent
+
+		textContent :获取文本，但是它会保留格式，I6,7,8不支持textContent，但是支持innerText
+		outerHTML  I6,7,8不支持
+		outerText	I6,7,8不支持
+	
+	window.onload = function(){
+		var divDom = document.getElementById("box");	
+		var html = divDom.innerHTML;
+		//alert(html);
+		var text = divDom.innerText;
+		//alert(text);
+		var text2 = divDom.textContent;
+		alert(text2);
+		alert(text2.replace(/^\s*|\s*$/,""));//去首尾空格
+		var ohtml = divDom.outerHTML;
+		//alert(ohtml);
+		var otext = divDom.outerText; 
+
+		var ot = divDom.innerText || div.textContent.replace();//兼容写法
+
+		//赋值
+		divDom.innerHTML = "";//div赋空
+		//追加
+		divDom.innerHTML +="";
+	}
+	</pre>
+<script>
+	/*
+		innerHTML :带有标签格式
+		innerText ：获取文本， 在火狐中不支持innerText，但是它支持textContent
+
+		textContent :获取文本，但是它会保留格式，I6,7,8不支持textContent，但是支持innerText
+		outerHTML  I6,7,8不支持
+		outerText	I6,7,8不支持
+	*/
+	window.onload = function(){
+		var divDom = document.getElementById("box");	
+		var html = divDom.innerHTML;
+		//alert(html);
+		var text = divDom.innerText;
+		//alert(text);
+		var text2 = divDom.textContent;
+		//alert(text2);
+		//alert(text2.replace(/^\s*|\s*$/,""));//去首尾空格
+		var ohtml = divDom.outerHTML;
+		//alert(ohtml);
+		var otext = divDom.outerText; 
+
+		var ot = divDom.innerText || div.textContent.replace();//兼容写法
+
+		//赋值
+		divDom.innerHTML = "";//div赋空
+		//追加
+		divDom.innerHTML +="";
+	}
+
+		
+
+
+	
+</script>
+</body>
+</html>

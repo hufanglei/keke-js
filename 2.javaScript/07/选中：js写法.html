@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>选中</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#111;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";}
+			.wrap{position:absolute;left:0;top:0;width:100%;height:100%;background:red;}
+			.wrap .left{width:430px;background:#fff;height:100%;float:left;
+				padding:100px 30px 0;}
+			.wrap .left a{padding-left:10px;}
+			.wrap .left a:hover{color:green;}
+			.wrap .left .tagsbox{}
+			.tags{background:#e5e5e5;padding:5px 10px;border:1px solid #999;margin-left:5px;white-space:nowrap;}
+			.tags a{border-left:1px solid #888;margin-left:10px;font-size:12px;}
+			.wrap .right{margin-left:430px;width:100%;background:#999;height:100%;color:#fff;
+				padding:100px 100px 0;color:#333;}
+		</style>
+
+	</head>
+<body>
+	<div class="wrap">
+		<div class="left">
+			<div>
+				<div style="height:50px;">
+					<span>热门目的地：</span>
+					<span id="tagwrap">
+						<a href="javascript:void(0)">三亚 </a>
+						<a href="javascript:void(0)">张家界 </a>
+						<a href="javascript:void(0)">云南 </a>
+						<a href="javascript:void(0)">长沙 </a>
+						<a href="javascript:void(0)">厦门 </a>
+					</span>
+				</div>
+				
+				<div id="leftarget" class="tagsbox">
+							
+				</div>
+				
+				
+			</div>
+		</div>
+		<div class="right">
+			<div  id="rightarget" class="tagsbox">
+				
+			</div>
+		</div>
+	</div>
+
+
+<script>
+	//给所有的a绑定点击事件，并且拿到点击文本值
+	//拿到值，怎么添加到两个div中
+	//如果选择了就不选择了
+	//删除元素，联动右侧一起删除
+	var arr = [];
+	window.onload =  function(){
+		var tagDom = document.getElementById("tagwrap");
+		var leftTargetDom = document.getElementById("leftarget");
+		var rightTargetDom = document.getElementById("rightarget");
+		var adoms=tagDom.children;
+		var len = adoms.length;
+		for(var i=0;i<len;i++){
+			adoms[i].onclick = function(){
+				//获取选中的值
+				var  text =  this.innerHTML;
+				if(arr.indexOf(text)==-1){
+					//附加到两个目标div中
+					//左目标
+					leftTargetDom.innerHTML += "<span class='tags'><i>"+text+"</i><a href='javascript:void(0);' onclick='removeItem(this)'>X</a></span>";
+					//右目标
+					rightTargetDom.innerHTML += "<span class='tags'><i>"+text+"</i></span>";
+					arr.push(text);
+				}
+			}
+		}
+	}
+
+	function removeItem(obj){
+		var spanDom = obj.parentElement;
+		var text = spanDom.innerText || spanDom.textContent;
+		text = text.replace(' X',"");
+		var index = arr.indexOf(text);
+		arr.splice(index,1);
+		var divDom = spanDom.parentElement;
+		divDom.removeChild(spanDom);
+		
+		//删除右侧元素
+		/*var rightTargetDom = document.getElementById("rightarget");
+		var html = "";
+		for(var i=0;i<arr.length;i++){
+			html +="<span class='tags'><i>"+arr[i]+"</i></span>";
+		}
+		rightTargetDom.innerHTML = html;*/
+
+		//删除右侧元素(方法2)
+		var rightTargetDom = document.getElementById("rightarget");
+			var cs = rightTargetDom.children;
+			for(var i=0;i<cs.length;i++){
+				var t = cs[i].innerText || cs[i].textContent;
+				if(t==text){
+					rightTargetDom.removeChild(cs[i])
+					break;
+				}
+			}
+
+	}
+		
+</script>
+</body>
+</html>

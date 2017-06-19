@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>music</title>
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/music.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="head">头部</div>
+
+<div class="content_box">
+    <div class="content">
+        <div class="left_cont pd10">
+            <div>
+                <ul class="nav">
+                    <li><a href="javascript:void(0)" class="nav_bg">正在播放</a></li>
+                    <li><a href="javascript:void(0)">播放历史</a></li>
+                    <li><a href="javascript:void(0)">收藏列表</a></li>
+                </ul>
+            </div> 
+            <div class="clearfix music_add ft12">
+                <span class="fl">我创建的精选集</span>
+                <a href="javascript:void(0)" title="我创建的精选集" class="fr music_icon add_tb"></a>
+            </div>
+            <div><img src="../images/01.png"></div>
+        </div>
+        
+        <div class="cen_cont pd10">
+        	<div class="music_list_box" id="list_box">
+            	<div class="music_list_title music_name clearfix">
+                    <a href="javascript:void(0)" class="all_xuan"><input type="checkbox" id="all_check"></a>
+                	<div class="fl wth33">歌曲<span>(30)</span></div>
+                    <div class="fl wth33">演唱者</div>
+                    <div class="fl wth33">专辑</div>
+                </div>            
+                <div class="music_list_cont clearfix">
+                    <div id="abdcee">
+                    	<div class="music_list">
+                        	<p class="music_choose"><input type="checkbox"></p>
+                            <p class="music_munber"><i class="music_icon play play_dt">1</i></p>
+                            <div class="clearfix music_name">
+                            	<p class="fl wth33">思念是一种病</p>
+                                <p class="fl wth33">张震岳</p>
+                                <p class="fl wth33">OK</p>
+                            </div>
+                            <div class="music_operation">
+                            	<a href="javascript:void(0)" class="music_icon collection"></a>
+                                <a href="javascript:void(0)" class="music_icon more"></a>
+                                <a href="javascript:void(0)" class="music_icon delete"></a>
+                            </div>
+                        </div>
+                <script type="text/javascript">  
+                        $(function(){  
+                            $(".music_munber i").click(function(){
+                                $(this).parents(".music_list").addClass("selected").siblings().removeClass("selected");                                
+                            });
+                            $(".delete").click(function(){
+                                $(this).parents(".music_list").remove();
+                            });
+
+
+                            //给所选的元素加上b标签
+                            $("li a").wrap("<b></b>");
+                            //给所选元素的内容加上标签
+                           // $(".music_name p").wrapInner("<i style='color:blue;''></i>");
+                            $(".music_name p").append(fanhui);
+                            function fanhui(){
+                                var sttt = "-添加";
+                                return sttt;
+                            };
+                            //复制节点
+                           $(".music_list").clone(true).appendTo("#abdcee");
+
+                            /*$("#all_check").click(function(){
+                                if (this.checked) {
+                                    $(".music_choose input[name='abc']").prop("checked",true);
+                                }else{
+                                    $(".music_choose input[name='abc']").prop("checked",false);
+                                }
+                            });*/
+                           
+                            $("#all_check").click(function(){
+                                 var all_suoyou = $("#list_box").find("input[type='checkbox']");
+                               if (all_suoyou[0].checked == true) {
+                                    for (var i = 0; i < all_suoyou.length; i++) {
+                                        all_suoyou[i].checked = true;
+                                    };
+                               }else{
+                                     for (var i = 0; i < all_suoyou.length; i++) {
+                                        all_suoyou[i].checked = false;
+                                    };
+                               }
+                            });
+
+                        });
+                </script>                        
+                        <div class="music_list selected">                        
+                        	<p class="music_choose"><input type="checkbox" name="abc"></p>
+                            <p class="music_munber"><i class="music_icon play play_dt">2</i></p>
+                            <div class="clearfix music_name">
+                            	<p class="fl wth33">思念是一种病</p>
+                                <p class="fl wth33">张震岳</p>
+                                <p class="fl wth33">OK</p>
+                            </div>
+                            <div class="music_operation">
+                            	<a href="javascript:void(0)" class="music_icon collection"></a>
+                                <a href="javascript:void(0)" class="music_icon more"></a>
+                                <a href="javascript:void(0)" class="music_icon delete"></a>
+                            </div>
+                        </div>
+                        <div class="music_list">
+                        	<p class="music_choose"><input type="checkbox" name="abc"></p>
+                            <p class="music_munber"><i class="music_icon play play_dt">3</i></p>
+                            <div class="clearfix music_name">
+                            	<p class="fl wth33">思念是一种病</p>
+                                <p class="fl wth33">张震岳</p>
+                                <p class="fl wth33">OK</p>
+                            </div>
+                            <div class="music_operation">
+                            	<a href="javascript:void(0)" class="music_icon collection"></a>
+                                <a href="javascript:void(0)" class="music_icon more"></a>
+                                <a href="javascript:void(0)" class="music_icon delete"></a>
+                            </div>
+                        </div>
+                        <div class="music_list">
+                            <p class="music_choose"><input type="checkbox" name="abc"></p>
+                            <p class="music_munber"><i class="music_icon play play_dt">4</i></p>
+                            <div class="clearfix music_name">
+                                <p class="fl wth33">思念是一种病</p>
+                                <p class="fl wth33">张震岳</p>
+                                <p class="fl wth33">OK</p>
+                            </div>
+                            <div class="music_operation">
+                                <a href="javascript:void(0)" class="music_icon collection"></a>
+                                <a href="javascript:void(0)" class="music_icon more"></a>
+                                <a href="javascript:void(0)" class="music_icon delete"></a>
+                            </div>
+                        </div>
+                        <div class="music_list">
+                            <p class="music_choose"><input type="checkbox"></p>
+                            <p class="music_munber"><i class="music_icon play play_dt">5</i></p>
+                            <div class="clearfix music_name">
+                                <p class="fl wth33">思念是一种病</p>
+                                <p class="fl wth33">张震岳</p>
+                                <p class="fl wth33">OK</p>
+                            </div>
+                            <div class="music_operation">
+                                <a href="javascript:void(0)" class="music_icon collection"></a>
+                                <a href="javascript:void(0)" class="music_icon more"></a>
+                                <a href="javascript:void(0)" class="music_icon delete"></a>
+                            </div>
+                        </div>
+                        <div class="music_list">
+                            <p class="music_choose"><input type="checkbox"></p>
+                            <p class="music_munber"><i class="music_icon play play_dt">6</i></p>
+                            <div class="clearfix music_name">
+                                <p class="fl wth33">思念是一种病</p>
+                                <p class="fl wth33">张震岳</p>
+                                <p class="fl wth33">OK</p>
+                            </div>
+                            <div class="music_operation">
+                                <a href="javascript:void(0)" class="music_icon collection"></a>
+                                <a href="javascript:void(0)" class="music_icon more"></a>
+                                <a href="javascript:void(0)" class="music_icon delete"></a>
+                            </div>
+                        </div>
+                    </div>                
+                </div>   
+            </div>
+        </div>
+        
+    	<div class="right_cont pd10">
+        	<div class="img_cover center">
+            	<a href="javascript:void(0)"><img src="../images/feng.jpg" width="185" height="183"></a>
+            </div>
+            <div class="albumSale pd10 center">
+            	<a href="javascript:void(0)">去音乐馆淘一下</a>
+            </div>
+            <div class="lyrics_box pd10" id="lyrics_box">
+                <div class="scroll_bar_box">
+                   <div class="scroll_click" style="position:absolute;left:0;top:0;width:8px;height:100%;background:rgba(0,0,0,0.5);border-radius:3px;"></div>
+            	   <div class="scroll_bar"><!--滚动条--></div>
+                </div>
+
+
+            <script type="text/javascript">
+      
+                $(window).resize(function(){
+                   initResize();
+                });
+
+                function initResize(){
+                    //计算出lyricsDom的高度。
+                    var lyricsDom = document.getElementById("lyrics_box");                    
+                    var bodyY = window.innerHeight;//算出浏览器的高度
+                    var boxT = lyricsDom.offsetTop;//算出元素距离浏览器顶部的位置
+                    var boxh = bodyY - boxT - 170;//得出剩余的高度，减去底部                
+                    //lyricsDom.style.height = boxh + "px";
+                    $("#lyrics_box,.lyrics").height(boxh);
+                    var maxh = boxh -30; //加上滚动框本身的30像素高度
+                    $(".scroll_bar").mousedown(function(e){
+                            var $this = $(this);
+                            var y1 = e.clientY;
+                            var top  = $this.position().top; 
+                            var lyricsH = document.getElementById("lyrics");
+                            var l_H = lyricsH.offsetHeight;   
+                            mark = true;         
+                            $(document).mousemove(function(e){
+                                if (mark) {
+                                    var y2 = e.clientY;
+                                    var yidong = y2 - y1 + top;
+                                    if(yidong<0) yidong=0;
+                                    if(yidong>=maxh) yidong = maxh;                            
+                                    var p = yidong/maxh;  
+                                    $this.css("top",yidong);
+                                    $(".lyrics").css("top",p*(boxh-l_H));
+                               }                    
+                            }).mouseup(function(){
+                                mark = false;
+                            });
+                    })
+
+                    $(".scroll_click").mousedown(function(e){
+                          var ev = e || window.event;      
+                          var y = ev.clientY;
+                          var top = $(this).parent().offset().top;
+                          var nt = y-top;
+                          var boxh  = $(".lyrics").height();
+                          var ch = $(this).parents(".lyrics_box").height();
+                          if(nt+30>=ch)nt = ch-30;
+                          $(".scroll_bar").css("top",nt);
+                          var p = nt / ch;
+                          $(".lyrics").css("top",-1*p*(boxh-ch));  
+                    }).trigger("mousedown");
+                }
+
+                 initResize();
+
+            </script>
+
+            	<div class="lyrics">
+                	<ul id="lyrics">
+                        <li>Because you know I'm all about that bass,</li>
+                        <li>'Bout that bass, no treble</li>
+                        <li>I'm all 'bout that bass, 'bout that bass, no treble</li>
+                        <li>I'm all 'bout that bass, 'bout that bass, no treble</li>
+                        <li>I'm all 'bout that bass, 'bout that bass</li>
+                        <li>Yeah it's pretty clear, I ain't no size 2</li>
+                        <li>But I can shake it, shake it like I'm supposed to do</li>
+                        <li>'Cause I got that boom boom that all the boys chase</li>
+                        <li>All the right junk in all the right places</li>
+                        <li>I see the magazines working that Photoshop</li>
+                        <li>We know that shit ain't real</li>
+                        <li>Come on now, make it stop</li>
+                        <li>If you got beauty beauty just raise 'em up</li>
+                        <li>'Cause every inch of you is perfect</li>
+                        <li>From the bottom to the top</li>
+                        <li>Yeah, my momma she told me don't worry about your size</li>
+                        <li>She says, boys they like a little more booty to hold at night</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+<div class="music_play_box">
+	<div class="music_play">
+        <div class="play_left">
+            <a href="javascript:void(0)" class="music_icon play_left_tb"></a>
+            <a href="javascript:void(0)" class="music_icon play_play_tb" style="display:none"></a>
+            <a href="javascript:void(0)" class="music_icon play_stop_tb"></a>
+            <a href="javascript:void(0)" class="music_icon play_right_tb"></a>
+            <div class="cycle_box">
+                <a href="javascript:void(0)" class="music_icon play_cycle_tb" style="display:none"></a>
+                <a href="javascript:void(0)" class="music_icon play_random_tb" style="display:none"></a>
+                <a href="javascript:void(0)" class="music_icon play_order_tb"></a>
+            </div>
+        </div>  
+        <div class="play_cont">
+            <div class="music_play_name clearfix">
+                <a href="javascript:void(0)" class="">思念是一种病</a>
+                -
+                <a href="javascript:void(0)" class="">张震岳</a>
+                <div class="share_box">
+                    <a href="javascript:void(0)" class="music_icon collec"></a>
+                    <a href="javascript:void(0)" class="music_icon share"></a>
+                    <a href="javascript:void(0)" class="music_icon mores"></a>
+                </div>
+            </div>
+            <div class="music_play_progress">
+                <span class="time_left">00:51</span>
+                <span class="time_right">03:10</span>    
+                <div class="time_all_box">
+                    <div class="time_progress" style="width:40%;"></div>
+                    <div class="time_point"></div>
+                </div>              
+            </div>
+        </div>
+        <div class="play_right">
+            <a href="javascript:void(0)" class="quality">高品质</a>
+            <div class="progress_box">
+                <a href="javascript:void(0)" class="music_icon play_volume_tb"></a>
+                <div class="progress">
+                    <div class="progress_all">
+                        <div class="progress_course" style="width:40%;"></div>
+                        <div class="progress_point"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

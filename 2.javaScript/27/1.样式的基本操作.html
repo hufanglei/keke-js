@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>动态添加元素</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+		<!-- <link rel="stylesheet" type="text/css" href="aaa.css"> -->
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#000;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background: red;width: 100px;height:100px;}
+		</style>
+		<style>
+			p{color: red}
+			div{color:green;}
+		</style>
+	</head>
+<body>
+	<div id="box"></div>
+	<p>我是dddd哈和空间哈方法卡机</p>
+	<p>我是dddd哈和空间哈方法卡机</p>
+	<p>我是dddd哈和空间哈方法卡机</p>
+	<p>我是dddd哈和空间哈方法卡机</p>
+	<p>我是dddd哈和空间哈方法卡机</p>
+	
+	<a href="javascript:void(0);" id="clickme">点我</a>
+
+<script>
+	window.onload = function(){
+		document.getElementById("clickme").onclick = function(){
+			//document下方有一个子对象:styleSheets
+			//解说:styleSheets
+			//获取页面中所有的样式列表对象，包含<style>和<link>.	
+			var sheets = document.styleSheets;
+			//alert(sheets.length);
+			for(var key in sheets[0]){
+				//console.log(key + "===" + sheets[0][key]);
+			}
+			var sheet1 = sheets[0];
+			//alert(sheet1.cssText);
+			
+			//获取样式
+			//c1 = sheet1.cssRules[0].cssText;
+			//c2 = sheet1.cssRules[1].cssText;
+			//alert(c1 + "===" +c2);
+
+			//操作样式
+			var sheet2 = sheets[1];			
+			sheet2.insertRule("p{font-size:24px}",1);
+			//alert(sheet2.cssText);
+		//	sheet2.deleteRule(1);
+			//alert(sheet2.cssText);
+
+			//sheet2.cssRules[0].style.color = "green";
+			//sheet2.cssRules[0].style.background = "red";
+			//alert(sheet2.cssText);
+			
+			var rules = sheet2.cssRules;
+			for(var i=0;i<rules.length;i++){
+				sheet2.cssRules[i].style.color = "green";
+				sheet2.cssRules[i].style.background = "red";
+			}
+			alert(sheet2.cssText);
+
+			//样式禁止
+			sheet2.disabled = "disabled";
+		}
+		
+
+
+
+
+
+
+
+
+
+
+
+
+		/*
+		stylesheets下面的属性和方法：		 
+		cssRules===[object CSSStyleSheet]---比如;	p{color: red}
+		rules===[object CSSStyleSheet]
+		insertRule===[object CSSStyleSheet]
+		deleteRule===[object CSSStyleSheet]
+		addRule===[object CSSStyleSheet]
+		removeRule===[object CSSStyleSheet]
+		type===[object CSSStyleSheet]
+		href===[object CSSStyleSheet]
+		ownerNode===[object CSSStyleSheet]
+		parentStyleSheet===[object CSSStyleSheet]
+		title===[object CSSStyleSheet]
+		media===[object CSSStyleSheet]
+		disabled===[object CSSStyleSheet]*/
+
+		
+	}
+
+	
+</script>
+</body>
+</html>

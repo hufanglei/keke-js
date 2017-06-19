@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>封装</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:24px;font-family:"微软雅黑";background:#373737;color:#fff;}
+			.box{margin:50px auto;height:100px;width:200px;background:linear-gradient(#cc3399,#9900cc);text-align:center;line-height:100px;border-radius:5px;}
+
+		</style>
+
+	</head>
+<body>
+
+	<div class="box" id="boxid1" >1111</div>
+	<div class="box" id="boxid2" >2222</div>
+	<div class="box" id="boxid3" >3333</div>
+
+	<script type="text/javascript">
+	/*this , call , apply 代表本身*/
+		/*window
+		  	clickme
+		  document */
+		/*function clickme(obj){
+			alert(obj === document.getElementById("boxid1"));
+		}*/
+
+		function  tzevent(id,callback){
+			document.getElementById(id).onclick = function(){
+				//alert(this.innerHTML);	//window
+				//if(callback)callback.call(this,1,5);//call讲外面的对象继承下去
+				if(callback)callback.apply(this,[1,5]);
+				//fn类型 call(对象，参数1，参数2，参数3)
+				////fn类型 apply(对象，[参数1，参数2，参数3])
+			};
+			//document.getElementById(id).onclick = callback;//this被延续
+		};
+		function sum(a,b){
+			this.style.background = "#CC0038";
+			alert(a+b);
+		}
+		tzevent("boxid1",sum);
+		/*tzevent("boxid1" , function(){*/
+			/*alert(this.innerHTML);*/
+		//	alert(this.innerHTML);
+
+		//});
+	//事件其实就是硬件驱动软件的回调函数
+
+		//将dom中的元素放入数组中
+	/*	function $(className){
+			var doms = null;
+			var mark = false;
+			if(document.querySelectorAll){//IE9+才支持
+				doms = document.querySelectorAll("."+className); 
+				mark = true;
+			}else if(document.getElementsByTagName){//IE9+才支持
+				doms = document.getElementsByTagName(className);
+				mark = true;
+			}else{
+				doms = document.body.getElementsByTagName("*");
+			}
+
+			var arr = [];
+			
+			for(var i=0,len=doms.length;i<len;i++){
+				if(mark){
+					arr.push(doms[i]);
+				}else{
+					var classname = doms[i].className;
+					if(classname.indexOf(className)!=-1){
+						arr.push(doms[i]);
+					}
+				}
+			}
+			return arr;
+		};
+		
+		//数组的prototype
+		Array.prototype.each = function(callback) {
+			var len = this.length;
+			for(var i=0;i<len;i++){
+				if(callback)callback.call(this[i],i);
+			}
+		};
+
+		$("box").each(function(){
+			var thisDom = this;
+			this.onclick = function(){
+				alert(this.innerHTML);
+			}
+		});
+		*/
+	
+		//call 
+		//用途：延续对象
+		//使用格式:  函数名.call(对象)
+		//使用限制:能放对象 
+		/*var json = {name:"keke"};
+		function test(fn){
+			if(fn)fn.call(json);
+		}
+		test(function(){
+			alert(this.name);
+		});*/
+
+		var json = {username:"keke"};
+		var json2 = {age:20};
+		json  = json.bind(json2);
+		alert(json.age);
+	</script>
+</body>
+</html>

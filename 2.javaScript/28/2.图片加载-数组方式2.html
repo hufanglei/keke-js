@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>图片预加载</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{width:930px;margin:100px auto;overflow:hidden;padding:10px 0 0 10px;}
+			#box li{float:left;margin:0 10px 10px 0;}
+			#box li img{width:300px;height:200px;display:block;}
+
+		</style>
+
+	</head>
+<body>
+
+	<div id="box">
+		<ul id="imgul">
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif"  alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif"  alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif"  alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif"  alt="" /></li>
+			<li><img data-src="images/1.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/2.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/3.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/4.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/5.jpg" src="images/loading.gif" alt="" /></li>
+			<li><img data-src="images/6.jpg" src="images/loading.gif" alt="" /></li>
+		</ul>
+	</div>
+	
+<script type="text/javascript" src="dom.js"></script>
+
+<script>
+	window.onload = function(){
+		//图片按需加载
+		var ulDom = dom("imgul");
+		var imgDoms = ulDom.getElementsByTagName("img");
+		var imgArr = [].slice.call(imgDoms);	
+		var start = 0;
+		showImage();
+		window.onscroll = showImage;
+		//滚动加载图片
+		function showImage(){
+			if(imgArr.length==0)return;
+			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+			var clientHeight = window.innerHeight || document.body.clientHeight;			
+			for(var i=start,len=imgArr.length;i<len;i++){
+				if(getTop(imgArr[start]) < (scrollTop + clientHeight) ){
+					imgArr[start].src = imgArr[start].getAttribute("data-src");								
+					imgArr.splice(start,1);//真删除，数组的长度会变化，索引也会变化
+				}
+			}
+		}
+		//imgDoms[i].offsetTop 如果是浮动布局
+		//定位布局
+		function getTop(obj){
+			var top = 0;
+			while(obj){
+				top+=obj.offsetTop;
+				obj = obj.offsetParent;
+			}
+			return top;
+		}
+	}
+		
+</script>
+</body>
+</html>

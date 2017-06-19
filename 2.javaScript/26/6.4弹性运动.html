@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>运动:弹性加速</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		a{text-decoration:none;color:#fff;}
+		ul,li{list-style:none}
+		body{font-size:12px;font-family:"微软雅黑";}
+		#box{height:100px;width:100px;background: red;position: absolute;left:0px;}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	window.onload =  function(){
+		var boxDom = dom("box");
+		boxDom.onclick = function(){
+				cmove();
+		}
+		//反加速
+		var speed = 0;//速度
+		var timer = null;
+		function cmove(){
+			clearInterval(timer);//保证只有一个定时器在执行
+			timer=setInterval(function(){
+				//到达某个位置的时候，方向转向
+				var t = boxDom.offsetLeft + speed;//
+				if(t < 500){
+					speed +=5;
+					console.log("正向"+speed+"==="+t);
+				}else{
+					speed -=5;
+						console.log("反向"+speed+"==="+t);
+				}
+				boxDom.style.left = t + "px";
+			},30);
+		}
+		//弹性运动，加速和减速的集合
+		正向5===0
+		正向10===5
+		正向15===15
+		正向20===30
+		反向15===50
+		反向10===65
+		反向5===75
+		反向0===80
+		反向-5===80
+		反向-10===75
+		反向-15===65
+		反向-20===50
+		正向-15===30
+		正向-10===15
+		正向-5===5
+		正向0===0
+	}
+</script>
+</body>
+</html>

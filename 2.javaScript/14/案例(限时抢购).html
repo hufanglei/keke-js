@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>显示抢购:</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+
+		</style>
+
+	</head>
+<body>
+<h1>限时抢购(知识点汇总)</h1>
+<ul>
+<li>dom自定义属性</li>
+<li>setInterval</li>
+<li>类数组(dom)转数组</li>
+<li>dom去元素的两种方法
+	<ul>
+		<li>removeAttribute</li>
+		<li>[].slice.call(hdoms) <br/>
+			var index = arr.indexOf(dom);
+			arr.splice(index,1);</li>
+	</ul>
+</li>
+<li>回调函数的使用</li>
+<li>call的使用</li>
+<li>定时器的使用</li>
+</ul>
+<h2 time="2015/12/23 16:58:20"></h2>
+<h2 time="2015/12/23 16:59:50"></h2>
+<h2 time="2015/12/23 17:00:52"></h2>
+<h2 time="2015/12/23 17:07:30"></h2>
+<h2 time="2015/12/23 17:11:20"></h2>
+<h2 time="2015/12/23 17:15:10"></h2>
+<h2 time="2015/12/23 17:20:00"></h2>
+<h2 time="2015/12/23 17:25:50"></h2>
+<pre>
+//html代码:
+&lt;h2 time="2015/12/23 16:58:20"&gt;&lt;/h2&gt;
+&lt;h2 time="2015/12/23 16:59:50"&gt;&lt;/h2&gt;
+&lt;h2 time="2015/12/23 17:00:52"&gt;&lt;/h2&gt;
+&lt;h2 time="2015/12/23 17:07:30"&gt;&lt;/h2&gt;
+&lt;h2 time="2015/12/23 17:11:20"&gt;&lt;/h2&gt;
+&lt;h2 time="2015/12/23 17:15:10"&gt;&lt;/h2&gt;
+&lt;h2 time="2015/12/23 17:20:00"&gt;&lt;/h2&gt;
+&lt;h2 time="2015/12/23 17:25:50"&gt;&lt;/h2&gt;
+//js代码:
+window.onload =  function(){
+	var timeDom = document.getElementById("time");
+	function start(arr,dom,endDate,callback){
+		var beginTime = new Date();
+		var endTime = endDate;
+		//获得毫秒属于差(两个格林尼治时间相减)
+		var time = endTime.getTime() - beginTime.getTime();
+		//获得剩余秒
+		var sec = time/1000;
+		//换算
+		var dd = Math.floor(sec/60/60/24);//天数
+		var hh = Math.floor(sec/60/60%24);//小时
+		var mm =  Math.floor(sec/60%60);//分钟
+		var ss = Math.floor(sec%60);//秒
+		hh = hh&lt;10?("0"+hh):hh;
+		mm = mm&lt;10?("0"+mm):mm;
+		ss = ss&lt;10?("0"+ss):ss;
+		dom.d = dd;
+		dom.h = hh;
+		dom.m = mm;
+		dom.s = ss;
+		dom.index=0;
+		//定时器
+		dom.timer =  setInterval(function(){
+			dom.index++;
+			if(dom.index>50){
+				clearInterval(dom.timer);
+			}
+			if(callback)callback.call(dom,(dd==0 && hh==0 && mm==0 && ss==0));
+		},1000/60);
+		if((dd==0 && hh==0 && mm==0 && ss==0)){
+			clearInterval(dom.timer);
+			dom.removeAttribute("time");
+			var index = arr.indexOf(dom);
+			arr.splice(index,1);
+			if(callback)callback.call(dom,true);
+		}else{
+			if(callback)callback.call(dom,false);
+		}
+	}
+	var hdoms = document.getElementsByTagName("h2");
+	var hdomsArr = [].slice.call(hdoms);
+	//setInterval
+	setInterval(function(){
+		console.log("======"+hdomsArr.length);
+		//循环
+		for(var i=0;i&lt;hdomsArr.length;i++){
+			var timer = hdomsArr[i].getAttribute("time");
+			if(timer){
+				start(hdomsArr,hdomsArr[i],new Date(timer),function(ok){
+					if(ok){//执行完成进入这里
+						this.style.background = "red";
+						this.innerHTML = "&lt;a href=''&gt;开始抢购&lt;/a&gt;";
+					}else{
+						this.innerHTML = "距离抢购还有"+this.d + "天" + this.h + "时" + this.m +"分" + this.s+"秒"+this.index;
+					}
+				});
+			}
+		}
+	},1000);
+
+</pre>
+<script>
+
+	
+	window.onload =  function(){
+	//距离明年春节放假还有多少天。
+	//当前的时间和下一年的时间
+		var timeDom = document.getElementById("time");
+		function start(arr,dom,endDate,callback){
+			var beginTime = new Date();
+			var endTime = endDate;
+			//获得毫秒属于差(两个格林尼治时间相减)
+			var time = endTime.getTime() - beginTime.getTime();
+			//获得剩余秒
+			var sec = time/1000;
+			//换算
+			var dd = Math.floor(sec/60/60/24);//天数
+			var hh = Math.floor(sec/60/60%24);//小时
+			var mm =  Math.floor(sec/60%60);//分钟
+			var ss = Math.floor(sec%60);//秒
+			hh = hh<10?("0"+hh):hh;
+			mm = mm<10?("0"+mm):mm;
+			ss = ss<10?("0"+ss):ss;
+			dom.d = dd;
+			dom.h = hh;
+			dom.m = mm;
+			dom.s = ss;
+			dom.index=0;
+			//定时器
+			dom.timer =  setInterval(function(){
+				dom.index++;
+				if(dom.index>50){
+					clearInterval(dom.timer);
+				}
+				if(callback)callback.call(dom,(dd==0 && hh==0 && mm==0 && ss==0));
+			},1000/60);
+			if((dd==0 && hh==0 && mm==0 && ss==0)){
+				clearInterval(dom.timer);
+				dom.removeAttribute("time");
+				var index = arr.indexOf(dom);
+				arr.splice(index,1);
+				if(callback)callback.call(dom,true);
+			}else{
+				if(callback)callback.call(dom,false);
+			}
+		}
+		var hdoms = document.getElementsByTagName("h2");
+		var hdomsArr = [].slice.call(hdoms);
+		//setInterval
+		setInterval(function(){
+			console.log("======"+hdomsArr.length);
+			//循环
+			for(var i=0;i<hdomsArr.length;i++){
+				var timer = hdomsArr[i].getAttribute("time");
+				if(timer){
+					start(hdomsArr,hdomsArr[i],new Date(timer),function(ok){
+						if(ok){//执行完成进入这里
+							this.style.background = "red";
+							this.innerHTML = "<a href=''>开始抢购</a>";
+						}else{
+							this.innerHTML = "距离抢购还有"+this.d + "天" + this.h + "时" + this.m +"分" + this.s+"秒"+this.index;
+						}
+					});
+				}
+			}
+		},1000);
+
+
+		
+
+		
+
+	}
+	
+
+
+
+	/**
+			 * 对Date的扩展，将 Date 转化为指定格式的String 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q)
+			 * 可以用 1-2 个占位符 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) eg: (new
+			 * Date()).format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423 (new
+			 * Date()).format("yyyy-MM-dd E HH:mm:ss") ==> 2009-03-10 二 20:09:04 (new
+			 * Date()).format("yyyy-MM-dd EE hh:mm:ss") ==> 2009-03-10 周二 08:09:04 (new
+			 * Date()).format("yyyy-MM-dd EEE hh:mm:ss") ==> 2009-03-10 星期二 08:09:04 (new
+			 * Date()).format("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18
+			 */
+			Date.prototype.format = function(fmt) {
+				var o = {
+					"M+" : this.getMonth() + 1,
+					// 月份
+					"d+" : this.getDate(),
+					// 日
+					"h+" : this.getHours() % 12 == 0 ? 12 : this.getHours() % 12,
+					// 小时
+					"H+" : this.getHours(),
+					// 小时
+					"m+" : this.getMinutes(),
+					// 分
+					"s+" : this.getSeconds(),
+					// 秒
+					"q+" : Math.floor((this.getMonth() + 3) / 3),
+					// 季度
+					"S" : this.getMilliseconds()
+				// 毫秒
+				};
+				var week = {
+					"0" : "/u65e5",
+					"1" : "/u4e00",
+					"2" : "/u4e8c",
+					"3" : "/u4e09",
+					"4" : "/u56db",
+					"5" : "/u4e94",
+					"6" : "/u516d"
+				};
+				if (/(y+)/.test(fmt)) {
+					fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "")
+							.substr(4 - RegExp.$1.length));
+				}
+				if (/(E+)/.test(fmt)) {
+					fmt = fmt
+							.replace(
+									RegExp.$1,
+									((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "/u661f/u671f"
+											: "/u5468")
+											: "")
+											+ week[this.getDay() + ""]);
+				}
+				for ( var k in o) {
+					if (new RegExp("(" + k + ")").test(fmt)) {
+						fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k])
+								: (("00" + o[k]).substr(("" + o[k]).length)));
+					}
+				}
+				return fmt;
+			};
+
+	
+		
+
+	
+
+
+</script>
+</body>
+</html>

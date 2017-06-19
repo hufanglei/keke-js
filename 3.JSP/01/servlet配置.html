@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>tomcat文件介绍</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#6633ff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background:#fff;padding:100px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 10px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+
+		</style>
+
+	</head>
+<body>
+	<h2>web项目介绍</h2>
+	<pre>
+	chapter:项目名
+	src WEB工程项目的资源目录（*.java 源代码文件，配置文件）
+	*.jar 就是java程序运行的相关的jar包
+	WebRoot 项目部署后的根目录
+	META-INF 一个信息包，用于配置应用程序和扩展程序
+	WEB-INF 外界不能够访问，用来专门存储classes，安全性的文件   jar包
+	WEB-INF/web.xml 项目主配置文件。web工程的描述文件
+	WEB-INF/lib 存储项目需要jar包
+	</pre>
+	<h2>web.xml做相关的配置</h2>
+	<pre>
+	1.浏览器地址请求的时候，提交的form表单 会根据action去查找相应的web.xml的配置文件
+	2 找到servlet-mapping(serlvet映射)
+	3找到映射的name，会根据这个
+	4这个name去找相应的servlet里面的name 
+	5找到相应的servlet的class(也就是相应的类文件 *.java)
+	自动会调用init()方法
+	6根据你的form表单的method的方式(get/post)去调用 doGet()/doPost()方法
+	自动去调用销毁destroy()方法
+	</pre><br/>
+	<h2>web.xml代码</h2>
+	<pre>
+	&lt;servlet&gt;
+		&lt;servlet-name&gt;SendMsgServlet&lt;/servlet-name&gt;
+		&lt;servlet-class&gt;com.tz.js2.SendMsgServlet&lt;/servlet-class&gt;
+	&lt;/servlet&gt;
+	 &lt;servlet-mapping&gt;
+		&lt;servlet-name&gt;SendMsgServlet&lt;/servlet-name&gt;
+		&lt;url-pattern&gt;/room/SendMsg&lt;/url-pattern&gt;
+	 &lt;/servlet-mapping&gt;
+	</pre>
+	<h2>java代码</h2>
+	<pre>
+	public class SendMsgServlet extends HttpServlet{
+	@Override
+	public void init() throws ServletException {		
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=utf-8");
+		String msg = req.getParameter("msg");
+		if(null==msg){
+			msg = "";
+		}
+		String city = req.getParameter("city"); 
+		//获取ip地址
+		String ip = req.getRemoteAddr();
+		StringBuffer str = new StringBuffer(ip);
+		str.append("Say: ").append(msg).append("---").append(city);
+		System.out.println(str);
+		System.out.println(city);
+
+		
+		PrintWriter writer = resp.getWriter();
+		writer.println("&lt;html&gt;");
+		writer.println("&lt;body&gt;");
+		writer.println(str);
+		writer.println("&lt;/body&gt;");
+		writer.println("&lt;html&gt;");
+		writer.println("&lt;/html&gt;");		
+	}
+	@Override
+	public void destroy() {
+		System.out.println("进入了destroy()方法33333");
+	}
+}
+	</pre>
+	<h2>注解方式配置servlet类写法:</h2>
+	<pre>
+	@WebServlet(name = "UserServlet ", urlPatterns = {"/UserServlet","/hufanglei"})
+	public class UserServlet extends HttpServlet {
+		protected void doGet(HttpServletRequest request,
+				HttpServletResponse response) throws ServletException, IOException {
+			String userName = request.getParameter("userName");
+			request.setAttribute("userName", userName);
+			// 处理逻辑...
+			request.getRequestDispatcher("result.jsp").forward(request, response);
+		}
+		protected void doPost(HttpServletRequest request,
+				HttpServletResponse response) throws ServletException, IOException {
+			doGet(request, response);
+		}
+	}
+	</pre>
+<script>
+
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}
+		
+		}
+</script>
+</body>
+</html>

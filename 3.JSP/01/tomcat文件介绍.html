@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>tomcat文件介绍</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#6633ff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background:#fff;padding:100px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 10px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+
+		</style>
+
+	</head>
+<body>
+	
+	
+	<pre>
+	bin TOMCAT程序的文件目录，使用startup.bat启动服务调用
+	conf 服务器的配置文件目录，主要的文件是server.xml
+	lib 依赖的jar包。服务器启动时所需要的加载的jar包
+	logs 服务器运行时的日志记录文件
+	temp 临时文件存放的目录
+	webapps 项目部署目录，每个项目以子项目的方式部署
+	work 是jsp运行时产生和编译后的代码文件存放的位置
+
+	</pre><br/>
+	推荐文章：<a href="http://f51889920.iteye.com/blog/1884830" target="_blank">http://www.jb51.net/article/6830.htm</a>
+<script>
+
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}
+		
+		}
+</script>
+</body>
+</html>

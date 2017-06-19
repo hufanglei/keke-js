@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>盒内居中</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;background:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";padding:200px;}
+			#box{width:400px;height:400px;background:red;position:relative;overflow:hidden;}
+			#box2{width:200px;height:200px;background:green;
+				/*position:absolute;
+				top:100px;
+				left:100px;*/
+				margin-top:100px;
+				margin-left:100px;
+			}
+
+		</style>
+
+	</head>
+<body>
+	
+	<div id="box">	
+		<div id="box2"></div>
+	</div>
+<script src="dom.js"></script>
+<script>
+		/*盒子内的居中2中方法
+		1.用定位
+		2.父类折射点(overflow/border) ，子用margin-top和margin-border
+		
+		*/
+		
+	
+</script>
+</body>
+</html>

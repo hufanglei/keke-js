@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>js获得css样式值</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff;padding:100px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 10px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			.key{padding:10px;}
+
+			#box{height:100px;width:300px;background:#9933ff;}
+		</style>
+
+	</head>
+<body>
+	<div class="key">
+	<h1>知识点</h1>
+	<h3>js获得css样式值</h3>
+	<h4>谷歌写法:window.getComputedStyle(boxDom,false)["lineHeight"]</h4>
+	<h4>ie写法:boxDom.currentStyle["width"]</h4>
+	<h4>封装完美代码:<br/>
+	function getStyle(dom,attr){<br/>
+		return window.getComputedStyle ? window.getComputedStyle(dom,false)[attr] : dom.currentStyle[attr];		<br/>
+	}
+	</h4>
+	<br/>
+	<div id="box"></div>
+	
+	<pre>
+	//测试能直接获得样式表的值
+	var boxDom = document.getElementById("box");
+	//alert(boxDom.style.height);//什么都不会打印
+
+	//ie版本 boxDom.currentStyle["width"]
+	//var height = boxDom.currentStyle["height"];
+	//var height = boxDom.currentStyle.height;
+	//alert(height);
+
+	//谷歌:
+	//var height = window.getComputedStyle(boxDom,false)["height"];
+	//alert(height);
+
+	//兼容写法:
+	/*function getStyle(dom,attr){
+		if(window.getComputedStyle){
+			return window.getComputedStyle(dom,false)[attr];
+		}else{
+			return dom.currentStyle[attr];
+		}
+	}*/
+
+	//最优化写法
+	function getStyle(dom,attr){
+		return window.getComputedStyle ? window.getComputedStyle(dom,false)[attr] : dom.currentStyle[attr];		
+	}
+	alert(getStyle(boxDom,"height"));
+	</pre>
+
+<script>
+	//测试能直接获得样式表的值
+	var boxDom = document.getElementById("box");
+	//alert(boxDom.style.height);//什么都不会打印
+
+	//ie版本 boxDom.currentStyle["width"]
+	//var height = boxDom.currentStyle["height"];
+	//var height = boxDom.currentStyle.height;
+	//alert(height);//100px
+
+	//谷歌:
+	//var height = window.getComputedStyle(boxDom,false)["height"];
+	//alert(height);//100px
+
+	//兼容写法:
+	/*function getStyle(dom,attr){
+		if(window.getComputedStyle){
+			return window.getComputedStyle(dom,false)[attr];
+		}else{
+			return dom.currentStyle[attr];
+		}
+	}*/
+
+	//最优化写法
+	function getStyle(dom,attr){
+		return window.getComputedStyle ? window.getComputedStyle(dom,false)[attr] : dom.currentStyle[attr];		
+	}
+	//alert(getStyle(boxDom,"height"));//100px
+	
+	
+	
+
+
+		
+</script>
+</body>
+</html>

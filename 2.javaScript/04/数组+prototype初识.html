@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>数组+prototype初识</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background: #373737;}
+
+		</style>
+
+	</head>
+<body>
+	
+
+
+<script type="text/javascript">
+		//增删查改
+			//push
+			//join()
+			//concat
+			//var arr = [];
+			//var arr = new Array();
+			//var arr = [1,2,3];
+			//push 往数组的后面添加,会修改数组的长度
+			//arr.push(4);
+			//alert(arr.length);
+
+			//delete,删除不会修改数组的长度,长度还是4
+			//delete arr[1];
+			//alert("删除之后==="+arr.length);
+			//真正的删除 pop 删除最后一个元素 。会修改数组的长度，内存不在存在
+			//var ap = arr.pop();
+			//往前删除
+			/*arr.shift();
+			arr.shift();
+			arr.pop();
+			alert(arr.toString());*/
+			//alert(ap);
+			
+			//修改,替换(splice)，截取(slice) es5查找 indexOf lastIndexOf
+			//它的用户和string一模一样 
+			//substring(0,1)不允许负数，负数通通都会当做0，如果start>end，内部会自动取最大值和最小
+			//start >end slice和substring没有任何的区别
+			//var str = "0123456789";//编译阶段 length = 10
+			//str = str.slice(4,6);//str.slice(5,6);
+			//alert(str);//0123456789
+			
+
+			//总结：substring(start,end)和slice(start,end)
+			//正数的时候(start < end) substring和slice没有任何的区别
+			//正数的时候start > end   substring会自动内部里面进行一次最大值和最小值的获取
+			//负数：start和end是负数substring都会把它们当做0
+			//      针对slice的话，(length-start,length-end)
+
+			//arr原始的是不会发生改变
+			//var arr = [0,1,2,3,4,5,6,7,8,9];
+			//var ar = arr.slice(9,8);
+			//alert(ar);
+			//方法arr.splice(start,dcount,p1,p2,p3); start是确认删除元素的起点坐标 长度会发生变化
+			//var spa =arr.splice(1,2); 删除方法
+			//var spa =arr.splice(1,2,'keke','xiaobai',2,3,4,5,67,7,7,8,8,8);//替换
+
+			//alert(arr.toString()+"==="+arr.length);
+
+			//string boolean number undefined function  object(arr,object,date regex null)
+			
+
+			var arr = [1,2,3,4,5,6,7,8,9];
+			//1：封装数组排序
+			/*Array.prototype.csort = function(mark){
+				arr.sort(function(a,b){
+					return mark?-1:1;
+				});
+			}
+			arr.csort(false);
+			log(arr.toString());*/
+			//2:反转 reverse
+			/*arr.reverse();
+			log(arr.toString());*/
+
+			//开发游戏 人物 人物的特征不一样技能也不一样--表头排序
+			/*function Humen(username ,age){
+				this.username = username;
+				this.age = age;
+				this.say = function(){
+				}
+			}
+
+			Humen.prototype.sleep =  function(){
+				log(2);
+			}
+			var h = new Humen();
+			h.sleep();
+			delete Humen.prototype.sleep;
+			h.sleep();*/
+
+			//es5中还提供其他方法 indexOf lastIndexOf isArray ie9+
+			var arr = [1,2,3,4,5,6];
+			var index = arr.indexOf(4);
+			log(index);
+			var index2 = arr.lastIndexOf(1);//从右玩左查询
+			log(index2);
+
+
+
+
+
+
+
+
+			function log(content){
+				if(console){
+					return console.log("【您运行的结果是】:"+content);
+				}else{
+					alert("【您运行的结果是】:"+content);
+			}
+		}
+</script>
+</body>
+</html>

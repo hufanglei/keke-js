@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>字符串</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;}
+
+		</style>
+
+	</head>
+<body>
+
+<pre>
+javascript
+			
+			string
+
+				var code = charCodeAt(index):获取字符串每个一个字符的ascii编码对应的编码值，如果是中文拿到十六进制
+				fromCharCode(code);把对应ascii码和十六进制的中文还原程序对应的值和中文
+				调用格式：String.fromCharCode(48)==0
+				多个:String.fromCharCode()
+				length属性 字符串的长度
+				charAt(index):拿到字符串中某个index下标的值
+				
+				concat:字符串的拼接
+				toLowerCase:、字符串转小写
+				toUpperCase  字符串转大写
+
+				分割--返回数组
+				split:
+
+				//查找==返回下标.如果没有找到返回-1 start是可以忽略的,查找的起点才哪里开始
+				//start 不允许为负数，如果是相当默认值.
+				indexOf(值,startIndex)
+				lastIndexOf(值,startIndex)
+
+
+				//截取
+				substring
+				slice
+		
+
+				//替换	
+				match
+				replace
+
+				es5中的方法：
+				trim
+
+
+			number
+				isNaN
+				toFixed
+				isFinite
+			function 
+			object
+				toString
+				hasOwnProperty
+				constructor
+				valueOf
+				getPropertyOf
+			undefined
+			boolean
+
+			//内置方法就是给所有的对象直接调用的方法
+</pre>
+
+<script>
+		//javascript中的字符串
+
+		///第一个阶段：javascript基础一直要学习
+		//各种数据类型，字符串，数组，日期，数字，函数灵活使用
+		//关于字符串的特效。正则（了解）
+		//数组的特效
+		//日期：倒计时，万年历，时钟，时区等。
+		//数字：计算器,
+
+		//===javascript dom  ===jqury ajax 动画效果，网页的各种效果
+		//==html5 javascript canvas+Math函数 ，面向对象 ，音乐 ，地图定位，websocket
+		//js web === Nodejs + HTML5
+		//js css3 three.js ---3d立体的
+			//万年历和表单验证
+		//字符串常用的api
+
+		/*javascript
+			
+			string
+
+				var code = charCodeAt(index):获取字符串每个一个字符的ascii编码对应的编码值，如果是中文拿到十六进制
+				fromCharCode(code);把对应ascii码和十六进制的中文还原程序对应的值和中文
+				调用格式：String.fromCharCode(48)==0
+				多个:String.fromCharCode()
+				length属性 字符串的长度
+				charAt(index):拿到字符串中某个index下标的值
+				
+				concat:字符串的拼接
+				toLowerCase:、字符串转小写
+				toUpperCase  字符串转大写
+
+				分割--返回数组
+				split:
+
+				//查找==返回下标.如果没有找到返回-1 start是可以忽略的,查找的起点才哪里开始
+				//start 不允许为负数，如果是相当默认值.
+				indexOf(值,startIndex)
+				lastIndexOf(值,startIndex)
+
+
+				//截取
+				substring
+				slice
+		
+
+				//替换	
+				match
+				replace
+
+				es5中的方法：
+				trim
+
+
+			number
+				isNaN
+				toFixed
+				isFinite
+			function 
+			object
+				toString
+				hasOwnProperty
+				constructor
+				valueOf
+				getPropertyOf
+			undefined
+			boolean
+
+			//内置方法就是给所有的对象直接调用的方法
+		
+		*/
+
+
+		var s = 10+10+"keke";
+		console.log(s);
+		//如果你字符串中包括ascii码的编码值,就是因为字符串要编译成二进制代码
+		//如果是的数字，标点符号，特殊符号都在找到对应的ascii编码，然后转换成二进制存储在内容中
+		//如果是中文，一定找到编码库（浏览器内部）(<meta charset='UTF-8'/>),每个都对应的十六进制的编码--二进制
+		//中文占两个字节，数字和字母暂用一个字节
+		//案例1:
+		//var n = "为士大夫士大夫0211246没34，234234";
+		//字符串就是一个连续单个字符的总和
+		//ascii编码
+		//var code = n.charCodeAt(0);//十六进制 
+		//	alert(code);//---结果:20026
+		//var s = String.fromCharCode(code);//中文
+		//alert(s);//结果:为
+		//案例2：
+		//var s1="I LOVE YOU";
+		//var str = String.fromCharCode(73,32,76,111,118,101,32,89,111,117);
+		//alert(str);//I LOVE YOU
+		//案例3://字符串长度
+		//var n = "I LOVE YOU"
+		//var len = n.length;
+		//for(var i=0;i<len;i++){
+		//	console.log("具体的值"+n.charAt(i)+"==accii值"+n.charCodeAt(i)+"==="+String.fromCharCode(n.charCodeAt(i)));;
+		//}
+		/*
+		运行结果:
+		具体的值I==accii值73===I
+		具体的值 ==accii值32=== 
+		具体的值L==accii值76===L
+		具体的值O==accii值79===O
+		具体的值V==accii值86===V
+		具体的值E==accii值69===E
+		具体的值 ==accii值32=== 
+		具体的值Y==accii值89===Y
+		具体的值O==accii值79===O
+		具体的值U==accii值85===U
+		*/
+		//作业
+		//ascii---0-127的范围-
+		//表白和统计字符中数字有多少个，中文多少个，标点符号有多少，字母有多少个。
+		
+		//案例4	:拼接 大小写
+		//var s = "I";
+		//var l = "Love";
+		//var y = "You";
+		//写法1:
+		//s=s.concat(l).concat(y);
+		//log(s);//【您运行的结果是】:ILoveYou
+		//写法2:
+		//var s1 = s.concat(" ",l," ",y);
+		//log(s1);//【您运行的结果是】:I Love You
+		//写法3:
+		//s2 = s + l +y;
+		//log(s2);//【您运行的结果是】:ILoveYou
+		//log(s2.toLowerCase());//全部变小写:【您运行的结果是】:iloveyou
+		//log(s2.toUpperCase());//全部变大写:【您运行的结果是】:ILOVEYOU
+
+		//案例5: 字符串分割split
+		//var str = "i Love You too";
+		//var str2 = "张三|30#王五|15#小晨|16#小阳|16";
+		//var strs = str.split(" ");
+		//log(strs);//【您运行的结果是】:i,Love,You,too
+		//log(Array.isArray(strs));//【您运行的结果是】:true
+		//strs.push("小胡");
+		//log(strs);	//【您运行的结果是】:i,Love,You,too,小胡
+		//var strss = str2.split("#");
+		//log(strss);//【您运行的结果是】:张三,王五,小晨,小阳
+		//for(var i=0;i<strss.length;i++){
+		//	var ss = strss[i].split("|");
+		//	log(ss[0]+"==="+ss[1]);
+		//}
+		/*
+		 您运行的结果是】:张三===30
+		【您运行的结果是】:王五===15
+		【您运行的结果是】:小晨===16
+		【您运行的结果是】:小阳===16
+		*/
+		//改进1：
+		//var str3 = "张三[胡方雷]30#王五[胡方雷]15#小晨[胡方雷]16#小阳[胡方雷]16";
+		//var strss3 = str3.split("#");
+		//for(var i=0;i<strss3.length;i++){
+		//	var ss = strss3[i].split("[胡方雷]");
+		//	log(ss[0]+"==="+ss[1]);
+		//}
+		/*
+		【您运行的结果是】:张三===30
+		【您运行的结果是】:王五===15
+		【您运行的结果是】:小晨===16
+		【您运行的结果是】:小阳===16
+		*/
+		//改进2:使用json才能防止出现分割出现的问题
+
+		//案例6：查找
+		//indexOf查找元素是从左往右，找到就立马返回下标，后面都会忽略,没有找到返回-1
+		//lastIndexOf查找元素从右往左，找到立马返回下标，前面都会忽略,没有找到返回-1
+		//var str = "0123456789";
+		//log(str.indexOf("1"));//【您运行的结果是】:1
+		//var str = "11234567189";
+		//log(str.indexOf("1"));//【您运行的结果是】:0
+		//log(str.indexOf("1",2));//【您运行的结果是】:8
+		//log(str.lastIndexOf("1"));//【您运行的结果是】:8
+
+		
+		//substring(startIndex,endIndex)
+		//slice(startIndex,endIndex)
+
+			//1:slice 是返回字符串中从start到end的部分，如果start的值是一个负数的，那么开始位置等于：
+			//lenght+start，同理end如果是负数的话就是:length+end
+			 //var str ="123456789";
+			//var n1 =  str.slice(-6,-5);
+			//alert(n1);//4
+
+			//2:substring和slice基础相同，
+			//a:但是如果为start或者end为负数的时候，他们都会当做0,
+			//b:如果它们的值大于length, 则会当被视为length
+			//c:如果end小于start，他们会自动交互彼此值
+			
+			//var n2 = str.substring(6,9);//等价于str.substring(0,6)
+			//n2 = str.substring(1119,-5);
+			//alert(n2);
+
+			//3：两者substring和slice如果都是为正整数的情况下是等价的
+			//var n1 =  str.slice(1,5);
+			//var n2 = str.substring(1,5);
+			//alert(n1+="==="+n2);//2345
+		
+			//trim
+			var str = " 2 123456789 2 ";
+			console.log(str.length);//15
+			console.log(str.trim().length);//13
+
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}
+		}
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>方格背景---随机散列</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{width:1000px;height:350px;background:#111;margin:50px auto;}
+			#box ul li{background:red;border:1px solid #000;float:left;
+				background-image:url("images/1.jpg");	
+				background-repeat:no-repeat;
+				background-origin:border-box;
+				opacity:0;
+				transition:opacity 0.6s ease;
+			}
+		
+		</style>
+
+	</head>
+<body>
+	<div id="box">
+		<ul id="ullist">
+			
+		</ul>
+	</div>
+
+<script type="text/javascript" src="dom.js"></script>
+
+<script>
+	window.onload = function(){
+		//获取ul对象
+		var ulDom = dom("ullist");
+		//获取盒子对象
+		var boxDom = dom("box");
+		//格子的宽高比例
+		var bitw = 250;
+		var bith = 175;
+		//行和列
+		var rows = Math.floor(boxDom.offsetHeight / bith);
+		var cells = Math.floor(boxDom.offsetWidth / bitw);
+		var arr = [];
+		//循环添加行列
+		for(var i=0;i<rows;i++){
+			for (var j=0;j<cells;j++){
+				var liDom = document.createElement("li");
+				liDom.style.width = (bitw -2) + "px";
+				liDom.style.height = (bith -2) + "px";
+				liDom.innerHTML = j + "--" +i; 
+				liDom.style.backgroundPosition = "-"+j * (bitw - 2)+"px -"+i * (bith - 2) + "px";
+				ulDom.appendChild(liDom);
+				arr.push(liDom);
+			}
+		}
+
+		
+		var timer = null;
+		var newArr = [];
+		timer = setInterval(function(){		
+			if(arr.length == 0){
+				var ccindex = randomRange(0 , newArr.length);
+				var liDom = newArr.splice(ccindex,1)[0];
+				move(liDom,{opacity:0});			
+			}else{
+				//产生范围随机数
+				var cindex = randomRange(0 , arr.length);
+				//防止重复
+				var liDom = arr.splice(cindex,1)[0];
+				move(liDom,{opacity:100});
+				newArr.push(liDom);
+			}			
+		},1000);
+
+	}
+</script>
+</body>
+</html>

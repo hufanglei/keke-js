@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>草稿箱</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";}
+			#box{width:640px;height:100px;margin:100px auto;}
+			#content{width:100%;height:inherit;overflow:auto;outline:none;border:solid 1px #ccc;
+				font-family:inherit;
+				padding:10px;
+			}
+		</style>
+
+	</head>
+<body>
+	<div id="box">
+		<!--style="ime-mode:disabled" 禁止输入法-->
+		<!--onpaste="return false;"  禁止粘贴-->
+		<!--ondragenter="return false" 禁止右键-->
+		<textarea id="content" autofocus="autofocus" onpaste="return false;" ondragenter="enter false"  oncontextmenu="return false;" ></textarea>
+	   <input type="button" value="发布" id="send"/>
+	</div>
+	
+	
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	window.onload = function(){
+		//草稿箱
+		//keydown 按下 keypress输入中 kepup抬起--可编辑的元素(form元素)和document
+		//中文，数字，字母，或输入法的时候就onkeydown
+		dom("content").onkeydown = function(){
+			var value = this.value;
+			//alert(value);
+		}
+		//onkeypress 是键盘按住不松开的时候 字母，数字，输入法的不支持
+		dom("content").onkeypress = function(){
+			console.log("==========>onkeypress");
+		}
+		dom("content").onkeyup = function(){
+			var value = this.value;
+			setCache("content",value,"111");
+		}
+		dom("send").onclick = function(){
+			/*$.ajax({
+				...
+				success:function(){
+					if(window.localStorage){
+						localStorage.removeItem("KK_CONTENT");
+					}
+				}
+			});*/
+			alert("发布成功");
+			dom("content").value = "";			
+			dom("content").focus();
+			removeCache("content","111");
+		}
+		if(window.localStorage){
+			var message = getCache("content","111");;
+			if(message){
+				dom("content").value = message;
+			}
+		}
+		
+	}
+	//封装
+	//用法:输入第3个参数:如果是false或者不输入就进入localStorage
+	//如果是其他的就进入sessionStorage
+	function setCache(key,value,false,"d1"){
+		var args = arguments;
+		if(window.localStorage){			
+			var mark = args[2]?true:args[2];
+			var storage = mark?sessionStorage : localStorage;
+			storage.setItem("KK_"+key,value);
+		}else{
+			var period = args[3]?true:args[3];
+			tzCookie.setCookie("KK_"+key,value,period);
+		}
+	}
+	function getCache(key){
+		if(window.localStorage){
+			var args = arguments;
+			var mark = args[1]?true:args[1];
+			var storage = mark?sessionStorage : localStorage;
+			return storage.getItem("KK_"+key);
+		}else{
+			return  tzCookie.getCookie("KK_"+key);
+		}
+	}
+	function removeCache(key){
+		if(window.localStorage){
+			var args = arguments;
+			var mark = args[1]?true:args[1];
+			var storage = mark?sessionStorage : localStorage;
+			return storage.removeItem("KK_"+key);
+		}else{
+			tzCookie.delCookie("KK_"+key);
+		}
+	}
+
+	//设置cookie添加，修改，删除
+	var tzCookie = {
+		setCookie : function(name, value,time,option){
+			var str=name+'='+escape(value); 
+			var date = new Date();
+			date.setTime(date.getTime()+this.getCookieTime(time)); 
+			str += "; expires=" + date.toGMTString();
+			if(option){ 
+				if(option.path) str+='; path='+option.path; 
+				if(option.domain) str+='; domain='+option.domain; 
+				if(option.secure) str+='; true'; 
+			} 
+			document.cookie=str; 
+		},
+		getCookie : function(name){
+			var arr = document.cookie.split('; '); 
+			if(arr.length==0) return ''; 
+			for(var i=0; i <arr.length; i++){ 
+				tmp = arr[i].split('='); 
+				if(tmp[0]==name) return unescape(tmp[1]); 
+			} 
+			return ''; 
+		},
+		delCookie : function(name){
+			tzCookie.setCookie(name,'',-1); 
+			var date=new Date();
+			date.setTime(date.getTime()-10000);
+			document.cookie=name+"=; expires="+date.toGMTString()+"; path=/";
+		},
+		
+		getCookieTime : function(time){
+		   if(time<=0)return time;
+		   var str1=time.substring(1,time.length)*1;
+		   var str2=time.substring(0,1);
+		   if (str2=="s"){
+				return str1*1000;
+		   }
+		   else if (str2=="m"){
+			   return str1*60*1000;
+		   }
+		   else if (str2=="h"){
+			   return str1*60*60*1000;
+		   }
+		   else if (str2=="d"){
+			   return str1*24*60*60*1000;
+		   }
+		}
+	};
+
+	function setCookie(){
+		var value = dom("username").value;	
+		var date = new Date();
+		date.setDate(date.getDate()+10);//设置cookie的过期时间 expries
+		document.cookie ="username="+value+";expires="+date.toGMTString()+";path=/"; 	
+		
+	}
+
+	function getCookie(){
+		alert(document.cookie);
+	}
+	
+</script>
+</body>
+</html>

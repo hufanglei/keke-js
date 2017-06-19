@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>this的用法</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+			.div{border-bottom:1px solid #ccc;padding:2px}
+
+			#box2  div,#box div{width:100px;height:100px;background:#ccc;color:#111;line-height:100px;text-align:center;margin:10px auto;font-size:36px;cursor:pointer;border:0}
+
+
+		</style>
+
+	</head>
+<body>
+<h1>this关键字的用法</h1>
+<div>用法1:对象中引用自己，防止大范围修改代码</div>
+<pre>
+var keke = {
+	username:"keke",
+	age:30,
+	sayHello:function(){
+		console.log(this.username+"==="+this.age);
+	},
+	goSleep:function(){
+		console.log(this.username+"====要去睡觉了");
+	},
+	goEat:function(){
+		console.log(this.username+"====要去吃饭了");
+	},
+	goEat2:function(){
+		console.log(this.username+"====要去吃饭了");
+	},
+	goEat3:function(){
+		console.log(this.username+"====要去吃饭了");
+	},
+	goEat4:function(){
+		console.log(this.username+"====要去吃饭了");
+	},
+	goEat5:function(){
+		console.log(this.username+"====要去吃饭了");
+	},
+	goEat6:function(){
+		console.log(this.username+"====要去吃饭了");
+	},
+	goEat7:function(){
+		console.log(this.username+"====要去吃饭了");
+	}
+}
+keke.sayHello();
+//突然对象名改了不叫keke了，叫jsonkeke了，用keke.username就惨了，所以this就可解决此问题了
+</pre>
+<div>用法2:封装组件化(防止代码被全局变量污染)</div>
+<pre>
+var tzDialog = {
+	username:"keke",
+	init:function(){
+		this.template();
+	},
+	template:function(){
+		this.event();
+	},
+	event:function(){
+		console.log(this.username);
+	},
+	confirm:function(){
+	}
+}
+tzDialog.say();//keke(不使用this的话，可能引用外部的方法)
+</pre>
+<div>用法3：dom中经常使用</div>
+<pre>写法1：</pre>
+<pre>
+//页面代码:
+&lt;div id="box"&gt;
+&lt;div id="f1" &gt;111&lt;/div&gt;
+&lt;div id="f2" &gt;222&lt;/div&gt;
+&lt;div id="f3" &gt;333&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<pre>
+//js代码
+window.onload = function(){
+	var boxDom = document.getElementById("box");
+	var childrens= boxDom.children;
+	var len = childrens.length;
+	for(var i=0;i&lt;len;i++){
+		childrens[i].onclick = function(){
+			alert(this.innerHTML);
+		}
+	}
+}
+</pre>
+<pre>效果如下:</pre>
+<div id="box">
+<div id="f1" >111</div>
+<div id="f2" >222</div>
+<div id="f3" >333</div>
+</div>
+<pre>写法2:</pre>
+<pre>
+//页面
+&lt;div id="box2"&gt;
+&lt;div id="f4" onclick="clickme(this)"&gt;111&lt;/div&gt;
+&lt;div id="f5" onclick="clickme(this)"&gt;222&lt;/div&gt;
+&lt;div id="f6" onclick="clickme(this)"&gt;333&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<pre>
+//js
+function clickme(obj){
+	alert(obj.innerHTML);
+}
+</pre>
+<pre>效果如下:</pre>
+<div id="box2">
+<div id="f1" onclick="clickme(this)">我我</div>
+<div id="f2" onclick="clickme(this)">爱爱</div>
+<div id="f3" onclick="clickme(this)">您你</div>
+</div>
+</div>
+<script>
+	//this用法2:在dom中的体现
+	/*window.onload = function(){
+		var fDom = document.getElementById("f1");
+		fDom.onclick = function(){
+			console.log(this.innerHTML);
+		}
+	}*/
+	window.onload = function(){
+		var boxDom = document.getElementById("box");
+		var childrens= boxDom.children;
+		var len = childrens.length;
+		for(var i=0;i<len;i++){
+			childrens[i].onclick = function(){
+				alert(this.innerHTML);
+			}
+		}
+	}
+	//写法2：
+	function clickme(obj){
+		alert(obj.innerHTML+"==="+obj.id);
+	}
+
+	//this===当前对象
+	var keke = {
+		username:"keke",
+		age:30,
+		sayHello:function(){
+			console.log(this.username+"==="+this.age);
+		},
+		goSleep:function(){
+			console.log(this.username+"====要去睡觉了");
+		},
+		goEat:function(){
+			console.log(this.username+"====要去吃饭了");
+		},
+		goEat2:function(){
+			console.log(this.username+"====要去吃饭了");
+		},
+		goEat3:function(){
+			console.log(this.username+"====要去吃饭了");
+		},
+		goEat4:function(){
+			console.log(this.username+"====要去吃饭了");
+		},
+		goEat5:function(){
+			console.log(this.username+"====要去吃饭了");
+		},
+		goEat6:function(){
+			console.log(this.username+"====要去吃饭了");
+		},
+		goEat7:function(){
+			console.log(this.username+"====要去吃饭了");
+		}
+
+	}
+	keke.sayHello();
+	//突然对象名改了不叫keke了，叫jsonkeke了，就惨了，所以this就可解决此问题了
+	//封装组件
+	var tzDialog = {
+		username:"keke",
+		init:function(){
+			this.template();
+		},
+		template:function(){
+			this.event();
+		},
+		event:function(){
+			console.log(this.username);
+		},
+		confirm:function(){
+		}
+	}
+
+	tzDialog.say();//keke
+</script>
+</body>
+</html>

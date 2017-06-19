@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>案例:元素的移动</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff;padding:100px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 10px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			.key{padding:10px;}
+			.red{color:red}
+			.div{line-height:50px;background:red;color:#fff;height:50px;margin-top:5px;}
+			#box2{width:640px;height:300px;background:#111;margin:10px auto;}
+		</style>
+
+	</head>
+<body>
+	<div id="box">
+		<div class="div">111111</div>
+		<div class="div">222222</div>
+		<div class="div">333333</div>
+	</div>
+	<div id="box2"></div>
+	<div id="divb">怒放的生命</div>
+	<a href="javascript:void(0)" id="translate">将box整体移动到</a>
+	<div class="key">
+		<h1>知识点</h1>
+		<h3>案例:元素的移动</h3>
+		<h4>innerHTML方式，追加文本和样式，不会追加事件</h4>
+		<pre>
+		$("box2").innerHTML = $("box").innerHTML;
+		</pre>
+		<h4>appendChild方式，追加文本和样式，也会追加事件</h4>
+		<pre>
+		$("box2").appendChild($("box"));
+		</pre>
+	</div>
+	<script>		
+		function $(id){
+			return document.getElementById(id);
+		}
+	
+		window.onload = function(){
+			var doms = $("box").children;
+			/*var domsArr = [].slice.call(doms);
+			domsArr.forEach(function(spanDom){
+				spanDom.onclick = function(){
+					alert(this.innerHTML);	
+				}
+			});*/
+			var len = doms.length;
+			for(var i=0;i<len;i++){
+				doms[i].onclick =  function(){
+					alert(this.innerHTML);
+				}
+			}
+
+			$("translate").onclick = function(){
+				//第一种做法
+				//$("box2").innerHTML = $("box").innerHTML;
+				$("box2").appendChild($("box"));
+			}
+		}
+
+			
+			
+		
+	
+	</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>面向对象的原型链</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			a{color:#fff;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+
+		</style>
+
+	</head>
+<body>
+<h1>原型链</h1>
+<ul>
+<li>对象:(为了扩展属性和方法而生)</li>
+<li>原型:每一个对象的基类</li>
+<li>自己的理解:prototype相对于其他普通对象直接扩展的区别：全局修改，子类全部可继承</li>
+</ul><br/>
+
+<div>1：理解对象:为了扩展属性和方法</div>
+<pre>
+//js代码:
+//在js中只要是对象就可以动态增加属性和方法
+var boxDom = document.getElementById("box");
+boxDom.name = "keke";
+console.log(boxDom.name);//运行结果:keke
+</pre><br/>
+
+<div>2:理解:prototype</div>
+<div>最后打个比喻，虽然不是很确切，但可能对原型的理解有些帮助。</div>
+<img src="images/1.jpg">
+<div> 父亲（函数对象），先生了一个大儿子（prototype），也就是你大哥，父亲给你大哥买了好多的玩具，当你出生的时候，你们之间的亲情纽带（__proto__）会让你自然而然的拥有了你大哥的玩具。<br/>同样，你也先生个大儿子，又给他买了好多的玩具，当你再生儿子的时候，你的小儿子会自然拥有你大儿子的所有玩具。至于他们会不会打架，这不是我们的事了。<br/>
+所以说，你是从你大哥那继承的，印证了那句“长兄如父”啊！
+</div>
+<br/>
+<div>有助于理解prototype的2篇文章</div>
+<p><a href="http://www.jb51.net/article/40964.htm" target="_blank">文章1</a></p>
+<p><a href="http://www.108js.com/article/article1/10201.html?id=1092" target="_blank">文章2</a></p>
+</br/>
+<pre>
+//案例:
+//小球对象
+function Ball(){//此处Ball相当于一个函数对象，命名一定大写
+	this.x = 0;   //作为类的方法，必须用this，这样便于继承和扩展，如果是va x =0;是私有变量，如果是Ball.x=0是静态变量，均不能继承
+	this.y = 0;
+	this.radius = 10;
+	this.color = "red";
+};
+//Ball.prototype.继承Object.prototype
+Ball.prototype.draw = function(){//推荐，必须这样写
+	//alert(this.x +"==="+ this.y);
+}
+//config改为false就不能迭代了
+Ball.prototype = {  //这种写法很危险，因为这样写，相当于prototype重新定义，里面的参数会消失
+	constuctor:Ball,
+	name = "keke"，
+	draw:function(){
+		alert();
+	}
+};
+
+var ball = new Ball();//对象创建的时候，他拥有一个prototype对象-->Ball.protptype
+var ball2 = new Ball();
+ball.x =100;
+ball.draw();
+ball2.x =10000;
+ball2.draw();
+
+alert(ball.constructor == Ball);
+</pre>
+
+
+
+
+
+
+
+<script>
+	//prototype--内置方法。sring，number
+	//prototype 原型对象 
+	//原型:每一个对象的基类
+	//对象:(扩展属性和方法)
+
+	//它是围绕类去创建一个基类，每一个对象中都会在创建的时候
+	//都拥有一个prototype的引用
+	//你可以prototype（原型对象）
+
+	//小球对象
+	function Ball(){
+		this.x = 0;
+		this.y = 0;
+		this.radius = 10;
+		this.color = "red";
+	};
+	//Ball.prototype.继承Object.prototype
+	Ball.prototype.draw = function(){
+		//alert(this.x +"==="+ this.y);
+	}
+	//config改为false就不能迭代了
+	Ball.prototype = {
+		constuctor:Ball,
+		name = "keke"，
+		draw:function(){
+			alert();
+		}
+	};
+
+	var ball = new Ball();//对象创建的时候，他拥有一个prototype对象-->Ball.protptype
+	var ball2 = new Ball();
+	ball.x =100;
+	ball.draw();
+	ball2.x =10000;
+	ball2.draw();
+
+	alert(ball.constructor == Ball);
+
+	//对象，和数组 就已经在内存中存在了
+</script>
+</body>
+</html>

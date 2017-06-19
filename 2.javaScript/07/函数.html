@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>让内部函数能点</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+
+			}
+
+		</style>
+
+	</head>
+<body>
+<div>1.函数如何返回对象</div>
+<pre>
+function F(){
+	var a = 100;
+	function text(){
+		alert(1);		
+	}
+	//以对象的方式返回就可点了
+	return {a:a,text:text}
+}
+F().text();//结果:1
+alert(F().a);//结果：打印100
+</pre>
+<div>2.即时函数：只执行一次，独立的生命周期，不会外界干扰，也不能被外界访问：即时函数的函数和变量:<br/>   解决全局变量函数名聪明冲突的问题</div>
+<pre>
+var tzTable =(function(){
+		function Tab(){
+			function init(){			
+			}
+			function template(){
+			}
+			alert(1);
+		};
+		return {
+			tab:Tab
+		}
+})();
+tzTable.tab();//结果:打印1
+</pre>
+<div>3.闭包:就是突破函数作用域的问题;就是将一个函数中的局部变量，能够返回给外界去访问</div>
+<pre>作用域的延续案例:
+function test(){
+		var a = 100;
+		return a;
+	}
+test();
+</pre>
+<pre>
+闭包案例1：
+var a = "全局变量";
+	var f = function(){
+		var b = "局部变量";
+		var c = function(){
+			var d = "内部变量";
+			return b;
+		}
+		return c;
+	}	
+alert(f()());//f()执行函数，并返回一个funtion数据类型；并且在执行 //结果:打印:局部变量
+</pre>
+<pre>
+案例2：自己封装的query:
+function $(id){
+		var dom = document.getElementById(id);
+		var json ={
+			html:function(content){
+				dom.innerHTML = content;
+				return this;
+			},
+			css:function(key ,value){
+				dom.style[key] = value;
+				return this;
+			}
+		};
+		return json;
+}
+$("box").html("<b>jjerjjej</b>").css("border","1px solid red")
+.css("background","green").css("width","80%");
+//结果见下面
+</pre>
+<div id="box"></div>
+<script>
+	function F(){
+		var a = 100;
+		function text(){
+			alert(1);		
+		}
+		//以对象的方式返回就可点了
+		return {a:a,text:text}
+	}
+	//F().text();
+	//alert(F().a);
+	//2.即时函数
+	var tzTable =(function(){
+		function Tab(){
+			function init(){			
+			}
+			function template(){
+			}
+			alert(1);
+		};
+		return {
+			tab:Tab
+		}
+	})();
+	//tzTable.tab();//结果:打印1
+	//3.闭包:就是突破函数作用域的问题;就是将一个函数中的局部变量，能够返回给外界去访问
+	function test(){
+		var a = 100;
+		return a;
+	}
+	test();
+
+	var a = "全局变量";
+	var f = function(){
+		var b = "局部变量";
+		var c = function(){
+			var d = "内部变量";
+			return b;
+		}
+		return c;
+	}
+	//得到访问b
+	f()();
+
+
+	//4.案例2：
+	//$("#id").html().css();
+	function $(id){
+		var dom = document.getElementById(id);
+		var json ={
+			html:function(content){
+				dom.innerHTML = content;
+				return this;
+			},
+			css:function(key ,value){
+				dom.style[key] = value;
+				return this;
+			}
+		};
+		return json;
+	}
+	$("box").html("<b>jjerjjej</b>").css("border","1px solid red")
+	.css("background","green").css("width","80%");
+
+
+</script>
+</body>
+</html>

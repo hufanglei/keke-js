@@ -1,0 +1,463 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>胡方雷</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:12px;font-family:"微软雅黑";background:#333;}
+			a{text-decoration:none;color:#fff;}
+			
+			/*切换小按钮 start*/
+			.expend{height:50px;width:50px;background:rgba(173,222,77,0.34);line-height:50px;text-align:center;
+				position:fixed;top:90px;left:230px;border-radius:50%;z-index:3;font-size:25px;}
+			/*切换小按钮 end*/
+			
+			/*header start*/
+			.header{width:100%;background:linear-gradient(#444,#111);color:#FFF;}
+			.header h2{font-size:20px;height:50px;line-height:50px;text-align:center;}
+			.header p{font-size:16px;height:30px;line-height:10px;text-align:center;}
+			/*header end*/
+
+			/*slide start*/
+			.slide{width:220px;height:100%;background:#333;position:absolute;top:80px;left:0;color:#fff;}
+			.slide h3{height:36px;line-height:36px;font-size:14px;border-bottom:1px solid #ccc;padding:0 10px;}
+			.slide dl{padding:3px 10px;background:#111;border-bottom:1px solid #333;display:none;}
+			.slide dl a{display:block;}
+			.slide dl dt{font-size:14px;margin-bottom:5px;}			
+			.slide dl dd{font-size:12px;border-bottom:1px solid #111;background:#333;padding:5px 5px;display:none;}	
+			.slide dl dd  a:after{content:">";float:right;}
+			.slide dl dd:hover{background:#fff;}
+			.slide dl dd:hover a{color:#333;}
+			/*slide end*/
+			
+			/*content start*/
+			.content{width:100%;height:100%;position:absolute;top:80px;left:220px;background:#999;}
+			.content iframe{position:absolute;top:0;left:0;height:100%;width:100%;} 
+			/*content end*/
+		</style>
+
+	</head>
+<body>
+
+	<a href="javascript:void(0)" class="expend">x</a>
+	<!--header start-->
+	<div class="header">
+		<h2>怒放de生命</h2>
+		<p>-------案例、知识点、项目实战</p>
+	</div>
+	<!--header end-->
+
+	<!--slide start-->
+	<div class="slide">
+		<div class="tab">
+			<h3><i class="fa fa-file"></i>&nbsp;工具篇</h3>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title" ><i class="fa fa-plus-circle">&nbsp;&nbsp;第一课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="0.tools/01/sublime复制多行.html"><i class="fa fa-hand-o-left"></i>&nbsp;sublime复制多行</a></dd>				
+			</dl>
+		</div>
+		<div class="tab">
+			<h3><i class="fa fa-file"></i>&nbsp;div+css篇</h3>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title" ><i class="fa fa-plus-circle">&nbsp;&nbsp;第一课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/01/自定义按钮.html"><i class="fa fa-hand-o-left"></i>&nbsp;自定义按钮</a></dd>
+				<dd><a href="javascript:void(0)"   onclick="showexam(this)" data-src="1.div+css/01/css属性的继承.html"><i class="fa fa-hand-o-left"></i>&nbsp;css属性的继承</a></dd>
+				<dd><a href="javascript:void(0)"   onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第三课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="index.html"><i class="fa fa-hand-o-left"></i>&nbsp;关于浮动的知识点总结和案例</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第四课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/04/月亮.html"><i class="fa fa-hand-o-left"></i>&nbsp;定位--月亮案列</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/04/花朵.html"><i class="fa fa-hand-o-left"></i>&nbsp;定位--花朵案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/04/九宫格.html"><i class="fa fa-hand-o-left"></i>&nbsp;定位--九宫格案列</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/04/小米盒子边框.html"><i class="fa fa-hand-o-left"></i>&nbsp;伪类--小米盒子边框</a></dd>
+			</dl>	
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第五课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/baidu首页.html"><i class="fa fa-hand-o-left"></i>&nbsp;百度首页案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/hover显隐案例.html"><i class="fa fa-hand-o-left"></i>&nbsp;小米hover显隐案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/居中对齐--登录.html"><i class="fa fa-hand-o-left"></i>&nbsp;居中对齐--登录</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/小米首页布局.html"><i class="fa fa-hand-o-left"></i>&nbsp;小米首页布局</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/小米首页.html"><i class="fa fa-hand-o-left"></i>&nbsp;小米首页案例</a></dd>
+			</dl>	
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第六课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/baidu首页.html"><i class="fa fa-hand-o-left"></i>&nbsp;百度首页案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/hover显隐案例.html"><i class="fa fa-hand-o-left"></i>&nbsp;小米hover显隐案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/居中对齐--登录.html"><i class="fa fa-hand-o-left"></i>&nbsp;居中对齐--登录</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/小米首页布局.html"><i class="fa fa-hand-o-left"></i>&nbsp;小米首页布局</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/05/小米首页.html"><i class="fa fa-hand-o-left"></i>&nbsp;小米首页案例</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第七课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="1.div+css/07/jingdong/myindex.html"><i class="fa fa-hand-o-left"></i>&nbsp;京东首页案例</a></dd>				
+			</dl>
+		</div>
+		<div class="tab">
+			<h3><i class="fa fa-file"></i>&nbsp;JavaScript篇</h3>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title" ><i class="fa fa-plus-circle">&nbsp;&nbsp;第一课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/01/颜色rgb转16进制.html"><i class="fa fa-hand-o-left"></i>&nbsp;rgba颜色转16进制</a></dd>
+				<dd><a href="javascript:void(0)"   onclick="showexam(this)" data-src="2.javaScript/01/随机产生16进制颜色.html"><i class="fa fa-hand-o-left"></i>&nbsp;随机产生16进制颜色</a></dd>
+				<dd><a href="javascript:void(0)"   onclick="showexam(this)" data-src="2.javaScript/01/指数.html"><i class="fa fa-hand-o-left"></i>&nbsp;数字类型之指数</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/01/简易计算器.html"><i class="fa fa-hand-o-left"></i>&nbsp;简易计算器</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/01/8进制转10进制.html"><i class="fa fa-hand-o-left"></i>&nbsp;8进制转10进制</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/01/ifelse.html"><i class="fa fa-hand-o-left"></i>&nbsp;使用ifelse判断年龄</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/01/去px和四舍五入.html"><i class="fa fa-hand-o-left"></i>&nbsp;去px和四舍五入</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/02/回到顶部.html"><i class="fa fa-hand-o-left"></i>&nbsp;回到顶部</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/02/null和undefied.html"><i class="fa fa-hand-o-left"></i>&nbsp;null和undefied</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/02/字符串.html"><i class="fa fa-hand-o-left"></i>&nbsp;字符串</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/02/日期.html"><i class="fa fa-hand-o-left"></i>&nbsp;日期</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/02/数据类型之转义字符.html"><i class="fa fa-hand-o-left"></i>&nbsp;数据类型之转义字符</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/02/falsy和Truthly.html"><i class="fa fa-hand-o-left"></i>&nbsp;falsy和Truthly</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/02/换肤.html"><i class="fa fa-hand-o-left"></i>&nbsp;根据时间切换皮肤</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/02/根据时间换背景色.html"><i class="fa fa-hand-o-left"></i>&nbsp;根据时间换背景色</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/02/作业+随机6位数.html"><i class="fa fa-hand-o-left"></i>&nbsp;作业+随机6位数</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第三课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/03/数组.html"><i class="fa fa-hand-o-left"></i>&nbsp;数组基础知识</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/03/数组案例(选择爱好).html"><i class="fa fa-hand-o-left"></i>&nbsp;数组案例(选择爱好)</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/03/数组+字符串案例.html"><i class="fa fa-hand-o-left"></i>&nbsp;数组+字符串案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/03/单个球.html"><i class="fa fa-hand-o-left"></i>&nbsp;一个球案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/03/ball.html"><i class="fa fa-hand-o-left"></i>&nbsp;多个球球案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/03/99.html"><i class="fa fa-hand-o-left"></i>&nbsp;99乘法表</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/03/99表格.html"><i class="fa fa-hand-o-left"></i>&nbsp;99乘法表格</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/03/text.html"><i class="fa fa-hand-o-left"></i>&nbsp;99乘法表格2</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第四课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/04/倒计时.html"><i class="fa fa-hand-o-left"></i>&nbsp;倒计时</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/04/自定义滚动条.html"><i class="fa fa-hand-o-left"></i>&nbsp;自定义滚动条</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/04/function.html"><i class="fa fa-hand-o-left"></i>&nbsp;闭包和函数的理解</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/04/数组+prototype初识.html"><i class="fa fa-hand-o-left"></i>&nbsp;数组+prototype初识</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/04/回调函数.html"><i class="fa fa-hand-o-left"></i>&nbsp;回调函数</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/04/this-apply-call.html"><i class="fa fa-hand-o-left"></i>&nbsp;this-apply-call</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/04/画布弹动小球.html"><i class="fa fa-hand-o-left"></i>&nbsp;画布弹动小球</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/04/数据类型判断+原型链使用.html"><i class="fa fa-hand-o-left"></i>&nbsp;数据类型判断+原型链使用</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第五课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/05/数组排序案例.html"><i class="fa fa-hand-o-left"></i>&nbsp;数组排序案例</a></dd>				
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第六课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/06/jquery的text()用法.html"><i class="fa fa-hand-o-left"></i>&nbsp;jquery的text()用法.html</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/06/jquery的find用法.html"><i class="fa fa-hand-o-left"></i>&nbsp;jquery的find()用法</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/06/jquery的on()用法.html"><i class="fa fa-hand-o-left"></i>&nbsp;jquery的on()用法</a></dd>					
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/06/数字滑动效果.html"><i class="fa fa-hand-o-left"></i>&nbsp;数字滑动效果</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/06/购物车.html"><i class="fa fa-hand-o-left"></i>&nbsp;购物车案例</a></dd>	
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第七课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/07/函数.html"><i class="fa fa-hand-o-left"></i>&nbsp;函数</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/07/回调函数.html"><i class="fa fa-hand-o-left"></i>&nbsp;回调函数</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/07/拖拽.html"><i class="fa fa-hand-o-left"></i>&nbsp;拖拽</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/07/选中：js写法.html"><i class="fa fa-hand-o-left"></i>&nbsp;选中：js写法</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/07/选中：jquery写法.html"><i class="fa fa-hand-o-left"></i>&nbsp;选中：jquery写法</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第八课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/08/对象.html"><i class="fa fa-hand-o-left"></i>&nbsp;对象</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/08/对象(json)和字符串转换.html"><i class="fa fa-hand-o-left"></i>&nbsp;对象(json)和字符串转换</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/08/对象应用3步曲.html"><i class="fa fa-hand-o-left"></i>&nbsp;对象应用3步曲</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/08/对象解析高级进阶.html"><i class="fa fa-hand-o-left"></i>&nbsp;对象解析高级进阶</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/08/时间.html"><i class="fa fa-hand-o-left"></i>&nbsp;时间</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/08/倒计时.html"><i class="fa fa-hand-o-left"></i>&nbsp;倒计时</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第九课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/09/汉字转拼音案例.html"><i class="fa fa-hand-o-left"></i>&nbsp;汉字转拼音案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/09/评论功能防js注入案例.html"><i class="fa fa-hand-o-left"></i>&nbsp;评论防注入(特殊字符处理)</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/10/面向对象.html"><i class="fa fa-hand-o-left"></i>&nbsp;面向对象</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/10/私有函数作用域.html"><i class="fa fa-hand-o-left"></i>&nbsp;私有函数作用域</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/10/this.html"><i class="fa fa-hand-o-left"></i>&nbsp;this关键字的用法</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/10/call.html"><i class="fa fa-hand-o-left"></i>&nbsp;call关键字的用法</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/10/音乐.html"><i class="fa fa-hand-o-left"></i>&nbsp;组件封装:音乐播放器</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十一课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/11/变量的作用域.html"><i class="fa fa-hand-o-left"></i>&nbsp;变量的作用域</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/11/定时器setTimeout.html"><i class="fa fa-hand-o-left"></i>&nbsp;定时器setTimeout</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/11/定时器setInterval.html"><i class="fa fa-hand-o-left"></i>&nbsp;定时器setInterval</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/11/数学函数.html"><i class="fa fa-hand-o-left"></i>&nbsp;数学函数</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/11/随机数案例.html"><i class="fa fa-hand-o-left"></i>&nbsp;随机数案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/11/随机数正余弦案例圆周运动.html"><i class="fa fa-hand-o-left"></i>&nbsp;随机数正余弦案例圆周运动</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/11/圆周运动.html"><i class="fa fa-hand-o-left"></i>&nbsp;圆周运动</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十二课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/12/面向对象的原型链.html"><i class="fa fa-hand-o-left"></i>&nbsp;面向对象的原型链</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/12/原始对象属性.html"><i class="fa fa-hand-o-left"></i>&nbsp;原始对象属性</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/12/画布初识.html"><i class="fa fa-hand-o-left"></i>&nbsp;画布初识</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/12/画布(跳动的小球).html"><i class="fa fa-hand-o-left"></i>&nbsp;画布(跳动的小球)</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十三课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/13/css3和省略号.html"><i class="fa fa-hand-o-left"></i>&nbsp;css3和省略号</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/13/css3伪类.html"><i class="fa fa-hand-o-left"></i>&nbsp;css3伪类</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十四课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/14/js中的继承.html"><i class="fa fa-hand-o-left"></i>&nbsp;js中的继承</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/14/混入.html"><i class="fa fa-hand-o-left"></i>&nbsp;混入</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/14/案例(限时抢购).html"><i class="fa fa-hand-o-left"></i>&nbsp;案例(限时抢购)</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十五课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/15/font.html"><i class="fa fa-hand-o-left"></i>&nbsp;在线iconfont图标</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/15/字符串.html"><i class="fa fa-hand-o-left"></i>&nbsp;字符串</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/15/字符串案例.html"><i class="fa fa-hand-o-left"></i>&nbsp;字符串案例</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/15/统计字符串的字数中文符号字母.html"><i class="fa fa-hand-o-left"></i>&nbsp;统计字符串中文符号字母</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十六课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/16/字符串.html"><i class="fa fa-hand-o-left"></i>&nbsp;字符串复习</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/16/字符串特效.html"><i class="fa fa-hand-o-left"></i>&nbsp;打印文字</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/16/表单验证.html"><i class="fa fa-hand-o-left"></i>&nbsp;表单验证</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十七课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/17/call -知识点.html"><i class="fa fa-hand-o-left"></i>&nbsp;call -知识点复习</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/17/call-dialog.html"><i class="fa fa-hand-o-left"></i>&nbsp;call-dialog</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/17/dom的node和element.html"><i class="fa fa-hand-o-left"></i>&nbsp;dom的node和element</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/17/innerText,textContent,outterHTML.html"><i class="fa fa-hand-o-left"></i>&nbsp;innerText,textContent..</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十八课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/18/面向对象的复习.html"><i class="fa fa-hand-o-left"></i>&nbsp;面向对象的复习</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/18/dom.html"><i class="fa fa-hand-o-left"></i>&nbsp;Node的了解和简单封装</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/18/dom的常用的操作封装.html"><i class="fa fa-hand-o-left"></i>&nbsp;dom的常用的操作封装</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/18/选项卡--js定位版本.html"><i class="fa fa-hand-o-left"></i>&nbsp;选项卡--js定位版本</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/18/选项卡--js索引版本.html"><i class="fa fa-hand-o-left"></i>&nbsp;选项卡--js索引版本</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/18/选项卡--jqury版本.html"><i class="fa fa-hand-o-left"></i>&nbsp;选项卡--jqury版本</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第十九课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/19/导航栏下拉菜单.html"><i class="fa fa-hand-o-left"></i>&nbsp;导航栏下拉菜单</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/19/iconfont在线图标.html"><i class="fa fa-hand-o-left"></i>&nbsp;iconfont在线图标</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/19/置顶.html"><i class="fa fa-hand-o-left"></i>&nbsp;置顶</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/19/图像缩放.html"><i class="fa fa-hand-o-left"></i>&nbsp;图像缩放</a></dd>
+				
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/20/innerHTML 和creatElement的区别.html"><i class="fa fa-hand-o-left"></i>&nbsp;innerHTML/creatElement</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/20/元素的增删改.html"><i class="fa fa-hand-o-left"></i>&nbsp;元素的增删改</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/20/案例元素的移动.html"><i class="fa fa-hand-o-left"></i>&nbsp;案例元素的移动</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/20/元素的追加.html"><i class="fa fa-hand-o-left"></i>&nbsp;元素的追加</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/20/insertAdjacentHTML.html"><i class="fa fa-hand-o-left"></i>&nbsp;insertAdjacentHTML</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/20/textarea中的数字递减.html"><i class="fa fa-hand-o-left"></i>&nbsp;textarea中的数字递减</a></dd>					
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十一课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/21/dom对象的获取.html"><i class="fa fa-hand-o-left"></i>&nbsp;dom对象的获取</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/21/dom对象的深入理解和探讨.html"><i class="fa fa-hand-o-left"></i>&nbsp;dom对象的深入理解</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/21/方法镜01.html"><i class="fa fa-hand-o-left"></i>&nbsp;方法镜01</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/21/方法镜02.html"><i class="fa fa-hand-o-left"></i>&nbsp;方法镜02</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/21/方法镜1.html"><i class="fa fa-hand-o-left"></i>&nbsp;方法镜1</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十二课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/元素属性的增删改.html"><i class="fa fa-hand-o-left"></i>&nbsp;元素属性的增删改</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/获取样式的值.html"><i class="fa fa-hand-o-left"></i>&nbsp;获取样式的值</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/动画.html"><i class="fa fa-hand-o-left"></i>&nbsp;动画</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/qq客服动画.html"><i class="fa fa-hand-o-left"></i>&nbsp;qq客服动画</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/qq客服动画2.html"><i class="fa fa-hand-o-left"></i>&nbsp;qq客服动画2</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/qq客服动画3.html"><i class="fa fa-hand-o-left"></i>&nbsp;qq客服动画3</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/qq客服动画4.html"><i class="fa fa-hand-o-left"></i>&nbsp;qq客服动画4</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/js动画终极代码.html"><i class="fa fa-hand-o-left"></i>&nbsp;js动画终极代码</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/最简单的轮播海报.html"><i class="fa fa-hand-o-left"></i>&nbsp;最简单的轮播海报</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/22/淡入淡出轮播海报.html"><i class="fa fa-hand-o-left"></i>&nbsp;淡入淡出轮播海报</a></dd>	
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十三课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/1元素向量.html"><i class="fa fa-hand-o-left"></i>&nbsp;1元素向量</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/2dom向量和获取.html"><i class="fa fa-hand-o-left"></i>&nbsp;2dom向量和获取</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/3scrollHeight和scrollWidth.html"><i class="fa fa-hand-o-left"></i>&nbsp;3scrollHeight和scrollWidth</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/4添加删除样式.html"><i class="fa fa-hand-o-left"></i>&nbsp;4添加删除样式</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/5元素的拖拽.html"><i class="fa fa-hand-o-left"></i>&nbsp;5元素的拖拽</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/6多个元素的拖拽.html"><i class="fa fa-hand-o-left"></i>&nbsp;6多个元素的拖拽</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/7多元素拖拽代理拖动.html"><i class="fa fa-hand-o-left"></i>&nbsp;7多元素拖拽代理拖动</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/8盒内拖拽.html"><i class="fa fa-hand-o-left"></i>&nbsp;8盒内拖拽</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/9镜像拖拽.html"><i class="fa fa-hand-o-left"></i>&nbsp;9镜像拖拽</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/10拖拽的层级关系.html"><i class="fa fa-hand-o-left"></i>&nbsp;10拖拽的层级关系</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/23/11总结和心跳效果.html"><i class="fa fa-hand-o-left"></i>&nbsp;11总结和心跳效果</a></dd>	
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十四课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/1.盒内居中.html"><i class="fa fa-hand-o-left"></i>&nbsp;盒内居中</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/2js实现居中.html"><i class="fa fa-hand-o-left"></i>&nbsp;2js实现居中</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/3.css3居中.html"><i class="fa fa-hand-o-left"></i>&nbsp;3.css3居中</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/6.定时上下轮播海报.html"><i class="fa fa-hand-o-left"></i>&nbsp;6.定时上下轮播海报</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/7.定时上下轮播-鼠标固定.html"><i class="fa fa-hand-o-left"></i>&nbsp;7.定时上下轮播-鼠标固定</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/8.定时上下-滑动索引继续.html"><i class="fa fa-hand-o-left"></i>&nbsp;8.定时上下-滑动索引继续</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/9.焦点轮播图-无缝.html"><i class="fa fa-hand-o-left"></i>&nbsp;9.焦点轮播图-无缝</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/10.方格的定义.html"><i class="fa fa-hand-o-left"></i>&nbsp;10.方格的定义</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/11.方格定义及背景图片.html"><i class="fa fa-hand-o-left"></i>&nbsp;11.方格定义及背景图片</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/11.方格定义及背景图片2.html"><i class="fa fa-hand-o-left"></i>&nbsp;11.方格定义及背景图片2</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/12.方格css改变背景显示1.html"><i class="fa fa-hand-o-left"></i>&nbsp;12.方格css改变背景显示1</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/12.方格背景 - 加载效果3.html"><i class="fa fa-hand-o-left"></i>&nbsp; 加载效果</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/12.方格背景 - 散列4.html"><i class="fa fa-hand-o-left"></i>&nbsp;12.方格背景 - 散列4</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/12.方格背景 - 散列反向5.html"><i class="fa fa-hand-o-left"></i>&nbsp;12.方格背景 - 散列反向5</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/12.方格背景 - 散列随机6.html"><i class="fa fa-hand-o-left"></i>&nbsp;12.方格背景 - 散列随机6</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/12.方格背景 - 数组2.html"><i class="fa fa-hand-o-left"></i>&nbsp;12.方格背景 - 数组2</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/12.方格--散列随机往返7.html"><i class="fa fa-hand-o-left"></i>&nbsp;12.方格--散列随机往返7</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/24/12.焦点图之-方格的级背景图片.html"><i class="fa fa-hand-o-left"></i>&nbsp;12.焦点图之-方格的级背景图片</a></dd>
+			</dl>
+			<dl>
+			<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十五课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/1dom事件初识.html"><i class="fa fa-hand-o-left"></i>&nbsp;1dom事件初识</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/2关于事件绑定的问题.html"><i class="fa fa-hand-o-left"></i>&nbsp;2关于事件绑定的问题</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/3juqery的委托.html"><i class="fa fa-hand-o-left"></i>&nbsp;3juqery的委托</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/4自定义委托 -对象版本2.html"><i class="fa fa-hand-o-left"></i>&nbsp;4自定义委托 -对象版本2</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/4自定义委托.html"><i class="fa fa-hand-o-left"></i>&nbsp;4自定义委托</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/5事件addEventListener.html"><i class="fa fa-hand-o-left"></i>&nbsp;5事件addEventListener</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/6this作用域延续的问题.html"><i class="fa fa-hand-o-left"></i>&nbsp;6this作用域延续的问题</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/7.元素的位置和交换/1.元素位置交换基础版本.html"><i class="fa fa-hand-o-left"></i>&nbsp;1.元素位置交换基础版本</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/7.元素的位置和交换/2.元素位置交换运动版本.html"><i class="fa fa-hand-o-left"></i>&nbsp;2.元素位置交换运动版本</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/7.元素的位置和交换/3.元素位置交换拖拽版本.html"><i class="fa fa-hand-o-left"></i>&nbsp;3.元素位置交换拖拽版本</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/7.元素的位置和交换/4.元素位置交换拖拽最终版本.html"><i class="fa fa-hand-o-left"></i>&nbsp;4.元素位置交换拖拽最终版本</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/7.元素的位置和交换/5.元素位置交换拖拽随机.html"><i class="fa fa-hand-o-left"></i>&nbsp;5.元素位置交换拖拽随机</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/25/7.元素的位置和交换/数组小算法.html"><i class="fa fa-hand-o-left"></i>&nbsp;数组小算法</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十六课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/1冒泡.html"><i class="fa fa-hand-o-left"></i>&nbsp;1冒泡</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/2.阻止默认行为和事件捕捉.html"><i class="fa fa-hand-o-left"></i>&nbsp;1dom事件初识</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/3.事件类型和图片加载.html"><i class="fa fa-hand-o-left"></i>&nbsp;3.事件类型和图片加载</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/4.事件兼容性写法.html"><i class="fa fa-hand-o-left"></i>&nbsp;4.事件兼容性写法</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/5.自定义事件2.html"><i class="fa fa-hand-o-left"></i>&nbsp;5.自定义事件2</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/5.自定义事件的测试.html"><i class="fa fa-hand-o-left"></i>&nbsp;5.自定义事件的测试</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/6.1运动匀速和加速.html"><i class="fa fa-hand-o-left"></i>&nbsp;6.1运动匀速和加速</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/6.2运行反向加速.html"><i class="fa fa-hand-o-left"></i>&nbsp;6.2运行反向加速</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/6.3运行减速.html"><i class="fa fa-hand-o-left"></i>&nbsp;6.3运行减速</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/6.4弹性运动.html"><i class="fa fa-hand-o-left"></i>&nbsp;6.4弹性运动</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/6.5摩擦力.html"><i class="fa fa-hand-o-left"></i>&nbsp;6.5摩擦力</a></dd>	
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/26/6.6自由落体.html"><i class="fa fa-hand-o-left"></i>&nbsp;6.6自由落体</a></dd>	
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十七课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/1.样式的基本操作.html"><i class="fa fa-hand-o-left"></i>&nbsp;1.样式的基本操作</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/2.动态追加样式.html"><i class="fa fa-hand-o-left"></i>&nbsp;2.动态追加样式</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/2.动态追加样式2.html"><i class="fa fa-hand-o-left"></i>&nbsp;2.动态追加样式2</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/3.动态追加样式3.html"><i class="fa fa-hand-o-left"></i>&nbsp;3.动态追加样式3</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/4.cookie和回话sessionStorage和localStorage.html"><i class="fa fa-hand-o-left"></i>&nbsp;4.cookie和回话sessionStorage和localStorage</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/4cookie添加，修改，删除.html"><i class="fa fa-hand-o-left"></i>&nbsp;4cookie添加，修改，删除</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/5.草稿箱.html"><i class="fa fa-hand-o-left"></i>&nbsp;5.草稿箱</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/6.封装session和cookie.html"><i class="fa fa-hand-o-left"></i>&nbsp;6.封装session和cookie</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/7.抛物线.html"><i class="fa fa-hand-o-left"></i>&nbsp;7.抛物线</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/8.碰撞的窗口.html"><i class="fa fa-hand-o-left"></i>&nbsp;8.碰撞的窗口</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/9.迸发效果 - 多个.html"><i class="fa fa-hand-o-left"></i>&nbsp;9.迸发效果 - 多个</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/9.迸发效果 - 关键帧.html"><i class="fa fa-hand-o-left"></i>&nbsp;9.迸发效果 - 关键帧</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/27/9.迸发效果.html"><i class="fa fa-hand-o-left"></i>&nbsp;9.迸发效果</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十八课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/28/1.图片按需加载.html"><i class="fa fa-hand-o-left"></i>&nbsp;1.图片按需加载</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/28/2.图片加载-数组方式.html"><i class="fa fa-hand-o-left"></i>&nbsp;2.图片加载-数组方式</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/28/2.图片加载-数组方式2.html"><i class="fa fa-hand-o-left"></i>&nbsp;2.图片加载-数组方式2</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/28/3.关于offsetLeft,offsetTop和offsetParent的关系.html"><i class="fa fa-hand-o-left"></i>&nbsp;3.关于offsetLeft,offsetTop和offsetParent的关系</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/28/4模拟新浪qq空间图片预览.html"><i class="fa fa-hand-o-left"></i>&nbsp;4模拟新浪qq空间图片预览</a></dd>
+			</dl>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title"><i class="fa fa-plus-circle">&nbsp;&nbsp;第二十九课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/29/1.面向对象编程.html"><i class="fa fa-hand-o-left"></i>&nbsp;1.面向对象编程</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/29/2.面向对象继承.html"><i class="fa fa-hand-o-left"></i>&nbsp;2.面向对象继承</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/29/3.面向对象-构造继承.html"><i class="fa fa-hand-o-left"></i>&nbsp;3.面向对象-构造继承</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/29/4.寄生继承.html"><i class="fa fa-hand-o-left"></i>&nbsp;4.寄生继承</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/29/5混合.html"><i class="fa fa-hand-o-left"></i>&nbsp;5混合</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/29/6.面向对象编程最终版本.html"><i class="fa fa-hand-o-left"></i>&nbsp;6.面向对象编程最终版本</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/29/7音乐播放器.html"><i class="fa fa-hand-o-left"></i>&nbsp;7音乐播放器</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/29/8音乐播放器 2.html"><i class="fa fa-hand-o-left"></i>&nbsp;8音乐播放器 2</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="2.javaScript/29/9音乐播放器3.html"><i class="fa fa-hand-o-left"></i>&nbsp;9音乐播放器3</a></dd>
+			</dl>
+		</div>
+		<div class="tab">
+			<h3><i class="fa fa-file"></i>&nbsp;JSP篇</h3>
+			<dl>
+				<dt><a href="javascript:void(0)" class="title" ><i class="fa fa-plus-circle">&nbsp;&nbsp;第一课</i></a></dt>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="3.JSP/01/状态码.html"><i class="fa fa-hand-o-left"></i>&nbsp;状态码</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="3.JSP/01/tomcat文件介绍.html"><i class="fa fa-hand-o-left"></i>&nbsp;tomcat文件介绍</a></dd>
+				<dd><a href="javascript:void(0)"  onclick="showexam(this)" data-src="3.JSP/01/servlet配置.html"><i class="fa fa-hand-o-left"></i>&nbsp;servlet配置</a></dd>
+			</dl>
+		</div>
+	</div>
+	
+
+	<!--slide end-->
+
+	<!--content start-->
+	<div class="content" id="contentbox"></div>
+	<!--content end-->
+	
+	
+
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".slide h3").click(function(){
+				$(this).parent().find("dl").slideToggle("fast");
+				$(this).parent().siblings().find("dl").slideUp("fast");
+			});
+			$(".slide dl dt .title").click(function(){	
+				$(this).find("i").toggleClass("fa-minus-circle fa-plus-circle");
+				$(this).parent().nextAll().slideToggle("fast");
+				$(this).parents().siblings().find("dd").slideUp("fast").end().find("i").removeClass("fa-minus-circle").addClass("fa-plus-circle");
+			});
+
+			$(".expend").click(function(){
+				 var mark = $(".slide").is(":hidden");
+				 if(!mark){
+					$(".slide").animate({marginLeft:"-220px"},function(){					
+						$(this).hide();
+					});
+					$("#contentbox").animate({left:"0",top:"0"});
+					$(this).animate({left:"10px",top:"10px"});
+					$(".header").animate({height:"0"});
+				 }else{
+					$(".slide").show().animate({marginLeft:"0"});
+					$("#contentbox").animate({left:"220px",top:"80px"});
+					$(this).animate({left:"230px",top:"90px"});
+					$(".header").animate({height:"80px"});
+				 }			
+			});
+		});
+
+		function showexam(obj){
+			$("#contentbox").innerHTML = "";
+			var href = $(obj).data("src");
+			var html= "<iframe src='"+href+"' />";			
+			$("#contentbox").html(html);
+		}
+	</script>
+</body>
+</html>

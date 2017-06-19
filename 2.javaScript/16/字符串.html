@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>字符串复习</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";padding:100px;background:#FFF;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted red;
+				background: #f5f5f5;
+				color:#000;
+			}
+		</style>
+
+	</head>
+<body>
+<h1>字符串的复习+正则初识</h1>
+<pre>
+字符串：
+本质:连续的内存char
+解析:字符串的内存解析都是吧每一个字符通过调用charAt(index)，然后找到对应的charCodeAt(index),找到对应的aciis值
+//进行进制转化成二进制
+如果是中文，根据浏览器的编码进行转化成中文对应的十六进制编码，然后二进制进行存储
+
+常用的方法:
+substirng
+slice
+indexOf
+lastIndexOf
+concat
+trim
+length
+split
+
+例子:
+var str = "sfg\"dfe";//"需要用\转义
+var str1 = "123456789";
+console.log(str.substring(0,6));//123456---java也是一样
+console.log(str.substring(6,-1));//123456
+console.log(str.substring(2,-1));//(等价02) ---12
+console.log(str.substring(-3,-1));//空
+console.log(str.slice(-3,-1));//78
+
+例子2:
+indexOf:查找元素是否存在，并且返回索引
+var str = "123456789";
+var index = str.indexOf("34");
+console.log(index);//2
+index = str.lastIndexOf("34");//返回的也是2
+
+lastIndexOf的应用:
+var str = "upload/aaa.txt";
+//截取文件的名称和后缀
+var ext  = str.substring(str.lastIndexOf("."),str.length);
+console.log(ext);//.txt
+
+3.替换:
+repalce://将某个字符串中元素替换成你所需要的字符串
+match
+
+var str = "我123可可456";
+hufanglei@163.com
+15166195973
+
+4.正则表达式
+两种形态 
+第一种:字符串形态 ： "/^正则表达式$/" ---常量
+第二种:对象形态: RegExp regex = new Regex("正则表达式",匹配模式(igm));
+一般用于:变量形态对的
+i代表忽略大小写
+g代表是全局
+m是多行匹配
+//replace:
+
+\d  数字
+\D  非数字
+\w  数字，字母，下划线
+\W  非数字字母，下划线
+*  0或多个
+?  单个
++  一个或多个
+.  代表单个字符
+[a-zA-Z]  必须有字母，包含数字，特殊字符
+{8} 必须是8位
+{8,} num>=8
+[11||12||13] 范围的意思
+
+var r = /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
+r.exec('1985-10-15');
+s1=RegExp.$1;
+s2=RegExp.$2;
+s3=RegExp.$3;
+console.log(s1+"==="+s2+"==="+s3);//1985===10===15
+
+var r = /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
+var c = "1985-10-15".replace(r,"$1#$2#$3");
+console.log(c);//1985#10#15
+
+var str = "我123可可456";
+var s = str.replace(/^.*?(\d{3}).*?(\d{3})$/,"$1$2");
+var s1 = str.replace(/^.*?(\d{3}).*?$/,"$1");
+console.log(s);//123456
+console.log(s1);//123
+
+</pre>
+
+<script>
+var str = "我123可可456";
+var s = str.replace(/^.*?(\d{3}).*?(\d{3})$/,"$1$2");
+var s1 = str.replace(/^.*?(\d{3}).*?$/,"$1");
+var s2 = str.replace(/^.*(\d{3}).*$/,"$1");
+console.log(s);//123456
+console.log(s1);//123
+console.log(s2);//456
+
+
+	
+</script>
+</body>
+</html>

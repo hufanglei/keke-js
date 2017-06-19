@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";padding:100px;background:#FFF;}
+			#wrapbox  .items{height:50px;background:#999900;margin-top:10px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 100px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+
+		</style>
+
+	</head>
+<body>
+
+	<div id="wrapbox">
+		<div class="items" id="wrap">111111111</div>
+		<div class="items">22222222</div>
+		<div class="items">3333333333</div>
+		<div class="items">44444444</div>
+	</div>
+	<pre>
+	//1.查看dom对象全部属性的两种方式
+	//方式1：JSON.stringify(obj)
+	//方式2: 根据for in 循环查看
+	//代码1	:	
+		//var wrapdom = document.getElementById("wrapbox");
+		//wrapdom.style.width = "640px";
+		//wrapdom.style.height = "300px";	
+		//wrapdom.style.border = "5px solid red";
+		//wrapdom.style.background = "yellow";
+		//alert(JSON.stringify(wrapdom.style));	
+	//代码2：
+	//for(var key in wrapdom){
+		//console.log(key+"==="+wrapdom[key]);
+	//}
+	
+	//2.对象的属性的两种写法
+	//写法1 obj.属性
+	//写法2 obj["属性"]
+	
+	//推荐使用第2种，下面是利用第二种常用于封装的功能
+	//function css(id,css,value){
+	//	var dom = document.getElementById(id);
+		//dom.style[css] = value;
+	//}
+	//css("wrapbox","background","#3333cc");
+
+
+	//3:如何获得子元素的索引
+	//方法1:利用js对象可以扩展属性的特性实现
+	//方法2:使用闭包的方式，返回一个function 然后，点击才能执行此方法
+
+	//写法1:
+	//var wrapdoms= document.getElementById("wrapbox").children;
+	//var len = wrapdoms.length;
+	//for(var i=0;i&lt;len;i++){
+	//	wrapdoms[i].index = i;	//扩展index属性
+	//	wrapdoms[i]["onclick"] = function(){
+		//	alert(this.index);
+		//};
+	//}
+
+	//写法2:
+	var wrapdoms= document.getElementById("wrapbox").children;
+	var len = wrapdoms.length;
+	for(var i=0;i&lt;len;i++){
+		wrapdoms[i].onclick = (function(index){
+			return function text(){
+				alert(index);
+			}			
+		})(i);
+	}	
+	</pre>
+<script>
+	//1.查看dom对象全部属性的两种方式
+	//方式1：JSON.stringify(obj)
+	//方式2: 根据for in 循环查看
+	//代码1	:	
+		//var wrapdom = document.getElementById("wrapbox");
+		//wrapdom.style.width = "640px";
+		//wrapdom.style.height = "300px";	
+		//wrapdom.style.border = "5px solid red";
+		//wrapdom.style.background = "yellow";
+		//alert(JSON.stringify(wrapdom.style));	
+	//代码2：
+	//for(var key in wrapdom){
+		//console.log(key+"==="+wrapdom[key]);
+	//}
+	
+	//2.对象的属性的两种写法
+	//写法1 obj.属性
+	//写法2 obj["属性"]
+	
+	//推荐使用第2种，下面是利用第二种常用于封装的功能
+	//function css(id,css,value){
+	//	var dom = document.getElementById(id);
+		//dom.style[css] = value;
+	//}
+	//css("wrapbox","background","#3333cc");
+
+
+	//3:如何获得子元素的索引
+	//方法1:利用js对象可以扩展属性的特性实现
+	//方法2:使用闭包的方式，返回一个function 然后，点击才能执行此方法
+
+	//写法1:
+	//var wrapdoms= document.getElementById("wrapbox").children;
+	//var len = wrapdoms.length;
+	//for(var i=0;i<len;i++){
+	//	wrapdoms[i].index = i;	//扩展index属性
+	//	wrapdoms[i]["onclick"] = function(){
+		//	alert(this.index);
+		//};
+	//}
+
+	//写法2:
+	var wrapdoms= document.getElementById("wrapbox").children;
+	var len = wrapdoms.length;
+	for(var i=0;i<len;i++){
+		wrapdoms[i].onclick = (function(index){
+			return function text(){
+				alert(index);
+			}			
+		})(i);
+	}
+
+</script>
+</body>
+</html>

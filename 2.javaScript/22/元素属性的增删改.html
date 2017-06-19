@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>元素属性的增删改</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";padding:100px;background:#fff;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 100px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+
+			#box{height:250px;width:250px;background:red;color:#fff;line-height:250px;text-align:center;font-size:30px;}
+
+		</style>
+
+	</head>
+<body>
+		<h1>元素属性的增删改</h1>
+	<pre>
+	标签名称 tagName localName
+	元素中的属性:自定义属性和 原始属性
+	自定义属性
+	getAttribute(key) 获取属性值
+	setAttribute(key,value) 修改属性值
+	removeAttribute(key) 删除属性值 //不是删除原始属性
+	hasAttribute(key) 判断属性是否存在
+	</pre>
+	
+	<div id="box" title="我很帅奥" price="10元" age="30" username="hufanglei">元素属性</div>
+	<input type="type" value="" id="change" ><input type="button" value="修改属性的值" onclick="changeAttr()" />
+	<input type="button" value="删除属性" onclick="removeAttr()" />
+	<pre>
+	//标签名称 tagName locaName
+		//元素中的属性:自定义属性和 原始属性
+		//自定义属性
+		//getAttribute(key) 获取属性值
+		//setAttribute(key,value) 修改属性值
+		//removeAttribute(key) 删除属性值
+		//hasAttribute(key) 判断属性是否存在
+
+		function dom(id){
+			return document.getElementById(id);
+			//return document.querySeclector(id);
+		}
+		//1：测试标签的tagName和localName属性
+		var boxDom = dom("box");
+		//alert(boxDom.tagName+"==="+boxDom.localName);
+		//alert(boxDom.tagName.toLowerCase()+"==="+boxDom.localName);
+
+		//2：自定属性
+		//①getAttribute(key) 获取属性值
+		function getAttr(key){
+			var dom = document.getElementById("box");
+			return  dom.getAttribute(key);
+		}
+		//var username = boxDom.getAttribute("username");
+		var username = getAttr("username");
+		var age = getAttr("age");
+		var price = getAttr("price");
+		var title = getAttr("title");
+		var id = getAttr("id");
+		//alert(username+"=="+age+"=="+price+"=="+title+"=="+id);
+
+		//②修改属性值 
+		function changeAttr(){
+			var boxDom = dom("box");
+			var value = dom("change").value;
+			//var username = getAttr("username");
+			boxDom.setAttribute("username" , value);
+		}
+
+		//removeAttribute(key) 删除属性值
+		function removeAttr(){
+			var boxDom = dom("box");
+			var value = dom("change").value;
+			boxDom.removeAttribute(value);
+		}
+		//③hasAttribute(key) 判断属性是否存在
+		 var flag = dom("box").hasAttribute("username");
+		 //alert(flag);
+		
+	</pre>
+<script>
+	
+		//标签名称 tagName locaName
+		//元素中的属性:自定义属性和 原始属性
+		//自定义属性
+		//getAttribute(key) 获取属性值
+		//setAttribute(key,value) 修改属性值
+		//removeAttribute(key) 删除属性值
+		//hasAttribute(key) 判断属性是否存在
+
+		function dom(id){
+			return document.getElementById(id);
+			//return document.querySeclector(id);
+		}
+		//1：测试标签的tagName和localName属性
+		var boxDom = dom("box");
+		//alert(boxDom.tagName+"==="+boxDom.localName);
+		//alert(boxDom.tagName.toLowerCase()+"==="+boxDom.localName);
+
+		//2：自定属性
+		//①getAttribute(key) 获取属性值
+		function getAttr(key){
+			var dom = document.getElementById("box");
+			return  dom.getAttribute(key);
+		}
+		//var username = boxDom.getAttribute("username");
+		var username = getAttr("username");
+		var age = getAttr("age");
+		var price = getAttr("price");
+		var title = getAttr("title");
+		var id = getAttr("id");
+		//alert(username+"=="+age+"=="+price+"=="+title+"=="+id);
+
+		//②修改属性值 
+		function changeAttr(){
+			var boxDom = dom("box");
+			var value = dom("change").value;
+			//var username = getAttr("username");
+			boxDom.setAttribute("username" , value);
+		}
+
+		//removeAttribute(key) 删除属性值
+		function removeAttr(){
+			var boxDom = dom("box");
+			var value = dom("change").value;
+			boxDom.removeAttribute(value);
+		}
+		//③hasAttribute(key) 判断属性是否存在
+		 var flag = dom("box").hasAttribute("username");
+		 //alert(flag);
+		
+</script>
+</body>
+</html>

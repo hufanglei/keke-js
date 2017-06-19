@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>打印文字</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:100px;background:#FFF;	background:#fff;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted red;
+				background: #f5f5f5;
+				color:#000;			
+			}
+		</style>
+
+	</head>
+<body>
+
+<div id="text"></div>
+
+<script>
+	/*
+	//掌握字符串中substring的用法
+	1：了解数组
+	2:substring的使用
+	3:定时器 setTimeOut
+	*/
+	///var str = "0 I love YOU";
+
+	//获得文档dom对象
+	//var dom =  document.getElementById("text");
+	//获得字符串的长度
+	//var strlen = str.length;
+	//循环
+	/*for(var i=0;i<strlen;i++){
+		dom.innerHTML += str.charAt(i);
+	}*/
+	//结果证明:这样是没有动画效果的
+
+	/*
+		总结:不管任何的动画效果和位移都一定是通过setTimeOut或者setInterval实现的，不是用for循环
+
+		区别:CPU执行for是不会停歇的
+		CPU实现setTimeOut，根据指定的间隔时间去执行回调函数
+	*/
+    
+	//解决上述问题:
+	//两种方式:setInterval setTimeOut+递归
+
+	/*
+	var index = 0;
+	function start(){
+		if(index==strlen)clearTimeout(timer);//已经记得关闭
+		dom.innerHTML += str.charAt(index);
+		index++;
+	};
+	var timer = setInterval(start,100);
+	*/
+	//获得文档dom对象
+	//var dom =  document.getElementById("text");
+	//获得字符串的长度
+	//var strlen = str.length;
+	//var index = 0;
+	//var timer = null;
+	
+	/*function start(){
+		if(index==strlen)clearTimeOut(timer);//已经记得关闭
+		dom.innerHTML += str.charAt(index);
+		index++;
+		timer = setTimeout(start,300);
+	};
+	start();*/
+
+	var str = "0 I love YOU";
+	var arr = [];
+	arr.push(str);
+	arr.push("不管任何的动画效果和位移都一定是通过setTimeOut或者setInterval实现的，不是用for循环");
+	arr.push("掌握字符串中substring的用法掌握字符串中substring的用法");
+	arr.push("掌握字符串中substring的用掌握字符串中substring的用掌握字符串中substring的用法法法");
+	arr.push("掌握字符串中substring的用法了解数组");
+	arr.push("substring的使用substring的使用substring的使用substring的使用substring的使用substring的使用substring的使用substring的使用");
+	
+
+	var arr = [];
+	arr.push("I love you");
+	arr.push("掌握字符串中substring的用法");//arr[0]+arr[1].substring(0,1)
+	arr.push("掌握字符串中substring的用法掌握字符串中substring的用法掌握字符串中substring的用法");
+	arr.push("掌握字符串中substring的用法掌握字符串中substring的用法掌握字符串中substring的用法");
+	arr.push("掌握字符串中substring的用法掌握字符串中substring的用法");
+
+	
+	var dom = document.getElementById("text");//文字存放的目标
+	var strlen = arr[0].length;//?问题
+	var len = arr.length;//数组的长度
+	var index = 0;//数组索引
+	var timer = null;//动画对象
+	var time = 30;//动画的时间
+	var row = 0;//记录上次已经运行完毕的行数
+	var pos = 1;//位置
+	var c = "";
+	function start(){
+		//记录上次上次已经执行过的数组的内容+<br>
+		while(row<index){
+ 			c+=arr[row++]+"<br>";
+		}
+
+		dom.innerHTML = c + arr[index].substring(0,pos); //I love you
+		if(pos ==strlen){
+			//下个字符串的位置
+			index ++;//数组索引进行便宜
+			pos = 0;//位置重新置为0，下
+			if(index < len){
+				//字符串的长度等于下一个字符串的长度
+				strlen = arr[index].length;
+				//执行动画函数
+				timer = setTimeout(start,time);
+			}else{
+				clearTimeout(timer);
+			}
+		}else{
+			pos++;
+			timer = setTimeout(start,time);
+		}
+	};
+
+	start();
+
+
+</script>
+</body>
+</html>

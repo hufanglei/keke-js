@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>dom的node	和element</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";color:#000;padding:100px;background:#fff;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted red;
+				background: #ffcc99;
+				color:#000;
+			}
+			
+			
+		</style>
+
+	</head>
+<body>
+	<div id="keke">
+		<span>小吴</span>
+		<span>小四</span>
+		<span>小家</span>
+		<span>小张</span>
+	</div>
+
+	<pre>
+		window.onload = function(){
+		var divDom = document.getElementById("keke");
+		//Node ---包含了textNode(1个空格，1个换行都是节点) ElementNode Document_nod 注释节点
+		//alert(divDom.childNodes.length);
+		var  nodes = divDom.childNodes;
+		//for(var i=0;i&lt;nodes.length;i++){
+			//alert(nodes[i].nodeName+"==="+nodes[i].nodeType+"==="+nodes[i].tagName);
+		//}
+		//alert(divDom.firstChild.nodeName);	//textNode
+		//alert(divDom.lastChild.nodeName);    //textNode
+		
+		//alert(span.innerHTML + "===" + lspan.innerHTML);
+		//得到所有的element(子元素)
+		var spans = divDom.children;
+		//alert(Array.isArray(spans));//false 类数组
+		//alert(spans);
+		//alert(spans.length);
+		var span = divDom.firstElementChild;
+		//a:获取第一个元素 firstElementChild
+		//b:获取第一个元素的第二种方式如下		
+		var f = spans[0];
+		//alert(f.tagName +"===" + f.innerHTML);
+		//获取最后元素的
+		//var lspan = divDom.lastElementChild;
+		var l = spans[spans.length-1];
+		//alert(l.tagName+"=="+l.innerHTML);
+		/*for(var i=0;i&lt;spans.length;i++){
+			alert(spans[i].nodeName+"==="+spans[i].nodeType+"==="+spans[i].tagName
+			+"==="+spans[i].innerHTML);
+		}*/
+		spans[1].nextElementSibling.style.background = "red";
+		spans[1].nextElementSibling.nextElementSibling.style.background = "red";
+		spans[1].previousElementSibling.style.background = "green";
+
+	}
+
+
+
+	//window.onload :页面中所有的元素节点初始化完毕以后才执行的回调函数，包括图片和iframe
+
+	/*
+		给对象给属性赋值，调用方法
+		dom:是一种文档“对象”模式: Document Object Model是个有javascript节点对象组成的层次结构树.
+		当我们在定义html文档时。他把所有的标签，文本，注释，封装到一个大对象中document，他是一个树结构
+	*/
+	/*
+	****************************************************************
+	节点属性
+		childNodes
+		firstChild
+		lastChild
+		nextSibing
+		nodeName
+		tagName ---------获取标签的名称
+		nodeType
+		parentNode
+		nodeValue
+		previousSibing
+
+	节点方法:
+		appendChild()
+		cloneNode()
+		contains()
+		hasChildNodes()
+		insertBefore()
+		removeChild()
+		isEqualNode()
+		replaceChild()
+
+	***********************元素创建****************************************	
+	创建方法:
+	document.createElement
+	document.createTextnode
+
+	********************Element的属性和方法***********************
+	Element --子对象
+			HTMLBodyElement
+			HTMLSAPNElement
+			HTMLDIVElement
+			HTMLULElement
+			HTMLLIElement
+
+	属性:
+	innerHTML
+	outterHTML
+	innerText
+	textContent
+	outerText
+	firsetElementChild:获取第一个元素
+	lastElementChild:获取最后一个饿呀U你是
+	nextElementSibling		//某个元素的下一个元素
+	previousElementSibling	//某个元素的上一个元素
+	children	//获取所有元素
+
+	//方法:
+	insetAdjacentHTML
+	insetAdjacentElement
+	insetAdjacentText
+
+	***********************元素创建****************************************	
+	创建方法:
+	document.createElement
+	document.createTextnode
+	*/
+	</pre>
+<script>
+
+	window.onload = function(){
+		var divDom = document.getElementById("keke");
+		//Node ---包含了textNode(1个空格，1个换行都是节点) ElementNode Document_nod 注释节点
+		//alert(divDom.childNodes.length);
+		var  nodes = divDom.childNodes;
+		//for(var i=0;i<nodes.length;i++){
+			//alert(nodes[i].nodeName+"==="+nodes[i].nodeType+"==="+nodes[i].tagName);
+		//}
+		//alert(divDom.firstChild.nodeName);	//textNode
+		//alert(divDom.lastChild.nodeName);    //textNode
+		
+		//alert(span.innerHTML + "===" + lspan.innerHTML);
+		//得到所有的element(子元素)
+		var spans = divDom.children;
+		//alert(Array.isArray(spans));//false 类数组
+		//alert(spans);
+		//alert(spans.length);
+		var span = divDom.firstElementChild;
+		//a:获取第一个元素 firstElementChild
+		//b:获取第一个元素的第二种方式如下		
+		var f = spans[0];
+		//alert(f.tagName +"===" + f.innerHTML);
+		//获取最后元素的
+		//var lspan = divDom.lastElementChild;
+		var l = spans[spans.length-1];
+		//alert(l.tagName+"=="+l.innerHTML);
+		/*for(var i=0;i<spans.length;i++){
+			alert(spans[i].nodeName+"==="+spans[i].nodeType+"==="+spans[i].tagName
+			+"==="+spans[i].innerHTML);
+		}*/
+		spans[1].nextElementSibling.style.background = "red";
+		spans[1].nextElementSibling.nextElementSibling.style.background = "red";
+		spans[1].previousElementSibling.style.background = "green";
+
+	}
+
+
+
+	//window.onload :页面中所有的元素节点初始化完毕以后才执行的回调函数，包括图片和iframe
+
+	/*
+		给对象给属性赋值，调用方法
+		dom:是一种文档“对象”模式: Document Object Model是个有javascript节点对象组成的层次结构树.
+		当我们在定义html文档时。他把所有的标签，文本，注释，封装到一个大对象中document，他是一个树结构
+	*/
+	/*
+	****************************************************************
+	节点属性
+		childNodes
+		firstChild
+		lastChild
+		nextSibing
+		nodeName
+		tagName ---------获取标签的名称
+		nodeType
+		parentNode
+		nodeValue
+		previousSibing
+
+	节点方法:
+		appendChild()
+		cloneNode()
+		contains()
+		hasChildNodes()
+		insertBefore()
+		removeChild()
+		isEqualNode()
+		replaceChild()
+
+	***********************元素创建****************************************	
+	创建方法:
+	document.createElement
+	document.createTextnode
+
+	********************Element的属性和方法***********************
+	Element --子对象
+			HTMLBodyElement
+			HTMLSAPNElement
+			HTMLDIVElement
+			HTMLULElement
+			HTMLLIElement
+
+	属性:
+	innerHTML
+	outterHTML
+	innerText
+	textContent
+	outerText
+	firsetElementChild:获取第一个元素
+	lastElementChild:获取最后一个饿呀U你是
+	nextElementSibling		//某个元素的下一个元素
+	previousElementSibling	//某个元素的上一个元素
+	children	//获取所有元素
+
+	//方法:
+	insetAdjacentHTML
+	insetAdjacentElement
+	insetAdjacentText
+
+	***********************元素创建****************************************	
+	创建方法:
+	document.createElement
+	document.createTextnode
+	*/
+
+
+
+		
+
+
+	
+</script>
+</body>
+</html>

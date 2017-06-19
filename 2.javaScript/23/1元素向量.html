@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>元素向量</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:20px;font-family:"微软雅黑";padding:100px;background:#fff;}
+			.items{height:100px;width:100px;background:red;
+			border:25px solid green;padding:25px;position:relative}
+			#text{background:yellow}
+			#box2{height:100px;width:100px;background:#000;}
+		</style>
+
+	</head>
+<body>
+
+	<div id="box" class="items">
+		<div id="box2">
+			box2
+		</div>
+		
+	</div>
+	
+	<div id="text"></div>
+
+<script>
+	
+	//元素向量
+	/*
+		元素的宽度和高度
+		clientWidth/clientHeight
+		offsetWidth/offsetHeight
+		元素的滚动宽度和高度
+		scrollLeft
+		scrollTop
+		scrollHeight
+		scrollWidth
+
+		元素的位置
+		offsetLeft
+		offsetTop
+
+		鼠标的位置:pageX pageY clientX clientY
+
+		窗口位置:window.innerWidth/window.innerHeight
+		     scrollX scrollY scrollTo(x,y)
+		
+	*/
+	function dom(id){
+		return document.getElementById(id);	
+	}
+	//clientWidth clientHeight
+	//clientWidth = paddingLeft  + width +  paddingRight;
+	//clientHeight = paddingTop  + height +  paddingBottom
+	var boxDom = dom("box");
+	var cwidth = boxDom.clientWidth;
+	var cheight = boxDom.clientHeight;
+	dom("text").innerHTML += "clientWidth:"+cwidth+"=====clientHeight:"+cheight;//不包含border
+	
+	//offsetWidth offsetHeight
+	//offsetWidth = paddingLeft + borderLeft + width + boderRight + paddingRight;
+	//offsetretHeight = paddingTop + borderTop + height + boderBottom + paddingBottom
+	var fwidth = boxDom.offsetWidth;
+	var fheight = boxDom.offsetHeight;
+	dom("text").innerHTML += "<br/>offsetWidth:"+fwidth+"=====offsetHeight:"+fheight;//包含border
+	
+	//元素的坐标
+	//offsetLeft offsetTop  offsetParent --如果元素位置是直接放body中的，那么他的位置
+	//相对于body的顶部和左侧。如果父类有定位，则相对于父类的顶部和左侧
+	var fleft = boxDom.offsetLeft;
+	var ftop = boxDom.offsetTop;
+	//alert(boxDom.offsetParent);
+	dom("text").innerHTML += "<br/>offsetLeft:"+fleft+"=====offsetTop:"+ftop;
+
+
+	var box2 = dom("box2");
+	var left2 = box2.offsetLeft;
+	var top2 = box2.offsetTop;
+	//alert(box2.offsetParent);
+	dom("text").innerHTML += "<br/>BOX2：offsetLeft:"+left2+"=====offsetTop:"+top2;
+
+	//鼠标的位置
+	/*
+		
+	*/
+	
+</script>
+</body>
+</html>

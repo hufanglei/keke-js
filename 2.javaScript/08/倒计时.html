@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>倒计时</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+			.div{border-bottom:1px solid #ccc;padding:2px}
+				
+			.box div{width:100px;height:100px;background:#ccc;color:#111;line-height:100px;text-align:center;margin:10px auto;font-size:36px;cursor:pointer;border:0}
+			span{color:red;}
+
+		</style>
+
+	</head>
+<body>
+<h1 id="time"></h1>
+<pre>
+window.onload =  function(){
+	//距离明年春节放假还有多少天。
+	//当前的时间和下一年的时间
+	var timeDom = document.getElementById("time");
+	function start(dom,y,m,d){
+		var beginTime = new Date();
+		var endTime = new Date(y,m-1,d);
+		//获得毫秒属于差(两个格林尼治时间相减)
+		var time = endTime.getTime() - beginTime.getTime();
+		//获得剩余秒
+		var sec =  time/1000;
+		//换算
+		var dd = Math.floor(sec/60/60/24);//天数
+		var hh = Math.floor(sec/60/60%24);//小时
+		var mm =  Math.floor(sec/60%60);//分钟
+		var ss = Math.floor(sec%60);//秒
+		var html =   "距离【"+endTime.getFullYear()+"年】春节还有："+dd+"天"+hh+"小时"+mm+"分"+ss+"秒";
+		dom.innerHTML = html;
+	}
+	
+	setInterval(function(){
+		start(timeDom,2016,2,8);
+	},1000);
+}
+</pre>
+<script>
+	
+	window.onload =  function(){
+		//距离明年春节放假还有多少天。
+		//当前的时间和下一年的时间
+		var timeDom = document.getElementById("time");
+		function start(dom,y,m,d){
+			var beginTime = new Date();
+			var endTime = new Date(y,m-1,d);
+			//获得毫秒属于差(两个格林尼治时间相减)
+			var time = endTime.getTime() - beginTime.getTime();
+			//获得剩余秒
+			var sec =  time/1000;
+			//换算
+			var dd = Math.floor(sec/60/60/24);//天数
+			var hh = Math.floor(sec/60/60%24);//小时
+			var mm =  Math.floor(sec/60%60);//分钟
+			var ss = Math.floor(sec%60);//秒
+			var html =   "距离【"+endTime.getFullYear()+"年】春节还有："+dd+"天"+hh+"小时"+mm+"分"+ss+"秒";
+			dom.innerHTML = html;
+		}
+		
+		setInterval(function(){
+			start(timeDom,2016,2,8);
+		},1000);
+	}
+		
+
+
+</script>
+</body>
+</html>

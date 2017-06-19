@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>对象</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+			.div{border-bottom:1px solid #ccc;padding:2px}
+				
+			.box div{width:100px;height:100px;background:#ccc;color:#111;line-height:100px;text-align:center;margin:10px auto;font-size:36px;cursor:pointer;border:0}
+			span{color:red;}
+
+		</style>
+
+	</head>
+<body>
+<div>准备:声明一个对象并且赋值</div>
+<pre>
+var content = {
+	title:"习近平访美查看IT行情",
+	content:"2014年习近平访美查看IT行情，做飞机前面.....",
+	subtitle:"坐飞机",
+	time:"2015-11-1 12:15:22",
+	author:"keke",
+	hits:10,
+	isDelete:0,
+	img:"http://images.huxiu.com/article/cover/201512/11/173106241500.png",
+	mark:true,
+	price:121.5,
+	
+	attchments:["aaa.txt","bbb.gif","ccc.jpg"],
+	comments:[
+		{title:"太刁了",username:"keke",img:"1aaa.gif",content:"1士大夫士大夫是的",time:"2015-12-12 12:12"},
+		{title:"1太刁了",username:"keke1",img:"2aaa.gif",content:"2士大夫士大夫是的",time:"2015-12-12 12:12"},
+		{title:"2太刁了",username:"keke2",img:"3aaa.gif",content:"3士大夫士23423大夫是的",time:"2015-12-12 12:12"},
+		{title:"3太刁了",username:"keke3",img:"4aaa.gif",content:"4士大夫士大夫是的",time:"2015-12-12 12:12"},
+		{title:"4太刁了",username:"keke4",img:"5aaa.gif",content:"5士大夫4234士大夫是的",time:"2015-12-12 12:12"},
+		{title:"5太刁了",username:"keke5",img:"6aaa.gif",content:"6士大夫士大夫是的",time:"2015-12-12 12:12"},
+		{title:"6太刁了",username:"keke6",img:"7aaa.gif",content:"7士大夫士大夫是的",time:"2015-12-12 12:12"},
+		{title:"7太刁了",username:"keke7",img:"8aaa.gif",content:"8士大夫士大夫是的",time:"2015-12-12 12:12"}
+	],
+	editor:{username:"稀烂",age:16,address:"上海"}
+};
+</pre>
+<h2>做开发面对解析对象(json)，三部曲</h2>
+<div>第一步：看数据类型是什么</div>
+<div>①看类型</div>
+<pre><span>alert(typeof content);</span>//结果:Object</pre>
+<div>②看真实类型</div>
+<pre>
+例如:var arr = [];
+<span >alert(Object.prototype.toString.call(arr));//结果:[object Array]</span>
+</pre>
+<div>第二步:如果不是对象，那么就转成对象</div>
+<pre>
+//var jsonstring = "{\"username\":\"keke\",\"age\":20}";
+var jsonstring = '{"username":"keke","age":20}';
+</pre>
+<div>方法1：使用JSON.parse</div>
+<pre>
+//例如：声明一个json字符串
+<span>var json = JSON.parse(jsonstring);</span>
+console.log(json.username);//结果:keke
+</pre>
+<div>方法2：使用eval</div>
+<pre>
+//例如：声明一个json字符串
+<span>var json = eval("("+jsonstring+")");</span>
+console.log(json.username);//结果:keke
+</pre>
+<div>扩展：可以封装一个方法，为了兼容</div>
+<pre>
+function parse(jsonstring){
+	if(JSON.parse){
+	return JSON.parse(jsonstring);
+	}else{
+	return eval("("+jsonstring+")");
+	}
+};</pre>
+<div>第三步：进行解析<br/>
+//对象应用于插件的参数中。减少参数的定义变得更加的灵活
+</div>
+
+
+<script>
+	//要么排序，反转，统一循环放入到目标元素中
+		var content = {
+			title:"习近平访美查看IT行情",
+			content:"2014年习近平访美查看IT行情，做飞机前面.....",
+			subtitle:"坐飞机",
+			time:"2015-11-1 12:15:22",
+			author:"keke",
+			hits:10,
+			isDelete:0,
+			img:"http://images.huxiu.com/article/cover/201512/11/173106241500.png",
+			mark:true,
+			price:121.5,
+			
+			attchments:["aaa.txt","bbb.gif","ccc.jpg"],
+			comments:[
+				{title:"太刁了",username:"keke",img:"1aaa.gif",content:"1士大夫士大夫是的",time:"2015-12-12 12:12"},
+				{title:"1太刁了",username:"keke1",img:"2aaa.gif",content:"2士大夫士大夫是的",time:"2015-12-12 12:12"},
+				{title:"2太刁了",username:"keke2",img:"3aaa.gif",content:"3士大夫士23423大夫是的",time:"2015-12-12 12:12"},
+				{title:"3太刁了",username:"keke3",img:"4aaa.gif",content:"4士大夫士大夫是的",time:"2015-12-12 12:12"},
+				{title:"4太刁了",username:"keke4",img:"5aaa.gif",content:"5士大夫4234士大夫是的",time:"2015-12-12 12:12"},
+				{title:"5太刁了",username:"keke5",img:"6aaa.gif",content:"6士大夫士大夫是的",time:"2015-12-12 12:12"},
+				{title:"6太刁了",username:"keke6",img:"7aaa.gif",content:"7士大夫士大夫是的",time:"2015-12-12 12:12"},
+				{title:"7太刁了",username:"keke7",img:"8aaa.gif",content:"8士大夫士大夫是的",time:"2015-12-12 12:12"}
+			],
+			editor:{username:"稀烂",age:16,address:"上海"}
+		};
+		//做开发面对解析对象(json)，三部曲
+		//第一步：看数据类型是什么
+		//alert(typeof content); //直接去对象获取属性即可,
+		//alert(JSON.stringify(content));查看内容
+		//第二步：如果不是对象，那么就用JSON.parse转成对象
+		//var jsonstring = "{\"username\":\"keke\",\"age\":20}";
+		var jsonstring = '{"username":"keke","age":20}';
+		//var json = JSON.parse(jsonstring);
+		//var json = JSON.parse(jsonstring);
+		var json = eval("("+jsonstring+")");
+		var arr= [];
+		console.log(Object.prototype.toString.call(arr));//查看真实数据类型
+		//var json = eval("("+jsonstring+")");
+		//alert(json.username)
+
+		/*function parse(jsonstring){
+			if(JSON.parse){
+				return JSON.parse(jsonstring);
+			}else{
+				return eval("("+jsonstring+")");
+			}
+		};*/
+		
+		//第三步：进行解析
+
+		//对象应用于插件的参数中。减少参数的定义变得更加的灵活
+
+
+
+		
+</script>
+</body>
+</html>

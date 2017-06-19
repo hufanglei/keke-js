@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ajaxDemo.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    
+  </body>
+  <script>
+		var json = {username:"leilei" , age:"18" , email:"sddd@163.com"};
+		//json转字符串 ie678不支持
+		//var jsonString = JSON.stringify(json);
+		//全兼容写法
+		var jsonString = jsonToString(json);
+		alert(jsonString);
+		//还原成对象ie678不支持
+		//var obj = JSON.parse(jsonString);
+		//全兼容写法
+		var obj = eval("("+jsonString+")");
+		alert(obj.username);
+
+		var arr = [];
+		arr.push(json,json,json);
+		alert(jsonToString(arr));
+	
+		
+		// 代替JSON.stringify(json)的全兼容写法
+		function jsonToString(obj) {
+				var THIS = this;
+				switch (typeof (obj)) {
+				case 'string':
+					return '"' + obj.replace(/(["\\])/g, '\\$1') + '"';
+				case 'array':
+					return '[' + obj.map(THIS.jsonToString).join(',') + ']';
+				case 'object':
+					if (obj instanceof Array) {
+						var strArr = [];
+						var len = obj.length;
+						for (var i = 0; i < len; i++) {
+							strArr.push(THIS.jsonToString(obj[i]));
+						}
+						return '[' + strArr.join(',') + ']';
+					} else if (obj == null) {
+						return 'null';
+
+					} else {
+						var string = [];
+						for ( var property in obj)
+							string.push(THIS.jsonToString(property) + ':'
+									+ THIS.jsonToString(obj[property]));
+						return '{' + string.join(',') + '}';
+					}
+				case 'number':
+					return obj;
+				case false:
+					return obj;
+				}
+			}
+  </script>
+</html>

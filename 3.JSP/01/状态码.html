@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#6633ff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background:#fff;padding:100px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 10px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+
+		</style>
+
+	</head>
+<body>
+	
+	
+	<pre>
+	状态码
+	1xx:指示信息， 表示请求已经接收
+	2xx:成功，表示请求已经被服务器成功的接收，理解
+	3xx:重定向
+	4xx:客户端错误---请求有语法错误或者请求是无法实现
+	5xx:服务器端的错误，服务器未能实现合法的请求
+	
+	200 OK 请求成功
+	400  请求语法
+	401 没有权限
+	403 请求收到，但是拒绝提供服务
+	404 请求资源不存在   第一点：url输入错误！第二点：检查一下服务器是否存在此资源
+
+	500 服务器发生了不可预期的错误   java后台Exception报错
+	503 服务器当前不能处理客户端的请求，过一段时间后可能会恢复正常
+	</pre><br/>
+	推荐文章：<a href="http://www.jb51.net/article/6830.htm" target="_blank">http://www.jb51.net/article/6830.htm</a>
+<script>
+
+		function log(content){
+			if(console){
+				return console.log("【您运行的结果是】:"+content);
+			}else{
+			  alert("【您运行的结果是】:"+content);
+			}
+		
+		}
+</script>
+</body>
+</html>

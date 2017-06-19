@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>自定义滚动条</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";background: #373737;}
+			.box{width:800px;height:800px;background:#ccc;margin:50px auto;overflow: hidden;position: relative;}
+			.box .bar{width:20px;background: #000;height:800px;position:absolute;top:0;right:1px;z-index: 1;}
+			.box .bar .sbar{width: 20px;height:20px;position: absolute;top: 0;right:0;background: red;z-index: 3;}
+			.box .bar .cbar{width:20px;background:transparent;position:absolute;right:0px;height:100%;z-index:2}
+			.box .content{padding: 50px;position: relative;}
+		</style>
+
+	</head>
+<body>
+
+	<div class="box">
+		<div class="bar">
+			<div class="cbar"></div>
+			<div class="sbar"></div>
+		</div>
+		<div class="content">
+			百度翻译面向开发者发布全新的开放云平台
+			飞象网  2015年11月18日 09:00
+			百度翻译,此外,百度翻译API服务还吸引了其他来自海外的众多开发者,如世界知识产权组织(WIPO),将百度翻译API集成到官网,用户能够迅速将专利信息翻译成不同语种,方便... 14条相同新闻  -  百度快照
+			[新闻图片]百度翻译: 面向开发者 发布全新的开放云平台!
+			第三媒体  2015年11月18日 20:37
+			百度翻译新闻图片第3张... 以《冰与火之歌》为蓝本的史诗级策略游戏《列王的纷争》(Clash of Kings),也接入了百度翻译API。游戏中玩家可以利用百度翻译,与来自全... 3条相同新闻  -  百度快照
+			翻译应用站在了出境游的风口
+
+			百度百家  2015年09月22日 00:00
+			百度翻译在过去主要是通过不断让自己更加智能、好用、精准来捕获用户芳心,例如支持了离线翻译包,支持了语音的翻译、支持了菜单的翻译,这次合作则是与服务商结合——... 百度快照
+			794路调度员带着“百度翻译”送上门
+			和讯科技  2015年10月12日 15:50
+			一名巴基斯坦小伙子乘坐794路公交车时不慎遗失钱包,就在他以为再也找不回来时,次日,英语不佳的公交车调度员“拖”着上学的儿子,“捧”着“百度翻译”找上门来,... 4条相同新闻  -  百度快照
+			联合Airbnb瞄准出境游市场 百度翻译6.5版更新上线
+			中国软件资讯网  2015年09月21日 16:59
+			为提升用户出游体验,百度翻译近日发布全新V6 5(iOS V6 4)版本,不但优化了旅游相关的“实用口语”、“会话翻译”等功能,更联合美国短租巨头Airbnb发起“离线包0元... 11条相同新闻  -  百度快照
+			百度翻译器
+
+			中华网  2015年08月28日 15:16
+			中华网教育频道为您提供百度翻译器聚合阅读,主要包括最新的百度翻译器相关新闻,百度翻译器图片,百度翻译器视频,百度翻译器评论,还能参与网友对百度翻译器的热门讨论. 2条相同新闻  -  百度快照
+			专家为你解读:如何巧用谷歌百度做好英文翻译
+			腾讯网  2015年09月24日 14:00
+			专家为你解读:如何巧用谷歌百度做好英文翻译 面对长篇大论的英文文章怎么办?很多人会选择借助一些翻译工具。本文就以目前全球最大的搜索引擎谷歌为例,向大家介绍我... 3条相同新闻  -  百度快照
+			百度翻译新增11种语言 支持27种语言间互译
+			中国经济时报  2015年06月23日 16:10
+			百度翻译频发大招,在继推出深度学习翻译系统之后,百度翻译又新增加11个语种。更新之后的百度翻译,支持27种语言间的相互翻译,翻译方向达到700余个,继续领跑国内在线... 10条相同新闻  -  百度快照
+			人工智能领域新突破 百度发布基于深度学习的在线翻译系统
+			新华网  2015年05月21日 22:46
+			人工智能领域新突破 百度发布基于深度学习的在线翻译系统---此次百度发布的基于深度学习的在线翻译系统,实现了类似人脑的“理解语言,生成译文”的翻译方式。 基于深度... 25条相同新闻  -  百度快照
+			”百度翻译”大事记
+			西陆军事  2015年06月18日 13:20
+			2011年7月初,百度正式推出web端百度翻译。中国之声《新闻晚高峰》菜单(4张)报道,百度翻译将支持中文、英文免费在线翻译;同时支持网页翻译。这项新服务是百度与... 百度快照
+			机器翻译哪家强 四款APP横向对比评测
+
+			泡泡网  2015年11月06日 16:00
+			于是小编决定用这四款APP试着翻译“众人拾柴火焰高”。百度翻译直译为They collect firewood flame high;金山词霸因接入百度翻译服务源,所以也是字面直译;有道翻译... 百度快照
+			百度翻译在线翻译
+			中华网  2015年06月19日 06:57
+			中华网教育频道为您提供百度翻译在线翻译聚合阅读,主要包括最新的百度翻译在线翻译相关新闻,百度翻译在线翻译图片,百度翻译在线翻译视频,百度翻译在线翻译评论,还能参与... 百度快照
+			语音翻译 - 标签列表--百度百家
+
+			百度百家  2015年09月29日 10:37
+			速途研究院分析师团队根据互联网市场数据,解读移动语音翻译软件市场未来发展潜力。 速途研究 语音翻译 丁道师 09-29 阅读(198) 没有了,亲!相关... 百度快照
+			百度机器翻译获奖 率先推全球多语翻译机器人
+			凤凰网  2015年04月21日 14:00
+			据了解,此次百度机器翻译项目的获奖主要在于突破了四个世界性难题:提出了创新的基于互联网大数据的翻译模型,实时准确地响应多文体、多领域的复杂翻译请求;研发了基于... 7条相同新闻  -  百度快照
+			百度在线翻译
+			中华网  2015年06月11日 00:34
+			中华网教育频道为您提供百度在线翻译聚合阅读,主要包括最新的百度在线翻译相关新闻,百度在线翻译图片,百度在线翻译视频,百度在线翻译评论,还能参与网友对百度在线翻译的... 百度快照
+			百度翻译APP支持12种语言拍照翻译
+			IT168  2015年06月04日 12:00
+			6月2日,百度翻译Android手机客户端发布6.1版本,将拍照翻译支持的语种由原来的4个扩展至12个,极大的方便了外语学习者和出国旅行者的使用。据悉,iOS新版正在审核,... 9条相同新闻  -  百度快照
+			百度翻译 学习、出国旅行必备翻译&词典软件
+			安卓网  2015年05月22日 18:38
+			学习、工作、出国旅行必备翻译&词典软件,多次进入中国、英国、日本等国各大应用商店热门应用推荐!Android端首款支持多语种离线翻译软件。针对日本、韩国和美国3国旅游... 百度快照
+			人民日报:百度让计算机听懂人类语言
+
+			泡泡网  2015年08月31日 16:00
+			对于未来研究走向何方?李生有自己的见解。“基于深度学习的、基于多层神经网络的机器翻译有可能会成为主流。但是各种方法都有利弊,我希望年轻学人博采众长,将基于... 11条相同新闻  -  百度快照
+			揭秘领导人身边的“女神”翻译
+
+			华西都市报  2015年10月05日 11:00
+			摘要:她又有了几个称号:“最美女翻译”、“最冷艳的女翻译”、“最像赵薇的女翻译”。张蕾:“任性”翻译走红 在今年全国政协十二届三次会议新闻发布会上,大会新... 百度快照
+			翻译应用站上出境游风口 提升体验聚焦精准识别
+			新浪科技  2015年10月08日 16:00
+			除了百度翻译有多番动作外,松下推手机导游翻译App——支持中文等25种语言;旅行翻译App“小尾巴”也在不遗余力地提升翻译水准等。 出境游越来越火热,许多翻译应用... 百度快照
+		</div>
+
+	</div>
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script>
+		/**
+		 * 目标改变content的top
+		 * 拖拽练习涉及的知识点：
+		 * 1.定位
+		 * 2.获取元素到浏览器的高度 e.clintY
+		 * 3.juquery： 获取元素的top的方法 .offset().top----作用于浏览器范围内的位置
+		 * 									.position.top---作用于父类(父类需要有position)范围内的位置
+		 * 4:获得拖拽的原理 改变元素的top 和left； top = 移动后的浏览器的高度 - 移动前的浏览器的高度 + 原来的top （left也一样）
+		 * 5:jqury中的方法 height（文本高度） outerHeight outerHeight(true)=padding +height+border
+		 *
+		 */
+		$(function(){
+			var mark = false;
+			$(".box .bar .sbar").mousedown(function(e){
+				var $this = $(this);
+				//获得浏览器的高度
+				var y1 = e.clientY;
+				//获得元素的top值
+				var top = $this.position().top;
+				var h = $this.parents(".box").height();
+				//获得box的真实高度
+				var contentHeight = $(".content").outerHeight(true)-h;			
+				//滚动块最大高度边界
+				var maxHeight = h -20;
+				mark = true;
+				tm_forbiddenSelect();
+				//移动时，浏览器的变化
+				$(document).mousemove(function(e){
+					if(mark){
+						var y2 = e.clientY;
+						var nt = y2 - y1 + top;		
+						//判断边界
+						if (nt <= 0){nt = 0;}
+						if(nt >=maxHeight){	nt = maxHeight;	}	
+						//百分比			
+						var p = nt/h;
+						$(".content").css("top",p*contentHeight*(-1));
+						$this.css("top" , nt);
+					}				
+				}).mouseup(function(){
+					mark = false;
+					tm_autoSelect();
+				});
+			});	
+
+			$(".cbar").mousedown(function(e){
+				var $this = $(this);
+				var y = e.clientY - $this.parents(".box").offset().top + $(window).scrollTop() - 20;
+				var h =$this.parents(".box").height();
+				var c =$this.parents(".box").find(".content").height()-h; 
+				var p = y / h;
+				$this.next().css({top:y});
+				$this.parents(".box").find(".content").css("top",c * p *-1);
+				tm_autoSelect();
+			});
+
+
+			/**
+			 * 禁止窗体选中
+			 */
+			function tm_forbiddenSelect() {
+				$(document).bind("selectstart", function() {
+					return false;
+				});
+				document.onselectstart = new Function("event.returnValue=false;");
+				$("*").css({
+					"-moz-user-select" : "none"
+				});
+			}
+
+			/* 窗体允许选中 */
+			function tm_autoSelect() {
+				$(document).bind("selectstart", function() {
+					return true;
+				});
+				document.onselectstart = new Function("event.returnValue=true;");
+				$("*").css({
+					"-moz-user-select" : ""
+				});
+			}
+		})
+		
+		
+</script>
+</body>
+</html>

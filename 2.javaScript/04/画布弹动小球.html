@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>画布弹动小球</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:12px;font-family:"微软雅黑";background:#373737;}
+			#mycanvas{margin: 0px 0 0 50px;background:#373737;}
+		
+		</style>
+
+	</head>
+<body>
+    <!--
+		知识点：
+		1.面向对象的理解和运用
+		2：数组存储对象和删除对象
+		3：画布的线和圆的画法
+		4：闭包的理解和运用
+		5：定时函数setInterval 和 延时setTimeout的理解和使用
+		6：onclick的写法的更深一步认识: 可以ball.addBall()
+
+    -->
+    <div style="margin:10px 200px;height:100px;"><input type="button" onclick="ball.addBall()" value="添加小球"><div>
+	<canvas id="mycanvas" width="1160" height="800">您当前的浏览器不支持</canvas>
+	
+</body>
+<script type="text/javascript">
+	// //小球
+	var canvas = document.getElementById("mycanvas");
+	// //上下文
+	var context = canvas.getContext("2d");
+	// //准备绘画
+	// context.beginPath();
+	//画一个圆，直线moveTo(x,y) lineTo(x,y)
+	// context.moveTo(10,10);
+	// context.lineTo(435,10);
+	// context.lineWidth = 5;
+	// context.strokeStyle = "red";
+	// context.stroke();//把线喷到画板上
+
+	// context.beginPath();//开启另外一个元素
+	// //(x,y 在画布确定圆心 radius半径
+	// //context.arc(x,y,radius,start,end);
+
+	// context.lineWidth = 10;
+	// context.arc(200,200,50,0,2*Math.PI);	
+	// context.fillStyle ="black";
+	// context.fill();
+	// context.stroke();//把线喷到画板上*/
+
+	var ball = (function(){
+		var balls = [];
+		//小球
+		var canvas = document.getElementById("mycanvas");
+		//上下文
+		var context = canvas.getContext("2d");
+		//准备绘画
+		context.beginPath();
+		//对象思想:声明一个小球
+		function Ball(x,y,radius,dx,dy){
+			this.x = x;
+			this.y = y;	
+			this.dx = dx;
+			this.dy = dy;		
+			this.radius = radius;
+		};
+		//添加小球
+		function addBall(){
+			var x = random(canvas.width);
+			var y = random(canvas.height);
+			var r = rangeRandom(10,30);			
+			var ball =  new Ball(x,y,r,1,1);
+			balls.push(ball);
+			//drawBall();//点一个,画一个
+		};
+		//绘制
+		function drawBall(){
+			//清除画布
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			context.beginPath();
+			var len = balls.length;
+			//控制小球个数
+			if(len>8){
+				balls.shift();
+				len = len-1;
+			}
+			for(var i=0;i<len;i++){
+					var ball = balls[i];
+					ball.x += ball.dx; 
+					ball.y += ball.dy; 
+					if ((ball.y) < canvas.height) ball.dy += 0.22;
+					ball.dx = ball.dx * 0.998;//摩擦力 ease
+					
+					//边界
+					if((ball.x+ball.radius) > canvas.width || (ball.x - ball.radius) < 0){
+						ball.dx = -ball.dx;
+					}
+
+					if((ball.y+ball.radius) > canvas.height || (ball.y - ball.radius) < 0){
+						ball.dy = -ball.dy * 0.96;
+					};
+
+					context.beginPath();//开始重新绘制,
+					context.arc(ball.x,ball.y,ball.radius,0,Math.PI*2);
+					context.fillStyle=randomColor();
+					context.fill();
+					context.lineWidth=2;
+					context.strokeStyle=randomColor();
+					context.stroke();
+					context.beginPath();
+					context.moveTo(ball.x,ball.y);
+					try{
+						context.lineTo(balls[i-1].x,balls[i-1].y);
+					}catch(e){
+						context.lineTo(ball.x,ball.y);
+					}
+					context.lineWidth = rangeRandom(1,5);
+					context.strokenStyle= randomColor();
+					context.stroke();
+			}
+			setTimeout(drawBall,20);
+		};
+
+		//产生随机颜色
+		function randomColor(){
+			//0-255
+			var r = Math.floor(Math.random()*256);
+			var g = Math.floor(Math.random()*256);
+			var b = Math.floor(Math.random()*256);
+			return "rgb("+r+","+g+","+b+")";
+		}
+		/*0-num的随机数*/
+		function random(num){
+			return Math.floor(Math.random()*(num+1));
+		}
+		/*start-end范围内随机数 5-11*/
+	
+		function rangeRandom(start,end){
+			return Math.floor(Math.random()*(end-start+1))+start;
+		};
+	    setTimeout(drawBall,20);//执行一次
+
+		//setInterval(addBall , 17);
+		
+		return{
+			addBall:addBall
+		}
+
+	})();
+
+
+
+	
+</script>
+</html>

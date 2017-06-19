@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{padding:0;margin:0}
+	body{font-size:14px;font-family:"微软雅黑"}
+	a{text-decoration:none;color:#333}
+	ul li{list-style:none}
+  </style>
+ </head>
+ <body>
+
+	<div id="audioBox"></div>
+	
+	<a href="javascript:void(0);" id="tzplay">播放</a>
+	<a href="javascript:void(0);" id="tzstop">暂停</a>
+
+
+	<a href="javascript:void(0);" id="tzprev">上一首</a>
+	<a href="javascript:void(0);" id="tznext">下一首</a>
+
+	<script src="dom.js"></script>
+	<script>
+		var tzMusic= (function(){
+			var json = {
+				//音乐列表
+				musics:[],
+				len :0,
+				//播放的索引
+				playIndex:0,
+				//播放器
+				audioDom:document.createElement("audio"),
+				//追加音乐到播放器中
+				add:function(musicArr){
+					this.musics = musicArr;
+					//播放器音乐的个数
+					this.len = this.musics.length;
+					//默认播放是第一首音乐
+					this.audioDom.src = this.musics[this.playIndex].src;
+					
+					//测试代码
+					this.audioDom.controls = "controls"; 
+					document.getElementById("audioBox").appendChild(this.audioDom);
+				},
+				play:function(){
+					this.audioDom.play();
+				},
+				//暂停
+				stop:function(){
+					this.audioDom.pause();
+				},
+				//上一首
+				prev:function(){
+					
+					/*if(this.playIndex == 0){
+						alert("前面没有音乐了....")
+						return;
+					}
+					this.playIndex--;*/
+					
+					//当前已经是0,
+					//if(this.playIndex == 0)this.playIndex = this.len;
+					//this.playIndex--;
+					this.playIndex = (this.playIndex == 0)?this.len-1:--this.playIndex;
+
+					this.playMain();
+				},
+				//下一首
+				next:function(){
+					//this.playIndex++;
+					//if(this.playIndex == this.len)this.playIndex = 0;
+					this.playIndex = (this.playIndex == this.len-1)?0:++this.playIndex;
+					this.playMain();
+				},
+
+				playMain:function(){
+					this.audioDom.src = this.musics[this.playIndex].src;
+					if(this.audioDom.paused){
+						this.play();
+					}
+				}
+			};
+
+			return json;
+		})();
+
+
+		
+
+		window.onload = function(){
+			//音乐文件信息:，音乐文件,歌手，封面图片，id
+			var music1 = {
+				id:"1",	
+				src:"http://luoo-mp3.kssws.ks-cdn.com/low/luoo/radio788/01.mp3",
+				name:"Fields Of Green",
+				author:"Fiddler's Green",
+				img:"http://7xkszy.com2.z0.glb.qiniucdn.com/pics/albums/9603/cover.jpg"
+			};
+
+			var music2 = {
+				id:"2",
+				src:"http://luoo-mp3.kssws.ks-cdn.com/low/luoo/radio788/02.mp3",
+				name:"Drunk in Belgium",
+				author:"The Black Tartan Clan",
+				img:"http://7xkszy.com2.z0.glb.qiniucdn.com/pics/albums/9604/cover.jpg"
+			};
+
+			var music3 = {
+				id:"3",
+				src:"http://luoo-mp3.kssws.ks-cdn.com/low/luoo/radio788/03.mp3",
+				name:"Dropkick Murphys",
+				author:"Signed and Sealed in Blood",
+				img:"http://7xkszy.com2.z0.glb.qiniucdn.com/pics/albums/9605/cover.jpg"
+			};
+
+			var arr = [];
+			arr.push(music1);
+			arr.push(music2);
+			arr.push(music3);
+
+
+			//追加音乐文件
+			tzMusic.add(arr);
+
+
+			dom("tzstop").onclick = function(){
+				tzMusic.stop();
+			};
+
+			dom("tzplay").onclick = function(){
+				tzMusic.play();
+			};
+
+			dom("tzprev").onclick = function(){
+				tzMusic.prev();
+			};
+
+			dom("tznext").onclick = function(){
+				tzMusic.next();
+			};
+		
+		};
+
+	</script>
+  
+ </body>
+</html>

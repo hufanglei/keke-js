@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>居中</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;background:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{width:400px;height:400px;background:red;position:relative;overflow:hidden;}
+			#box2{width:200px;height:200px;background:green;
+				/*position:absolute;
+				top:100px;
+				left:100px;*/
+				margin-top:100px;
+				margin-left:100px;
+			}
+
+		</style>
+
+	</head>
+<body>
+	
+	<div id="box">		
+	</div>
+<script src="dom.js"></script>
+<script>
+		/*居中:---基于浏览器
+		①css3的方法(calc）
+		②js的方法
+		var left = (dw- sw)/2;
+		var top = (dh - sh)/2;	
+		*/
+		window.onload = function(){
+			centerElement("box");
+		}
+
+		function centerElement(id){
+			var boxDom = dom(id);		
+			var sw = boxDom.offsetWidth;
+			var sh = boxDom.offsetHeight;
+			var dw = window.innerWidth;
+			var dh = window.innerHeight;
+			var cleft = (dw- sw)/2;
+			var ctop = (dh - sh)/2;	
+			boxDom.style.left = cleft + "px";
+			boxDom.style.top = ctop + "px";
+			//随着窗口改变而改变
+			window.onresize = function(){
+				centerElement(id);
+			}
+			
+		}
+	
+</script>
+</body>
+</html>

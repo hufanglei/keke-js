@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#333;}
+			ul,li{list-style:none}
+			.fl{float:left;}
+			.fr{float:right;}
+			body{font-size:12px;font-family:"微软雅黑";background:#373737;}
+			#box{width:220px;height:300px;margin:100px auto;}
+			#box .items{background:#eaeaea;padding:10px;margin-top:10px;overflow:hidden;line-height:20px;position:relative;}
+			input{height:30px;border:1px solid #ccc;text-align:center;width:160px;}
+			#box .num_tip{position:absolute;bottom:-50px;
+				left: 24px;
+				width: 160px;
+				height:50px;background:red;text-align:center;
+				font-size:20px;
+				font-weight:700;
+				line-height:50px;
+				background:transparent;
+			}
+	
+		</style>
+
+	</head>
+<body>
+
+	<div id="box">
+		<div class="items">
+			<a href="javascript:void(0);" class="fl minus">减</a>
+			<input type="text"  class="fl" value="1">
+			<a href="javascript:void(0);" class="fl plus">加</a>
+			<span class="num_tip">1</span>
+		</div>
+		<div class="items">
+			<a href="javascript:void(0);" class="fl minus">减</a>
+			<input type="text"  class="fl" value="1">
+			<a href="javascript:void(0);" class="fl plus">加</a>
+			<span class="num_tip">1</span>
+		</div>
+		<div class="items">
+			<a href="javascript:void(0);" class="fl minus">减</a>
+			<input type="text"  class="fl" value="1">
+			<a href="javascript:void(0);" class="fl plus">加</a>
+			<span class="num_tip">1</span>
+		</div>
+	</div>
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script>
+
+	$(function(){
+		$("#box").find(".plus").on("click",function(){
+			var $input = $(this).prev();
+			var val = $input.val() *1;
+			val++;
+			
+			//拿到展示的效果进行动画显示
+			$(this).next().stop(true,true).text(val).animate({bottom:53},600,function(){
+				$(this).css("bottom",-50);
+				$input.val(val);
+			});
+		});
+
+		//js写法
+		/*var boxDom = document.getElementById("box");
+		//获取所有的孩子
+		var itemsDoms = boxDom.children;
+		var len = itemsDoms.length;
+		for(var i=0;i<len;i++){		
+			//获取每一个items中加号和减号
+			var plusDom = itemsDoms[i].getElementsByClassName("plus")[0];
+			//获取减号
+			var minusDom = itemsDoms[i].getElementsByClassName("minus")[0];
+			
+			//加号绑定事件
+			plusDom.onclick = function(){
+				//获取点击当前元素的input框对象
+				var inputDom = this.parentElement.children[1];//第二个元素
+				//获取当前元素的input的值
+				var value = inputDom.value *1;
+				//递加
+				value++;
+				//重新赋值
+				inputDom.value = value;
+				//知识扩展
+				//this.parentElement.appendChild(inputDom);//添加
+				//this.parentElement.removeChile(inputDome);//删除
+			};
+
+			//减号绑定事件
+			minusDom.onclick = function(){
+				//获取点击当前元素的input框对象
+				var inputDom = this.parentElement.children[1];
+				//获取当前元素的input的值
+				var value = inputDom.value *1;
+				//递减
+				value--;
+				//重新赋值
+				inputDom.value = value;
+			}; 
+		}*/
+	});	
+</script>
+</body>
+</html>

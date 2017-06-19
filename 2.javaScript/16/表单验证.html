@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>表单验证</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff;}			
+			input[type='text'],input[type='password'],input[type='submit'],
+			input[type='button']{width:240px;height:36px;text-indent:0.5em;}			
+			textarea{width:480px;height:60px;overflow:auto;}
+			select{padding:10px;}
+			p{margin-top:10px;}		
+
+		</style>
+
+	</head>
+<body>
+	<div style="width:640px;margin:100px auto">
+		<h1 id="error" style="color:red"></h1>
+		<form id="userForm" action="" method="post" >
+		<p>用户名:<input type="text" autofocus="autofocus" id="username" name="username"/></p>
+		<p>密码:<input type="password" id="password" name="password"/></p>
+		<p>
+			性别:
+			<label><input type="radio"  name="sex" value="男" title="男text" />男text</label>
+			<label><input type="radio" name="sex" value="女" title="女text"/>女text</label>
+		</p>
+		<p>
+			兴趣爱好:
+			<label><input type="checkbox" name="hobbys" value="1" />看书</label>
+			<label><input type="checkbox" name="hobbys" value="0"/>电影</label>
+			<label><input type="checkbox" name="hobbys" value="0"/>游泳</label>
+		</p>
+		<p>
+			自我介绍:<textarea id="content"></textarea>
+		</p>
+		<p>省份:
+			<select id="provice">
+				<option value="">请选择省份</option>
+				<option value="s001">湖南</option>
+				<option value="s002">浙江</option>
+				<option value="s003">上海</option>
+				<option value="s004">南京</option>
+				<option value="s005">北京</option>
+				<option value="s006">广州</option>
+			</select>
+		</p>		
+		<input type="button" value="button提交" onclick="saveUser()"/>
+		<input type="submit" value="submit提交">
+	</form>
+	<!--<form id="userForm" action="" method="post" onsubmit="return saveUser();">
+		<p>用户名:<input type="text" autofocus="autofocus" id="username" name="username"/></p>
+		<p>密码:<input type="password" id="password" name="password"/></p>
+		<p>
+			性别:
+			<label><input type="radio"  name="sex" value="男" title="男text" />男text</label>
+			<label><input type="radio" name="sex" value="女" title="女text"/>女text</label>
+		</p>
+		<p>
+			兴趣爱好:
+			<label><input type="checkbox" name="hobbys" value="1" />看书</label>
+			<label><input type="checkbox" name="hobbys" value="0"/>电影</label>
+			<label><input type="checkbox" name="hobbys" value="0"/>游泳</label>
+		</p>
+		<p>
+			自我介绍:<textarea id="content"></textarea>
+		</p>
+		<p>省份:
+			<select id="provice">
+				<option value="">请选择省份</option>
+				<option value="s001">湖南</option>
+				<option value="s002">浙江</option>
+				<option value="s003">上海</option>
+				<option value="s004">南京</option>
+				<option value="s005">北京</option>
+				<option value="s006">广州</option>
+			</select>
+		</p>
+		<input type="submit" value="submit提交">
+		<input type="button" value="提交">
+	</form>-->
+	</div>
+
+<script>
+	/*
+		submit格式:
+		//不管做任何项目:验证是最后做
+	*/
+	function $(id){
+		return document.getElementById(id);
+	}
+	function saveUser(){
+		if(!isValidator()){
+			return false;
+		}
+		//获取form元素的值  formDom.name.value
+		var formDom = $("userForm");
+		//var username = formDom.username.value;
+
+		//id获取元素值
+		var username = $("username").value;
+		var password = $("password").value;
+		
+		//单选按钮
+		var radioDoms = formDom.sex;
+		var rlen = false;
+		var rvalue = "";
+		for(var i = 0;i<radioDoms.length;i++){
+			if(radioDoms[i].checked){
+				//alert(radioDoms[i].value+"=="+radioDoms[i].getAttribute("ctitle"));//自定义属性
+				//alert(radioDoms[i].value+"=="+radioDoms[i].title);//自带属性
+				rvalue = radioDoms[i].value;
+				var rlen = true;
+				break;
+			}
+		}
+		//jqury写法
+		//var sexDom = $("input[type='radio'][name='sex']:checked);
+		//if(sexDom.length==0){		}	
+		
+		//复选按钮
+		var checkDoms = formDom.hobbys;
+		var clen = false;
+		var carr = [];
+		for(var i = 0;i<checkDoms.length;i++){
+			if(checkDoms[i].checked){				
+				carr.push(checkDoms[i].value);
+				var clen = true;
+			}
+		}
+
+		
+		//下拉框 select
+		//选择框select的值
+		var svalue = $("provice").value;
+		//获取当前选中的元素的索引
+		var selectIndex = $("provice").selectedIndex;
+		//获取当前选中的元素的索引对应的option
+		var optionDom = $("provice").options[selectIndex];
+		//获取value和文本
+		var v = optionDom.value;
+		var t = optionDom.text;//注意是text 一定切记innerText火狐不支持
+		
+		
+		//文本域 textarea
+		var  content = $("content").value;
+
+		var params= {};
+		params.username = username;
+		params.password = password;
+		params.sex = rvalue;
+		params.hobbys = carr.toString();
+		params.provice = v;
+		params.provice = content;
+		alert(JSON.stringify(params));
+		/*$.ajax{
+			type:"post",
+			url:"index.jsp",
+			data:params,
+			success:function(){
+			
+			}
+		}*/
+		//执行ajax
+	}
+	function isValidator(){
+		//获取form元素的值  formDom.name.value
+		var formDom = $("userForm");
+		//var username = formDom.username.value;
+
+		//id获取元素值
+		var username = $("username").value;
+		var password = $("password").value;
+		
+
+		
+		//单选按钮
+		var radioDoms = formDom.sex;
+		var rlen = false;
+		var rvalue = "";
+		for(var i = 0;i<radioDoms.length;i++){
+			if(radioDoms[i].checked){
+				//alert(radioDoms[i].value+"=="+radioDoms[i].getAttribute("ctitle"));//自定义属性
+				//alert(radioDoms[i].value+"=="+radioDoms[i].title);//自带属性
+				rvalue = radioDoms[i].value;
+				var rlen = true;
+				break;
+			}
+		}
+		//jqury写法
+		//var sexDom = $("input[type='radio'][name='sex']:checked);
+		//if(sexDom.length==0){		}	
+		
+		//复选按钮
+		var checkDoms = formDom.hobbys;
+		var clen = false;
+		var carr = [];
+		for(var i = 0;i<checkDoms.length;i++){
+			if(checkDoms[i].checked){				
+				carr.push(checkDoms[i].value);
+				var clen = true;
+			}
+		}
+
+		
+		//下拉框 select
+		//选择框select的值
+		var svalue = $("provice").value;
+		//获取当前选中的元素的索引
+		var selectIndex = $("provice").selectedIndex;
+		//获取当前选中的元素的索引对应的option
+		var optionDom = $("provice").options[selectIndex];
+		//获取value和文本
+		var v = optionDom.value;
+		var t = optionDom.text;//注意是text 一定切记innerText火狐不支持
+		
+		
+		//文本域 textarea
+		var  content = $("content").value;
+	
+		
+		
+		$("error").innerHTML = "";
+		
+		if(username==""){			
+			showError("请输入用户名称");
+			$("username").focus();
+			return false;//falsy:0 false "" null NaN undified ==false
+		}
+		if(password==""){	
+			showError("请输入用户密码");
+			// formDom.username.focus();
+			$("password").focus();
+			return false;//falsy:0 false "" null NaN undified ==false
+		}
+		if(!rlen){		
+			showError("请选择性别...");
+			return false;
+		}
+		if(!clen){			
+			showError("请选择兴趣爱好...");
+			return false;
+		}
+
+		if(content == ""){			
+			showError("请输入描述");
+			$("content").focus();
+			return false;
+		}
+		if(svalue == ""){
+			showError("请选择省份");		
+			return false;
+		}
+		
+		
+		return true;
+	}
+
+	function showError(message){
+		$("error").innerHTML = message;
+		setTimeout(function(){
+			$("error").innerHTML ="";
+		},1000);
+	}
+
+		
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<link ref="" rel="stylesheet" href="../css/font-awesome.min.css">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#ccc;}
+			ul,li{list-style:none}
+			img{border:0;}
+			body{font-size:12px;font-family:"微软雅黑";color:#fff;background:#fff;}
+			/*header start*/
+			.header{height:40px;background:#333;}
+			.header .container{height:40px;width:1226px;margin:0 auto;}
+			
+			/*h_nav*/			
+			.header .container .h_nav li{font-size:14px;height:40px;line-height:40px;margin-right:10px;color:#ccc;float:left;}
+			.header .container .h_nav li a{color:#ccc;}
+			.header .container .h_nav li a:hover{color:#fff;}
+			.header .container .h_nav li span{margin-left:10px;}
+			/*h_right*/
+			.header .container .h_right li{font-size:14px;height:40px;line-height:40px;margin-left:24px;color:#ccc;float:right;}
+			.header .container .h_right li.first{background:#424242;color:#b0b0b0;padding:0 10px;}			
+			.header .container .h_right li a:hover{color:#fff;}
+			.header .container .h_right li i.fa{font-size:16px;padding-right:5px;}
+			.header .container .h_right li.first:hover{background:#fff;}
+			.header .container .h_right li.first:hover a{color:#ff9900;}
+			/*header end*/
+			
+			/*container start*/
+			.container{width:1226px;margin:0 auto;}
+			/*navbox start*/
+			.container .navbox{height:100px;}
+			/*c_n_logo start*/
+			.container .navbox .c_n_logo {width:62px;height:100px;float:left;}
+			.container .navbox .c_n_logo a{display:block;background:#FF6700;margin-top:20px}
+			.container .navbox .c_n_logo span{display:block;height:60px;background:url("http://s01.mifile.cn/i/mi-logo.png") no-repeat center;}
+			/*c_n_logo end*/
+			/*c_n_nav start*/			
+			.container .navbox .c_n_nav{width:859px;height:100px;float:left;}
+			.container .navbox .c_n_nav ul{margin-left:120px;width:780px;overflow:hidden;}
+			.container .navbox .c_n_nav ul li{height:100px;line-height:100px;padding:0 16px;font-size:16px;float:left;}
+			.container .navbox .c_n_nav ul li a{color:#111;}
+			.container .navbox .c_n_nav ul li a:hover{color:red;}
+			/*c_n_nav end*/
+			/*c_n_nav c_n_search*/
+			.container .navbox .c_n_search{width:300px;height:50px;border:1px solid #ccc;float:right;margin-top:21px;position:relative;}
+			.container .navbox .c_n_search input{display:block;height:50px;width:225px;font-size:14px;font-family:"微软雅黑";border:0;outline:none;padding-left:10px;;float:left;}
+			.container .navbox .c_n_search .keywords{height:14px;line-height:14px;position:absolute;top:16px;right:62px;z-index: 2;}
+			.container .navbox .c_n_search .keywords a{display:inline-block;padding:2px;line-height:14px;;font-size:12px;background:#eee;color:#111;}				
+			.container .navbox .c_n_search .btn{display:block;height:50px;width:50px;border-left:1px solid;line-height:50px;
+				text-align:center;float:right;}
+			.container .navbox .c_n_search a:hover{background:#ff6700;color:#fff;}
+			.container .navbox i.fa{font-size:24px;line-height:50px;}
+			/*c_n_search end*/
+			/*navbox end*/
+			/*banner start*/
+			.container .banner{background:url("images/banner1.jpg") no-repeat center;background-size:cover;}
+			/*slider */
+			.container .banner .slider{width:234px;height:460px;background:rgba(0,0,0,0.6);}
+			/*category */
+			.container .banner .slider .category{padding-top:20px}
+			.container .banner .slider .category li{height:42px;width:234px;line-height:42px;}
+			.container .banner .slider .category li:hover{background:#ff6700;}
+			.container .banner .slider .category li:hover i{display:inline-block;}
+			.container .banner .slider .category li a{padding-left:30px;font-size:14px;color:#fff;}
+			.container .banner .slider .category li i{font-size:20px;padding-right:20px; line-height:42px;float: right;display:none;}
+			/*banner end*/
+
+			/*bannerbox start*/
+			.container .bannerbox{width:1229px;height:170px;margin-top:20px;}
+			.container .bannerbox dt{width:234px;height:170px;float:left;background:#5f5750;}
+			.container .bannerbox dt ul li{width:76px;height:82px;margin:1px;position:relative;float:left;}
+			.container .bannerbox dt ul li a:hover{color:#fff;}
+			.container .bannerbox dt ul li a{display:block;width:70px;height:64px;margin:9px 3px;float:left;line-height:64px;text-align:center;}
+			.container .bannerbox dt ul li a i.fa{font-size:30px;height:40px;display:block;line-height:50px;}
+			.container .bannerbox dt ul li a span{display:block;height:24px;line-height:24px;}
+			.container .bannerbox dt ul li.left .line{position:absolute;top:6px;right:0; width:1px;height:70px;background:#665e57;float:left;}
+			.container .bannerbox dt ul li.top .line_top{position: absolute;background: #665e57;top: -1px;left:6px;width:64px;height:1px;}
+			.container .bannerbox dd{width:316px;height:170px;float:left;margin-left:15px;}
+			/*bannerbox end*/
+
+			/*container end*/
+			
+			/*footer start*/
+			.footer{height:100px;background:#111;margin-top:20px;}
+			/*footer end*/
+
+		</style>
+
+	</head>
+<body>
+	<!--header start-->
+	<div class="header">
+		<div class="container">
+			<!--h_nav start-->
+			<ul class="h_nav">
+				<li><a href="javascript:void(0)">小米网</a><span>|</span></li>
+				<li><a href="javascript:void(0)">MIUI</a><span>|</span></li>
+				<li><a href="javascript:void(0)">米聊</a><span>|</span></li>
+				<li><a href="javascript:void(0)">游戏</a><span>|</span></li>
+				<li><a href="javascript:void(0)">多看阅读</a><span>|</span></li>
+				<li><a href="javascript:void(0)">云服务</a><span>|</span></li>
+				<li><a href="javascript:void(0)">小米网移动版</a><span>|</span></li>
+				<li><a href="javascript:void(0)">问题反馈</a><span>|</span></li>
+				<li><a href="javascript:void(0)">Select Region</a></li>
+			</ul>
+			<!--h_nav end-->
+			<!--h_right start-->
+			<ul class="h_right">
+				<li class="first"><a href="javascript:void(0)"><i class="fa fa-shopping-cart"></i>加入购物车</a></li>
+				<li><a href="javascript:void(0)">注册</a></li>
+				<li><a href="javascript:void(0)">登录</a></li>
+			</ul>
+			<!--h_right end-->
+		</div>
+	</div>
+	<!--header start-->
+
+	<div class="container">
+		<!--navbox start-->
+		<div class="navbox">
+			<!--c_n_logo start-->
+			<div class="c_n_logo">
+				<a><span></span></a>
+			</div>
+			<!--c_n_logo end-->
+
+			<!--c_n_nav start-->
+			<div class="c_n_nav">
+				<ul>
+					<li><a href="javacript:void(0)">小米手机</a></li>
+					<li><a href="javacript:void(0)">红米</a></li>
+					<li><a href="javacript:void(0)">平板电视</a> </li>
+					<li><a href="javacript:void(0)">电视·盒子</a></li>
+					<li><a href="javacript:void(0)">路由器</a></li>
+					<li><a href="javacript:void(0)">智能硬件</a></li>
+					<li><a href="javacript:void(0)">服务</a></li>
+					<li><a href="javacript:void(0)">社区</a></li>					
+				</ul>
+			</div>
+			<!--c_n_nav end-->
+		
+			<!--c_n_search start-->
+			<div class="c_n_search">
+				<input type="text" value=""/>
+				<div class="keywords">
+					<a href="javascript:void(0)" class="word1">手环</a>
+					<a href="javascript:void(0)" class="word2">小米手机4</a>
+				</div>
+				<a  class="btn" href="javascript:void(0)" ><i class="fa fa-search"></i></a>
+			</div>
+			<!--c_n_search end-->
+		</div>
+		<!--navbox end--><!--banner start-->
+		<div class="banner">
+			<!--slider start-->
+			<div class="slider">
+				<!--category start-->
+				<ul class="category">
+					<li><a href="javascript:void(0)">手机&nbsp;平板&nbsp;电话卡</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0)">电视&nbsp;盒子</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0)">路由器&nbsp;智能硬件</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0)">移动电源&nbsp;插线板</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0)">耳机&nbsp;音箱</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0)">电池&nbsp;存储卡</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0)">保护套&nbsp;后盖</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0)">贴膜&nbsp;其他配件</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0)">米兔&nbsp;服装</a><i class="fa fa-angle-right"></i></li>
+					<li><a href="javascript:void(0)">箱包&nbsp;其他周边&nbsp;</a><i class="fa fa-angle-right"></i></li>
+				</ul>
+				<!--category end-->
+			</div>
+			<!--slider end-->
+		</div>
+		<!--banner end-->
+		
+		<!--bannerbox start-->
+		<div class="bannerbox">
+			<dl>
+				<dt>
+					<ul>
+						<li class="left">
+							<a href="javascript:void(0)" class=""><i class="fa fa-gift"></i><span>电信专场</span></a>
+							<div class="line"></div>
+						</li>
+						<li class="left"><a href="javascript:void(0)" class="top"><i class="fa fa-gift"></i><span>企业团购</span></a>
+							<div class="line"></div>
+						</li>
+						<li ><a href="javascript:void(0)" class="top"><i class="fa fa-gift"></i><span>官翻产品</span></a></li>
+						<li class="top left">
+							<div class="line_top"></div>
+							<a href="javascript:void(0)" class="left"><i class="fa fa-gift"></i><span>小米移动</span></a>
+							<div class="line"></div>
+						</li>
+						<li class="top left">
+							<div class="line_top"></div>
+							<a href="javascript:void(0)" ><i class="fa fa-gift"></i><span>话费充值</span></a>
+							<div class="line"></div>
+						</li>
+						<li class="top">
+							<div class="line_top"></div>
+							<a href="javascript:void(0)" ><i class="fa fa-gift"></i><span>防伪查询</span></a>
+						</li>
+					</ul>
+				</dt>
+				<dd><a href="javascript:void(0)"><img src="images/dd1.jpg"></a></dd>
+				<dd><a href="javascript:void(0)"><img src="images/dd2.jpg"></a></dd>
+				<dd><a href="javascript:void(0)"><img src="images/dd3.jpg"></a></dd>
+			</dl>
+		</div>
+		<!--bannerbox end-->
+		
+	</div>
+	
+	<div class="footer">
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			html{padding:100px;background:#fff;}
+			a{text-decoration:none;color:#111;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			#box{background:#111;width:260px;height:100px;font-size:24px;line-height:100px;color:#fff;text-align:center;}
+
+		</style>
+
+	</head> 
+<body>
+	<div id="box"></div>
+	<input type="text" id="input" />
+	<select id="etype" onchange="changeEvent(this)">
+		
+		<option value="onblur">onblur</option>
+		<option value="onselect">onselect</option>
+		<option value="onfocus">onfocus</option>
+		<option value="onfocusin">onfocusin</option>
+		<option value="onfocusout">onfocusout</option>
+		<option value="onchange">onchange</option>
+
+
+		<option value="onselect">onselect</option>
+		<option value="onmousedown">onmousedown</option>
+		<option value="onmouseover">onmouseover</option>
+		<option value="onmousemove">onmousemove</option>
+		<option value="onmouseout">onmouseout</option>
+		<option value="onmouseenter">onmouseenter</option>
+		<option value="onmouseleave">onmouseleave</option>
+		<option value="onmouseup">onmouseup</option>
+
+
+		<option value="onclick">onclick</option>
+		<option value="ondblclick">ondblclick</option>
+
+
+		<option value="onkeydown">onkeydown</option>
+		<option value="onkeypress">onkeypress</option>
+		<option value="onkeyup">onkeyup</option>
+
+
+	</select>
+
+	
+
+<script type="text/javascript" src="dom.js"></script>
+<script>
+	//变量和属性的区别
+	//变量它是一个数据结构，是存储
+	function changeEvent(obj){
+		var value = obj.value;
+		dom("box")[value] = function(e){
+			cgo(value);
+		}
+		dom("input")[value] = function(e){
+			this.style.background = "red";
+		}
+
+	}
+	function cgo(etype){
+		dom("box").innerHTML = "您点击的是" + etype;
+	}
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>动画</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";}
+			/*#box{background:red;width:100px;height:100px;}*/
+
+			/*单独控制样式的写法  注意最后的时间是延迟*/
+			/*#box:hover{transition:width 1s ease,height 1s ease 2s;height:200px;width:200px;}*/
+
+			/*同时控制*/
+            /*#box:hover{transition:all 1s ease 2s;height:200px;width:200px;}*/
+
+			/*两个事件源*/
+			/*#box:hover{transition:width 1s ease;transition:height 1s ease;height:200px;width:200px;}*/
+			#box{background:red;width:100px;height:100px;transform:rotate(0deg) scale(1) skew(10deg);transition:transform 1s;}
+			/*#box:hover{transform:rotate(2turn) scale(2) skew(20deg);width:200px;height:200px;}*/
+			/*transform 动画样式需要过渡的话，不用写在事件源如hover身上，而是写在元素本身身上*/
+			
+
+			/*
+				turn (转)
+				1turn = 360deg
+				skew
+				
+			*/
+
+
+
+			/
+			/*
+			transform： rotate scale skew translate ;动画样式
+			transition: 过渡(动画)(样式)
+            
+			transition: opacity 1s ease
+
+			事件源hover active focus
+			*/
+
+		</style>
+	
+	</head>
+<body>
+ 
+    <div id="box">keke</div>
+
+<script src="dom.js"></script>
+<script>
+	window.onload = function(){
+		dom("box").onmouseover = function(){
+			this.style.transform = "rotate(2turn) scale(2) skew(20deg)";
+		}
+		dom("box").onmouseout = function(){
+			this.style.transform = "rotate(0) scale(1) skew(0)";			
+		}
+	}		
+		
+</script>
+</body>
+</html>

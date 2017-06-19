@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+    <!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--当前页面的三要素-->
+    <title>放大镜布局</title>
+    <meta name="Keywords" content="关键词,关键词">
+    <meta name="description" content="">
+
+    <!--css,js-->
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        ul, li {
+            list-style: none
+        }
+
+        body {
+            font-size: 14px;
+            font-family: "微软雅黑";
+            background: #333;
+        }
+
+        .wrapbox {
+            width: 640px;
+            height: 300px;
+            background: #fff;
+            margin: 180px auto;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .wrapbox #imgbox {
+            height: 180px;
+            width: 180px;
+            position: relative;
+            top: 0;
+            left: 0;;
+            float: left
+        }
+
+        .wrapbox #imgbox {
+            height: 180px;
+            width: 180px;
+            position: relative;
+            top: 0;
+            left: 0;
+            margin: 10px;
+            float: left
+        }
+
+        .wrapbox .content {
+            margin-left: 190px;
+        }
+
+        #imgbox span {
+            height: 100px;
+            width: 100px;
+            border: 3px solid #ff6633;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            display: none;
+        }
+
+        #imgbox #mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: green;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: move;
+        }
+
+        #maxImgbox {
+            height: 500px;
+            width: 500px;
+            position: absolute;
+            left: 847px;
+            top: 196px;
+            overflow: hidden;
+            display: none;
+        }
+
+        #maxImgbox #maxImg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="wrapbox">
+    <div id="imgbox">
+        <img src="http://images.huxiu.com/article/cover/201601/05/081021633001.jpg" width="180" height="180">
+        <span></span>
+
+        <div id="mark"></div>
+    </div>
+    <div class="content">
+			<span>生命中总有一抹心念，从未曾走远。在目之所及之处寂然开放，宛如初见时的惊艳，瓣瓣莹白，朵朵飘逸，温婉着心情，娇娆着山川。雪，与我有一份心灵的契合。在寒冷的冬季里，就让我的追寻和着雪一起离开苍茫遥远的天空，肆意飘洒，只为梦落下时，那美丽无瑕的佳话。多想，放下尘世的碎碎念，不必去想，也不必刻意去忘。携一纸宋词里的韵脚，在江南二十桥里写意生命中的诗情。雪落北国，梅开江南，在明月夜里摇曳一室清香。此时，茶已温好，只等你踏雪而归，你不言，我不语，与我对坐在一盏茶香里，温一壶岁月流逝的记忆……
+			尘世喧嚣，一颗被秋雨滤过的尘心，淡淡的，不用触摸，已是安然。冬，带来了深厚与沉稳，看天边飘起了雪花，便也有了一份安静的从容。那些山与水的遇见，在记忆深处沉淀成一泓碧水，潋滟着生命的欢喜与忧伤。一念清心，雪儿蹁跹，它始终以最美的姿态，穿行于每一个素白而静怡的日子里。
+			今夜，月光躲在云层里，一缕斜风，安静的诉说着前缘旧事，记忆的珠链跌碎了一地似水若梦的缠绵，深深浅浅，那两三朵儿娉婷一直在记忆的梗上妖娆。陌上寒烟，谁为谁温柔了岁月，谁又为谁惊艳了时光？那一行行清瘦的思念，飘泊在月光水岸，涟漪起多少无眠的情怀？你说，无论世事如何变迁，情依然都在。你说，无论心去何处，都记得来时的路。那一束朦胧的月华，沐我一身淡淡的寂寒，那悄然飞舞的雪儿，蹁跹在你的窗前，无需你看见，轻轻的来，不惹一丝尘埃......
+			光阴辗转，这世间有多少无法落幕的期盼，多少心念都付诸于落花流水。细数时光里走过的点滴情谊，有欢笑，有酸楚，也有入了眉眼的幸福。昔我往矣，杨柳依依；今我来思，白雪菲菲。情感入冬，一切都显得安恬，静默，很多话，在不言而喻的感应里，那份已然收藏的美好，在一种叫做倍感珍惜的情愫里俨然生根。即便隔了万千山水，依然能看见那一抹向暖的微笑，染了时光长廊里的梅红雪白。
+			携一片流云，与寂寂的夜里，温暖我冬寒里蒹葭的记忆。一方水湄，许我兰舟浅渡，接你如水般温息。一种温情，一抹牵念，只能遥寄在梦里。风从月华里穿过，有划落叶子的声音，我把落落的心绪细碎成文字，散落在飘舞的雪花里，把深深珍重别上你的衣袖，冬寒，念暖。爱，是飘荡在沧海里的一叶轻舟，还是行走在沙漠上的一树菩提？也许爱，只是落在白雪里，一朵冷寂的红玫瑰。</span>
+    </div>
+</div>
+
+<!--大图层-->
+<div id="maxImgbox">
+    <img id="maxImg" src="http://images.huxiu.com/article/cover/201601/05/081021633001.jpg">
+</div>
+
+<script>
+    function dom(id) {
+        return document.getElementById(id);
+        //return document.querySelector("#"+id);
+    }
+
+    window.onload = function () {
+        var boxDom = dom("imgbox");
+        var spanDom = boxDom.children[1];
+        var markDom = dom("mark");
+        var imgDom = dom("maxImg");
+        var maxBoxDom = dom("maxImgbox");
+        //var spanDom = boxDom.getElementsByTagName("span")[0];
+        //父子鼠标时间的隔离:onmouseenter   onmouseleave
+        markDom.onmouseover = function () {
+            spanDom.style.display = "block";
+            maxBoxDom.style.display = "block";
+        }
+        markDom.onmouseout = function () {
+            spanDom.style.display = "none";
+            maxBoxDom.style.display = "none";
+        }
+        markDom.onmousemove = function (e) {
+            ev = e || window.event;
+            var x = (ev.clientX || ev.pageX) - boxDom.offsetLeft;
+            var y = (ev.clientY || ev.pageY) - boxDom.offsetTop;
+            //控制边界问题:
+            //坐标赋予拖拽层
+            var left = x - spanDom.offsetWidth / 2;
+            var top = y - spanDom.offsetHeight / 2;
+            var maxWidth = boxDom.offsetWidth - spanDom.offsetWidth;
+            var maxHeight = boxDom.offsetHeight - spanDom.offsetHeight;
+            if (left <= 0) {
+                left = 0;
+            }
+            if (top <= 0) {
+                top = 0;
+            }
+            if (left >= maxWidth) {
+                left = maxWidth;
+            }
+            if (top >= maxHeight) {
+                top = maxHeight;
+            }
+            spanDom.style.left = left + "px";
+            spanDom.style.top = top + "px";
+
+            //计算比例
+            xbit = left / maxWidth;
+            ybit = top / maxHeight;
+
+            //移动大图
+            var imgLeft = (imgDom.offsetWidth - imgDom.parentElement.offsetWidth) * xbit * (-1);
+            var imgTop = (imgDom.offsetHeight - imgDom.parentElement.offsetHeight) * ybit * (-1);
+            imgDom.style.left = imgLeft + "px"
+            imgDom.style.top = imgTop + "px";
+            document.title = imgLeft + "====" + imgTop;
+        }
+    }
+
+    //知识点1：
+    // 闪动，所以要进行父子元素鼠标事件隔离：谷歌没有问题，解决方式:
+    //方式1:onmouseenter   onmouseleave 替换  onmouseout onmousemove,此种方式ie678不支持
+    //方式2:CSS方式加遮罩层，给遮罩层事件 ，兼容没有问题
+
+    //知识点2: document.title 显示坐标的妙用
+    //document.title = x + "====" + y;
+
+    //知识点3: 获取坐标 写法
+    //function(e){
+    //ev = e || window.event;
+    //var x = (ev.clientX || ev.pageX) ;
+    //var y = (ev.clientY || ev.pageY);
+    //}
+
+    //知识点4: 元素的offset属性
+    //offsetTop offsetLeft offsetWidth offsetHeight
+
+    //知识点5:一般拖拽的3个事件
+    //onmouseover onmouseout onmousemove
+
+    //知识点6:图片移动的原理
+</script>
+</body>
+</html>

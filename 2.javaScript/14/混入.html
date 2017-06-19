@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>对象中的混入</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:red;}
+			
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+			}
+
+
+		</style>
+
+	</head>
+<body>
+<h1>对象中的混入</h1>
+<ul>
+	<li>混入 入门</li>
+	<li>混入的终极版本</li>
+	<li>再次理解call</li>
+</ul>
+<br/>
+<div>1:混入--吧对象进行合并；相同的属性进行覆盖，不同的属性进行追加</div>
+<pre>
+var person = {username:"keke"};
+var person2 = {age:20,address:"湖南长沙",username:"小阳"};
+//extends
+function mixin(obj,obj2){
+	for(var k in obj2){
+		if(obj2.hasOwnProperty(k)){
+			obj[k] = obj2[k];
+		}
+	}
+	return obj;
+}
+var json = mixin(person,person2);
+var jsonstring = JSON.stringify(json);
+console.log(jsonstring);//运行结果:{"username":"小阳","age":20,"address":"湖南长沙"}
+var j = JSON.parse(jsonstring);
+console.log(j.username);//运行结果:小阳
+
+function tzTable(opts){
+	var defaults = {
+		title:"我爱你"
+	};
+	var json = mixin(defaults,opts);
+	document.getElementById("title").innerHTML = defaults.title;
+}
+tzTable({
+	title:"我不爱你，你快滚远点..."
+});
+//效果如下:
+</pre>
+<h1 id="title"></h1>
+<br/>
+<div>2:混入的终极版本</div>
+<pre>
+function mix(target,source){
+//arguments：类数组---它有数组的长度，下标，但不能调用数组的sort push reverse 
+	var args = [].slice.call(arguments);
+	shift slice 方法
+	var i = 1;
+	if(args.length == 1){
+		return target;
+	};
+	while((source = args[i++])){
+		for(var key in source){
+			if(source.hasOwnProperty(key)){
+				target[key] = source[key];//混入代码
+			}
+		}
+	}
+	return target;
+};
+
+var person3  = {tel:"15000",sex:"男"};
+var json2 = mix(person,person2,person3,{"male":1,age:50});
+console.log(JSON.stringify(json2));	//运行结果:{"username":"小阳","age":50,"address":"湖南长沙","tel":"15000","sex":"男","male":1}
+</pre>
+<br/>
+<div>3:call的再次理解</div>
+<pre>
+//案例1:
+Array.prototype.slice =  function(start ,end){
+	var arr = [];
+	var len  = arr.length;
+	var index = (start&lt;0?len+start:start)||0;
+	var end = (end&lt;0?len+end:end)||this.length;
+	for(var i= index;i&lt;end;i++){
+		arr.push(this[i]);
+	}
+	return arr;
+}
+var arr = [1,2,3,4,5,6,7,8,9];
+var arr2 = [5,6,7,8,9];
+console.log(arr.slice.call(arr2,0,3));//6,7,8 备注:数组是对象奥
+</pre>
+<pre>
+//案例2:扩展应用:
+//根据argument是类数组的例子，可以延伸至doms也是类数组，也可以变成数组
+var doms = document.getElementsByTagName("x");
+var domsArr = [].slice.call(doms);
+//此时doms就有了arry的 slice sort push reverse shift slice 方法操作方式也一样
+</pre>
+<script>
+	//1:混入--吧对象进行合并；相同的属性进行覆盖，不同的属性进行追加
+	var person = {username:"keke"};
+	var person2 = {age:20,address:"湖南长沙",username:"小阳"};
+	//extends
+	function mixin(obj,obj2){
+		for(var k in obj2){
+			if(obj2.hasOwnProperty(k)){
+				obj[k] = obj2[k];
+			}
+		}
+		return obj;
+	}
+
+	
+
+	var json = mixin(person,person2);
+	var jsonstring = JSON.stringify(json);
+	console.log("1"+jsonstring);
+	var j = JSON.parse(jsonstring);
+	console.log("2"+j.username);
+	
+	function tzTable(opts){
+		var defaults = {
+			title:"我爱你"
+		};
+		var json = mixin(defaults,opts);
+		document.getElementById("title").innerHTML = defaults.title;
+	}
+	tzTable({
+		title:"我不爱你，你快滚远点..."
+	});
+
+	//混入的终极版本:
+	function mix(target,source){
+		var args = [].slice.call(arguments);
+		//arguments：类数组---它有数组的长度，下标，但不能调用数组的sort push reverse shift slice 方法
+		var i = 1;
+		if(args.length == 1){
+			return target;
+		};
+		while((source = args[i++])){
+			for(var key in source){
+				if(source.hasOwnProperty(key)){
+					target[key] = source[key];//混入代码
+				}
+			}
+		}
+		return target;
+	};
+
+	var person3  = {tel:"15000",sex:"男"};
+	var json2 = mix(person,person2,person3,{"male":1,age:50});
+	console.log(JSON.stringify(json2));	//运行结果:{"username":"小阳","age":50,"address":"湖南长沙","tel":"15000","sex":"男","male":1}
+
+
+	//3.再次理解call
+	//案例1:
+	Array.prototype.slice =  function(start ,end){
+		var arr = [];
+		var len  = arr.length;
+		var index = (start<0?len+start:start)||0;
+		var end = (end<0?len+end:end)||this.length;
+		for(var i= index;i<end;i++){
+			arr.push(this[i]);
+		}
+		return arr;
+	}
+	var arr = [1,2,3,4,5,6,7,8,9];
+	var arr2 = [5,6,7,8,9];
+	console.log(arr.slice.call(arr2,0,3));//6,7,8 备注:数组是对象奥
+	
+	//扩展案例2:
+	//根据argument是类数组的例子，可以延伸至doms也是类数组，也可以变成数组
+	var doms = document.getElementsByTagName("x");
+	var domsArr = [].slice.call(doms);
+	//此时doms就有了arry的 slice sort push reverse shift slice 方法操作方式也一样
+	
+</script>
+</body>
+</html>

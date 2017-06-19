@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>dom</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			
+			body{font-size:12px;font-family:"微软雅黑";padding:100px;background:#FFF;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 0 0 0;
+				padding: 2px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			.red{color:red;}
+			.green{color:green;}
+		</style>
+
+	</head>
+<body>
+	<h1>面向对象</h1>
+	<ul>
+		<li>面向对象的复习</li>
+	</ul><br/>
+	<h1>对象继承和构造函数继承</h1>
+	<pre>
+	<span class="green">//方式1:使用 Object.create 对象继承</span>
+	//Object.create源码
+	Object.prototype.create = function(o){
+		function F(){};//构造函数
+		F.prototype = o;//原型对象继承
+		return new F();//返回新对象
+	}
+	//例子:
+	var obj = {
+		username:"keke",
+		fn:function(){},
+		message:{msg:"obj消息"}
+	};
+	var obj2 = Object.create(obj);
+	obj2.username = "zhangsan";	
+	obj2.message.msg = "obj2消息";
+	console.log(obj.username+"=="+obj2.username);//keke==zhangsan
+	<span class="red">//浅拷贝，只拷贝属性和方法，不能拷贝对象</span>
+	console.log(obj.message.msg+"=="+obj2.message.msg);//obj2消息==obj2消息
+	</pre> 
+	<pre>
+	<span class="green">//方式2	:构造函数的面向对象</span>
+	function Person(){
+		//this.name = 	
+	};
+	Person.prototype.age = 30;
+	var p = new Person();
+	console.log(p.age);//30
+	</pre>
+	<br/>
+	<h2>继承查找顺序和注意事项</h2>
+	<pre>
+	<span class="green">//优先级:构造函数 》原型对象 》Object</span>	
+	var json = {age:30,address:"SDFS"};//Object
+	function Person(){
+		this.username = "keke";//构造函数的属性
+	};
+	Person.prototype = json;
+	Person.prototype.username = "xiaomo";
+	Person.prototype.constructor = Person;<span class="red">//将构造函数改为自己的</span>
+	Object.prototype.username = "zhangsan";
+	var person = new Person();
+	alert(person.username);//返回keke(<span class="red">构造函数级别最高</span>)
+	</pre>
+<script>
+
+	var obj = {
+		username:"keke",
+		fn:function(){},
+		message:{msg:"obj消息"}
+	};
+	//javascript是一个对象，是动态，可以动态追加，删除，修改
+
+	//构造函数
+
+	//Object.create //ie678不支持
+	Object.prototype.create = function(o){
+		function F(){};//构造函数
+		F.prototype = o;//原型对象继承
+		return new F();//返回新对象
+	}
+	var obj2 = Object.create(obj);
+	obj2.username = "zhangsan";	
+	obj2.message.msg = "obj2消息";
+	//console.log(obj.username+"=="+obj2.username);//keke==zhangsan
+	//console.log(obj.message.msg+"=="+obj2.message.msg);//obj2消息==obj2消息
+    //alert(obj.username+"==="+obj2.username);
+
+	//person继承查找顺序和注意事项
+	//优先级:构造函数 》原型对象 》Object	
+	var json = {age:30,address:"SDFS"};//Object
+	function Person(){
+		this.username = "keke";//构造函数的属性
+	};
+	Person.prototype = json;
+	Person.prototype.username = "xiaomo";
+	Person.prototype.constructor = Person;//讲构造函数改为自己的
+	Object.prototype.username = "zhangsan";
+	var person = new Person();
+	//alert(person.username);//返回keke
+
+
+
+
+
+</script>
+</body>
+</html>

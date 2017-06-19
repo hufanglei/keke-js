@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>jquery的on方法</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:24px;font-family:"微软雅黑";background:#373737;color:#fff;padding:20px  0 0 300px;}
+
+		</style>
+
+	</head>
+<body>
+
+	<p>Click this paragraph.</p>
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script>
+    //定义和用法
+	/*on() 方法在被选元素及子元素上添加一个或多个事件处理程序。
+		自 jQuery 版本 1.7 起，on() 方法是 bind()、live() 和 delegate() 方法的新的替代品。该方法给 API 带来很多便利，我们推荐使用该方法，它简化了 jQuery 代码库。
+		注意：使用 on() 方法添加的事件处理程序适用于当前及未来的元素（比如由脚本创建的新元素）。
+		提示：如需移除事件处理程序，请使用 off() 方法。
+		提示：如需添加只运行一次的事件然后移除，请使用 one() 方法。*/
+		$(document).ready(function(){
+			$("p").on("click" , function(){
+				this.innerHTML = "on() 方法是 bind()、live() 和 delegate() 方法的新的替代品";	
+			});
+		});	
+	</script>
+</body>
+</html>

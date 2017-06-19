@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>导航栏下拉框</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 100px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#333;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff}
+			.header{background:#111;}
+			.header .wrap{width:1180px;height:56px;margin:0 auto;}
+			.header .wrap li{height:56px;line-height:56px;float:left;}
+			.header .wrap li a{color:#fff;border-right:1px solid #fff;display:block;padding:0 30px;}
+			.header .wrap li:first-child a{border-left:1px solid #fff;}
+			/*n从1开始，从nth-child(n)(*/
+			/*.header .wrap li:nth-child(1) a{background:red}
+			.header .wrap li:nth-child(2) a{background:green}
+			.header .wrap li:nth-child(3) a{background:blue}
+			.header .wrap li:nth-child(4) a{background:yellow}
+			.header .wrap li:nth-child(5) a{background:pink}*/
+			/*单偶数变化
+			.header .wrap li:nth-child(2n) a{background:red}
+			.header .wrap li:nth-child(2n-1) a{background:blue}*/
+			/*nth-of-type*/
+			/*.header .wrap li:nth-of-type(2n){background:yellow;}
+			.header .wrap li:nth-of-type(2n-1){background:red;}*/
+			.header .wrap li ul{display:none;}
+			.header .wrap li:hover ul{display:block;}
+			/*.header .wrap li:hover+ul{display:block;}  +或者~兄弟元素的选择，但是离开后不能点击*/
+			.header .wrap li ul li a{border-right:1px solid #fff;border-left:1px solid #fff;}
+			.header .wrap li ul li{float:none;background:#111;} 
+			.key{padding:10px 100px ;}
+			.red{color:red;}
+		</style>
+
+	</head>
+<body>
+	
+	<!--
+	1.元素的继承和line-height
+	2.last-child first-child用法
+	3.nth-child(n)	
+	4.nth-of-type 某一个类
+	5:hover 只能触发和改变下面的子元素，
+	
+	-->
+	<style>
+		
+	
+	</style>
+	<div class="header">
+		<div class="wrap">
+			<ul>
+				<li>
+					<a href="javascript:void(0)">首页</a>
+					<ul >
+						<li><a href="javascript:void(0)">灵感</a></li>
+						<li><a href="javascript:void(0)">工具</a></li>
+						<li><a href="javascript:void(0)">更多</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0)">作品</a>
+					<ul >
+						<li><a href="javascript:void(0)">灵感</a></li>
+						<li><a href="javascript:void(0)">工具</a></li>
+						<li><a href="javascript:void(0)">更多</a></li>
+					</ul>
+				<li><a href="javascript:void(0)">学习</a></li>
+				<li><a href="javascript:void(0)">活动</a></li>
+				<li><a href="javascript:void(0)">招聘</a></li>
+				<li>
+				<a href="javascript:void(0)">培训</a>
+				<ul >
+					<li><a href="javascript:void(0)">灵感</a></li>
+					<li><a href="javascript:void(0)">工具</a></li>
+					<li><a href="javascript:void(0)">更多</a></li>
+				</ul>
+				</li>
+				<li>
+				<a href="javascript:void(0)">更多</a>
+				<ul >
+						<li><a href="javascript:void(0)">灵感</a></li>
+						<li><a href="javascript:void(0)">工具</a></li>
+						<li><a href="javascript:void(0)">更多</a></li>
+					</ul>
+				</li>
+			<!--<li><a href="javascript:void(0)">&nbsp;</a></li>-->
+			</ul>
+		</div>
+	</div>
+	
+	<div class="key">
+	<h1>知识点</h1>
+	<ul>
+		<li>1.元素的继承和line-height</li>
+		<li>2.last-child first-child用法</li>
+		<li>3.nth-child(n)	</li>
+		<li>4.nth-of-type 某一个类</li>
+		<li>5:hover 只能触发和改变下面的子元素</li>
+	</ul>
+	</div>
+	<pre>
+	&lt;style type="text/css"&gt;
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#333;}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff}
+			.header{background:#111;}
+			.header .wrap{width:1180px;height:56px;margin:0 auto;}
+			.header .wrap li{height:56px;line-height:56px;float:left;}
+			.header .wrap li a{color:#fff;border-right:1px solid #fff;display:block;padding:0 30px;}
+			.header .wrap li:first-child a{border-left:1px solid #fff;}
+			/*n从1开始，从nth-child(n)(*/
+			/*.header .wrap li:nth-child(1) a{background:red}
+			.header .wrap li:nth-child(2) a{background:green}
+			.header .wrap li:nth-child(3) a{background:blue}
+			.header .wrap li:nth-child(4) a{background:yellow}
+			.header .wrap li:nth-child(5) a{background:pink}*/
+			/*单偶数变化
+			.header .wrap li:nth-child(2n) a{background:red}
+			.header .wrap li:nth-child(2n-1) a{background:blue}*/
+			/*nth-of-type*/
+			/*.header .wrap li:nth-of-type(2n){background:yellow;}
+			.header .wrap li:nth-of-type(2n-1){background:red;}*/
+			<span class="red">.header .wrap li:hover ul{display:block;}</span>
+
+			.header .wrap li ul{display:none;}
+			/*.header .wrap li:hover+ul{display:block;}  +或者~兄弟元素的选择，但是离开后不能点击*/
+			.header .wrap li ul li a{border-right:1px solid #fff;border-left:1px solid #fff;}
+			.header .wrap li ul li{float:none;background:#111;} 
+			.key{padding:100px;}
+		&lt;/style&gt;
+
+	</pre>
+<script>
+
+</script>
+</body>
+</html>

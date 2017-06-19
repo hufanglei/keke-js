@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>案例:元素的追加</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:14px;font-family:"微软雅黑";background:#fff;padding:100px;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 10px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+			.key{padding:10px;}
+			.red{color:red}
+			.div{line-height:50px;background:red;color:#fff;height:50px;margin-top:5px;}
+			#box2{width:640px;height:300px;background:#111;margin:10px auto;color:#fff}
+		</style>
+
+	</head>
+<body>
+	
+	<span id="box">最近</span>
+	
+	<div class="key">
+		<h1>知识点</h1>
+		<h3>insertAdjacentHTML</h3>		
+		<pre>
+		function dom(id){
+			return document.getElementById(id);
+		};
+		var boxDom = dom("box");
+		//boxDom.insertAdjacentHTML("beforebegin","&lt;strong&gt;你好&lt;/strong&gt;");
+		//boxDom.insertAdjacentHTML("afterbegin","&lt;strong&gt;keke&lt;/strong&gt;");
+		//boxDom.insertAdjacentHTML("beforebegin","&lt;strong&gt;过得怎么样&lt;/strong&gt;");
+		//boxDom.insertAdjacentHTML("afterbegin","&lt;strong&gt;很好&lt;/strong&gt;");
+		function kekebefrore(dom ,html){
+			dom.insertAdjacentHTML("beforebegin",html);
+		}
+		function kekeAfeter(dom ,html){
+			dom.insertAdjacentHTML("afterbegin",html);
+		}
+		kekebefrore(boxDom,"&lt;strong&gt;你好&lt;/strong&gt;");
+		kekeAfeter(boxDom,"&lt;strong&gt;keke&lt;/strong&gt;");
+		kekebefrore(boxDom,"&lt;strong&gt;过得怎么样&lt;/strong&gt;");
+		kekeAfeter(boxDom,"&lt;strong&gt;很好&lt;/strong&gt;");
+		</pre>
+	
+	</div>
+	<script>		
+		//你好 keke  最近 多得怎么样  很好
+		function dom(id){
+			return document.getElementById(id);
+		};
+		var boxDom = dom("box");
+		//boxDom.insertAdjacentHTML("beforebegin","<strong>你好</strong>");
+		//boxDom.insertAdjacentHTML("afterbegin","<strong>keke</strong>");
+		//boxDom.insertAdjacentHTML("beforebegin","<strong>过得怎么样</strong>");
+		//boxDom.insertAdjacentHTML("afterbegin","<strong>很好</strong>");
+		
+
+		function kekebefrore(dom ,html){
+			dom.insertAdjacentHTML("beforebegin",html);
+		}
+		function kekeAfeter(dom ,html){
+			dom.insertAdjacentHTML("afterbegin",html);
+		}
+		kekebefrore(boxDom,"<strong>你好</strong>");
+		kekeAfeter(boxDom,"<strong>keke</strong>");
+		kekebefrore(boxDom,"<strong>过得怎么样</strong>");
+		kekeAfeter(boxDom,"<strong>很好</strong>");
+	
+		
+	</script>
+
+
+
+</body>
+</html>

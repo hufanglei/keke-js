@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>交换运动版本</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#111}
+			ul,li{list-style:none}
+			body{font-size:14px;font-family:"微软雅黑";}
+			#box{width:640px;margin:100px auto;position:relative;background:red;}
+			#box li{height:40px;background:#ccc;margin-top:3px;line-height:50px;
+			padding:5px;width:100%}
+		</style>
+
+	</head>
+<body>
+	<div id="box">
+		<ul  id="ullist">
+			<li>1<a href="javascript:void(0)" class="prev">上移动</a>&nbsp;
+			<a href="javascript:void(0)" class="next">下移动</a></li>
+			<li>2<a href="javascript:void(0)" class="prev">上移动</a>&nbsp;
+			<a href="javascript:void(0)" class="next">下移动</a></li>
+			<li>3<a href="javascript:void(0)" class="prev">上移动</a>&nbsp;
+			<a href="javascript:void(0)" class="next">下移动</a></li>
+			<li>4<a href="javascript:void(0)" class="prev">上移动</a>&nbsp;
+			<a href="javascript:void(0)" class="next">下移动</a></li>
+			<li>5<a href="javascript:void(0)" class="prev">上移动</a>&nbsp;
+			<a href="javascript:void(0)" class="next">下移动</a></li>
+			
+		</ul>
+
+	</div>
+	
+
+<script type="text/javascript" src="dom.js"></script>
+
+<script>
+	window.onload = function(){
+		/*
+			运动交互：位置的交互 ---改成定位布局
+			1:记录每个元素的位置坐标，数组 记录起来
+			2：添加定位，吧记录位置重新赋予
+		*/
+		var liDoms = dom("ullist").children;
+		var len = liDoms.length;
+		//位置数组
+		var arr = [];
+		for (var i=0;i<len;i++){
+			liDoms[i].index = i;//对象缓存索引，目的是为了找到当前元素在数组中的位置坐标
+			liDoms[i].style.left = liDoms[i].offsetLeft + "px";
+			liDoms[i].style.top = liDoms[i].offsetTop + "px" ;
+			arr.push([liDoms[i].offsetLeft,liDoms[i].offsetTop]);//位置添加到数组中
+		}
+		for (var i=0;i<len ;i++){
+			liDoms[i].style.position = "absolute";
+		}
+		/*****定位布局介绍******/
+		for (var i=0;i<len;i++){
+			//上移动事件
+			liDoms[i].children[0].onclick = function(){
+				//拿到父元素
+				var pdom = this.parentElement;
+				//上一个元素
+				var prevDom = pdom.previousElementSibling;
+				if(prevDom){
+					var cindex = pdom.index;
+					var pindex = prevDom.index;
+					var tempArr = arr[cindex];
+					//交换				
+					dom("ullist").insertBefore(pdom,prevDom);
+					move(pdom,{left:arr[pindex][0],top:arr[pindex][1]});
+					move(prevDom,{left:arr[cindex][0],top:arr[cindex][1]});
+					arr[cindex] = arr[pindex];
+					arr[pindex]= tempArr;
+					console.log(arr.toString());
+				}else{
+					alert("没有交换的元素");
+				}
+				
+			}
+			//下移动事件
+			liDoms[i].children[1].onclick = function(){
+				//拿到父元素
+				var pdom = this.parentElement;
+				var nextDom = pdom.nextElementSibling;
+				//交换
+				if(nextDom){
+					var cindex = pdom.index;
+					var pindex = nextDom.index;
+					var tempArr = arr[cindex];
+					//交换				
+					dom("ullist").insertBefore(nextDom,pdom);
+					move(pdom,{left:arr[pindex][0],top:arr[pindex][1]});
+					move(nextDom,{left:arr[cindex][0],top:arr[cindex][1]});
+					arr[cindex] = arr[pindex];
+					arr[pindex]= tempArr;
+					console.log(arr.toString());
+				}else{
+					alert("没有交换的元素");
+				}
+				
+			}
+		}
+	}
+		
+</script>
+</body>
+</html>

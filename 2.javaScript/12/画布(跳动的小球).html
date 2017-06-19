@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>跳动的小球</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:16px;font-family:"微软雅黑";padding:20px 100px;background:#373737;color:#ccc;}
+			pre {
+				font-size:14px;
+				width:40%;
+				margin: 10px 0 0 0;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #f5f5f5;
+				color:#000;
+				left:100px;
+			}
+		
+         
+		</style>
+
+	</head>
+<body>
+
+<canvas id="canvas"  style="background:translate;"></canvas>
+<script>
+	window.onload = function(){
+		//使用 id 来寻找 canvas 元素：
+		var canvas = document.getElementById("canvas");
+		//创建 context 对象：
+		var context = canvas.getContext("2d");
+		//画布的宽度和高度
+		
+		canvas.width = window.innerWidth;
+		canvas.height  = window.innerHeight;
+		var cwidth = canvas.width;
+		var cheight = canvas.height;
+		//初始化小球的数量
+		var ballNums = 1000;
+		//装载小球的盒子
+		var balls = [];
+		var r = 0.2;
+		//创建200个小球
+		for(var i=0;i<ballNums;i++){
+			var ball = new Ball();	//创建小球，初始化参数
+			//小球的初始化的位置
+			ball.x = cwidth/2;//画布的一半
+			ball.y = cheight;	//画布的高度
+			ball.vy = Math.random()*-10-10;//初始化每个小球的速度，既然是随机的，那么肯定每个小球开始的位置都不一样
+			ball.vx = Math.random()*2-1;//同理
+			ball.radius =  rangeRandom(1 ,5);//半径
+			balls.push(ball);//放入小球盒子中
+		}
+		//高度，宽度，颜色随机
+		function drawCanvas(ball){
+			//每个小球方向的改变
+			ball.vy += r;
+			//每个小球的位置
+			ball.x += ball.vx;
+			ball.y += ball.vy;
+			//随机颜色
+			ball.color = getRandomColor();
+			//边界控制
+			if(ball.y - ball.radius > cheight || 
+				ball.y+ball.radius<0  || 
+				ball.x - ball.radius > cwidth ||
+				ball.x+ball.radius<0  ){
+				//重新初始化
+				ball.x = cwidth/2;
+				ball.y = cheight;
+				ball.vy = Math.random()*-10-10;
+				ball.vx = Math.random()*2-1;
+				rangeRandom(1 ,5);
+			}
+			//调用小球对象通估prototype扩展的方法
+			ball.draw(context);//绘制
+		
+		};
+		//一次性。肯定需要不断的改变
+		setInterval(function(){
+			//清除
+			context.clearRect(0,0,cwidth,cheight);
+			//一次性绘制200个球，并每个小球都掉用drawCanvas方法
+			
+			balls.forEach(function(obj){
+			//上面的那行等于for(var i=0;i<balls.length;i++)
+				drawCanvas(obj);
+			});
+		},30);
+	};
+
+	//面向对象
+	function Ball(radius){
+			this.radius  = radius;
+			this.x = 0;
+			this.y = 0;
+			this.vx = 0;
+			this.vy = 0;//速度
+			this.color = "#ff0000";
+	};
+	//绘制小球
+	Ball.prototype.draw =  function(context){
+		context.beginPath();
+		context.fillStyle = this.color;
+		context.arc(this.x,this.y,this.radius,0,Math.PI*2);
+		context.fill();
+	};
+	function getRandomColor(){
+		var r = Math.floor(Math.random()*256);
+		var g = Math.floor(Math.random()*256);
+		var b = Math.floor(Math.random()*256);
+		return "rgb("+r+","+g+","+b+")";
+	};
+	function rangeRandom(start ,end){
+		return Math.floor(Math.random()*(end-start+1)+start);
+	};
+	/*
+	思路:
+	1.先画一个球显示
+	2.定义个球的模板，然后用for循环创建200个球
+		存入数组，然后遍历数组的时候画出来
+	3.改变球的起点位置:宽度的一半，高度的全部（下面出现的化）
+	4.高度，宽度，颜色随机 setInteval()自动产生
+	5.清除画布 context.clearRect(0,0,cwidth,cheight);
+	6.半径范围随机 
+	7.y和x的偏移，引入速度vx vy变量
+	8.边界
+	9.回落: ball.vy += r;
+	10.屏幕撑满屏幕
+	*/
+	
+</script>
+</body>
+</html>

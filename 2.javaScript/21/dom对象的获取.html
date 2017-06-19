@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+	<head>
+		<!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，utf-8国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>html模板</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="">
+
+		<!--css,js-->
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			a{text-decoration:none;color:#fff;}
+			ul,li{list-style:none}
+			body{font-size:12px;font-family:"微软雅黑";background:#FFF;}
+			pre {
+				font-size:14px;
+				width:80%;
+				margin: 10px 100px;
+				padding: 10px;
+				border: 0;
+				border: 1px dotted #ccc;
+				background: #ff9966;
+				color:#000;
+			}
+
+		</style>
+
+	</head>
+<body>
+	<div id="wrapbox">
+		<div class="items">1</div>
+		<div class="items">2</div>
+		<div class="items">3</div>
+		<div class="item">4</div>
+	</div>
+	<pre>
+		//方法1:
+	//通过tagName获取元素
+	//var boxDoms = document.getElementsByTagName("div");
+	//alert(typeof boxDoms);
+	//变量并给元素的属性赋值
+	//for(var i=0;i&lt;boxDoms.length;i++){
+	//	boxDoms[i].style.background = "red";
+	//	boxDoms[i].style.marginTop = "10px";
+	//}
+
+	//方法2:给父元素下面的子类改变属性
+	//var boxDoms = document.getElementById("wrapbox");
+	//var boxChilds = boxDoms.children;
+	//var len = boxChilds.length;
+	//for(var i=0;i&lt;len;i++){
+	//	boxChilds[i].style.marginTop = "10px";
+	//	boxChilds[i].style.background = "green";
+	//	boxChilds[i].style.height = "100px";
+	//	boxChilds[i].style.color = "#fff";
+	//	boxChilds[i].style.fontSize = "24px";
+	//	boxChilds[i].style.padding = "10px";
+	//}
+	//方法3:获取所有的元素
+	//var boxDoms = document.getElementsByTagName("*");	
+	//变量并给元素的属性赋值
+	//for(var i=0;i&lt;boxDoms.length;i++){
+	//	boxDoms[i].style.border = "5px solid #000";
+	//}
+
+	//4:document.getElementsByClassName 也是通过父类，找到父类下面的class。为了性能考虑的写法
+	//var boxDoms = document.getElementById("wrapbox");
+	//var doms = boxDoms.getElementsByClassName("items");
+	//var len = doms.length;
+	//for(var i = 0; i&lt;len;i++){
+		//doms[i].style.marginTop = "10px";
+		//doms[i].style.background = "yellow";
+	//}
+	
+	//5. document.querySelector("#id")
+	//var boxDoms = document.getElementById("wrapbox");
+	//var boxDoms1 = document.querySelector("#wrapbox");
+	//alert(boxDoms===boxDoms1);//true
+	
+	//6.document.querySelector(".class")
+	var boxDoms = document.getElementById("wrapbox");
+	var doms = boxDoms.querySelectorAll(".items");
+	var len = doms.length;
+	for(var i = 0; i&lt;len;i++){
+		doms[i].style.marginTop = "10px";
+		doms[i].style.background = "yellow";
+	}
+	</pre>
+
+<script>
+	//方法1:
+	//通过tagName获取元素
+	//var boxDoms = document.getElementsByTagName("div");
+	//alert(typeof boxDoms);
+	//变量并给元素的属性赋值
+	//for(var i=0;i<boxDoms.length;i++){
+	//	boxDoms[i].style.background = "red";
+	//	boxDoms[i].style.marginTop = "10px";
+	//}
+
+	//方法2:给父元素下面的子类改变属性
+	//var boxDoms = document.getElementById("wrapbox");
+	//var boxChilds = boxDoms.children;
+	//var len = boxChilds.length;
+	//for(var i=0;i<len;i++){
+	//	boxChilds[i].style.marginTop = "10px";
+	//	boxChilds[i].style.background = "green";
+	//	boxChilds[i].style.height = "100px";
+	//	boxChilds[i].style.color = "#fff";
+	//	boxChilds[i].style.fontSize = "24px";
+	//	boxChilds[i].style.padding = "10px";
+	//}
+	//方法3:获取所有的元素
+	//var boxDoms = document.getElementsByTagName("*");	
+	//变量并给元素的属性赋值
+	//for(var i=0;i<boxDoms.length;i++){
+	//	boxDoms[i].style.border = "5px solid #000";
+	//}
+
+	//4:document.getElementsByClassName 也是通过父类，找到父类下面的class。为了性能考虑的写法
+	//var boxDoms = document.getElementById("wrapbox");
+	//var doms = boxDoms.getElementsByClassName("items");
+	//var len = doms.length;
+	//for(var i = 0; i<len;i++){
+		//doms[i].style.marginTop = "10px";
+		//doms[i].style.background = "yellow";
+	//}
+	
+	//5. document.querySelector("#id")
+	//var boxDoms = document.getElementById("wrapbox");
+	//var boxDoms1 = document.querySelector("#wrapbox");
+	//alert(boxDoms===boxDoms1);//true
+	
+	//6.document.querySelector(".class")
+	var boxDoms = document.getElementById("wrapbox");
+	var doms = boxDoms.querySelectorAll(".items");
+	var len = doms.length;
+	for(var i = 0; i<len;i++){
+		doms[i].style.marginTop = "10px";
+		doms[i].style.background = "yellow";
+	}
+</script>
+</body>
+</html>
